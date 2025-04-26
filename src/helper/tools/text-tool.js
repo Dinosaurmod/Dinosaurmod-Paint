@@ -25,6 +25,9 @@ const textAlignment = {
  * drawn on or erased. This way they can preserve their ability to have the text edited.
  */
 class TextTool extends paper.Tool {
+    this.isItalic = false;
+    this.isUnderline = false;
+
     static set textAlignment (value) {
         textAlignment.value = value;
     }
@@ -174,6 +177,31 @@ class TextTool extends paper.Tool {
         }
         this.calculateMatrix(viewMtx);
     }
+    updateTextStyle() {
+        if (!this.element) return;
+        
+        if (this.isItalic) {
+            this.element.style.transform += ' skewX(-15deg)';
+        } else {
+            this.element.style.transform = this.element.style.transform.replace(/skewX\([^)]+\)/, '');
+        }
+    
+        this.element.style.textDecoration = this.isUnderline ? 'underline' : 'none';
+    }    
+    setItalic(isItalic) {
+        this.isItalic = isItalic;
+        this.updateTextStyle();
+    }
+    setUnderline(isUnderline) {
+        this.isUnderline = isUnderline;
+        this.updateTextStyle();
+    }
+    getIsItalic() {
+        return this.isItalic;
+    }
+    getIsUnderline() {
+        return this.isUnderline;
+    }    
     calculateMatrix (viewMtx) {
         const textBoxMtx = this.textBox.matrix;
         const calculated = new paper.Matrix();
@@ -198,6 +226,8 @@ class TextTool extends paper.Tool {
         calculated.append(textBoxMtx);
         this.element.style.transform = `matrix(${calculated.a}, ${calculated.b}, ${calculated.c}, ${calculated.d},
              ${calculated.tx}, ${calculated.ty})`;
+
+        this.updateTextStyle();
     }
     setColorState (colorState) {
         this.colorState = colorState;
@@ -382,6 +412,7 @@ class TextTool extends paper.Tool {
         this.element.style.display = 'initial';
         this.element.value = textBox.content ? textBox.content : '';
         this.calculateMatrix(paper.view.matrix);
+        this.updateTextStyle();
 
         if (TextTool.textAlignment === "right") {
             // make both the textbox and the textarea element grow to the left
