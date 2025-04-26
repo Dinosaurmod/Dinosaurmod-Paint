@@ -25,6 +25,8 @@ import Modes from '../lib/modes';
 
 import TextTool from '../helper/tools/text-tool.js';
 
+const TextToolInstance = new TextTool();
+
 class ModeTools extends React.Component {
     constructor (props) {
         super(props);
@@ -304,11 +306,11 @@ class ModeTools extends React.Component {
     }
 
     handleTextItalic () {
-        TextTool.setItalic(!TextTool.getIsItalic())
+        TextToolInstance.setItalic(!TextToolInstance.getIsItalic())
     }
 
     handleTextUnderline () {
-        TextTool.setUnderline(!TextTool.getIsUnderline())
+        TextToolInstance.setUnderline(!TextToolInstance.getIsUnderline())
     }
 
     handleMergeShape (specificOperation) {
