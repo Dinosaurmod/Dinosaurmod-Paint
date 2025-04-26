@@ -456,18 +456,18 @@ class TextTool extends paper.Tool {
                 console.log("element has been unskewed");
             }
 
-            this.textBox.id.style.transform = transformString;
+            this.textBox.style.transform = transformString;
             this.element.style.transform = transformString;
 
             if (!!TextTool.isUnderlined) {
                 this.element.style.textDecoration = 'underline';
                 this.element.style.textDecorationColor = this.element.style.color || 'inherit';
-                this.textBox.id.style.textDecoration = 'underline';
-                this.textBox.id.style.textDecorationColor = this.textBox.id.style.color || 'inherit';
+                this.textBox.style.textDecoration = 'underline';
+                this.textBox.style.textDecorationColor = this.textBox.style.color || 'inherit';
                 console.log("element has been given underline");
             } else {
                 this.element.style.textDecoration = 'none';
-                this.textBox.id.style.textDecoration = 'none';
+                this.textBox.style.textDecoration = 'none';
                 console.log("element has been revoked from having underline");
             }
         }
@@ -515,18 +515,18 @@ class TextTool extends paper.Tool {
                 console.log("element has been unskewed");
             }
 
-            this.textBox.id.style.transform = transformString;
+            this.textBox.style.transform = transformString;
             this.element.style.transform = transformString;
 
             if (!!TextTool.isUnderlined) {
                 this.element.style.textDecoration = 'underline';
                 this.element.style.textDecorationColor = this.element.style.color || 'inherit';
-                this.textBox.id.style.textDecoration = 'underline';
-                this.textBox.id.style.textDecorationColor = this.textBox.id.style.color || 'inherit';
+                this.textBox.style.textDecoration = 'underline';
+                this.textBox.style.textDecorationColor = this.textBox.style.color || 'inherit';
                 console.log("element has been given underline");
             } else {
                 this.element.style.textDecoration = 'none';
-                this.textBox.id.style.textDecoration = 'none';
+                this.textBox.style.textDecoration = 'none';
                 console.log("element has been revoked from having underline");
             }
         }
