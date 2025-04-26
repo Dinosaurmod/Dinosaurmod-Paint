@@ -469,6 +469,9 @@ class ModeTools extends React.Component {
                 onTextAlignRight={this.handleTextAlignRight}
                 onTextAlignCenter={this.handleTextAlignCenter}
 
+                onTextItalic={this.handleTextAlignLeft}
+                onTextUnderline={this.handleTextAlignRight}
+
                 onMergeShape={this.handleMergeShape}
                 onMaskShape={this.handleMaskShape}
                 onSubtractShape={this.handleSubtractShape}

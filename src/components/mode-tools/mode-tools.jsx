@@ -48,6 +48,9 @@ import alignLeftIcon from './icons/alignLeft.svg';
 import alignRightIcon from './icons/alignRight.svg';
 import alignCenterIcon from './icons/alignCenter.svg';
 
+import italicIcon from './icons/italic.svg';
+import underlineIcon from './icons/underline.svg';
+
 import bitBrushIcon from '../bit-brush-mode/brush.svg';
 import bitEraserIcon from '../bit-eraser-mode/eraser.svg';
 import bitLineIcon from '../bit-line-mode/line.svg';
@@ -644,6 +647,20 @@ const ModeToolsComponent = props => {
                             onClick={props.onTextAlignRight}
                         />
                     </InputGroup>
+                    <InputGroup className={classNames(styles.modDashedBorder, styles.modLabeledIconHeight)}>
+                        <LabeledIconButton
+                            hideLabel
+                            imgSrc={italicIcon}
+                            title={'Italic'}
+                            onClick={props.onTextItalic}
+                        />
+                        <LabeledIconButton
+                            hideLabel
+                            imgSrc={underlineIcon}
+                            title={'Underline'}
+                            onClick={props.onTextUnderline}
+                        />
+                    </InputGroup>
                 </div>
             );
         case Modes.BIT_RECT:
@@ -734,6 +751,9 @@ ModeToolsComponent.propTypes = {
     onTextAlignLeft: PropTypes.func.isRequired,
     onTextAlignRight: PropTypes.func.isRequired,
     onTextAlignCenter: PropTypes.func.isRequired,
+
+    onTextItalic: PropTypes.func.isRequired,
+    onTextUnderline: PropTypes.func.isRequired,
 
     onMergeShape: PropTypes.func.isRequired,
     onMaskShape: PropTypes.func.isRequired,
