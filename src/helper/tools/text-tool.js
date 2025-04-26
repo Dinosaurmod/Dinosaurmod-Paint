@@ -181,18 +181,23 @@ class TextTool extends paper.Tool {
         
         if (this.isItalic) {
             this.element.style.transform += ' skewX(-15deg)';
+            console.log("element has been skewed")
         } else {
             this.element.style.transform = this.element.style.transform.replace(/skewX\([^)]+\)/, '');
+            console.log("element has been unskewed")
         }
     
         this.element.style.textDecoration = this.isUnderline ? 'underline' : 'none';
+        console.log("element has been " + this.isUnderline ? 'given underline' : 'revoked from having underline';)
     }    
     setItalic(isItalic) {
         this.isItalic = isItalic;
+        console.log("IsItalic has been set to " +  isItalic)
         this.updateTextStyle();
     }
     setUnderline(isUnderline) {
         this.isUnderline = isUnderline;
+        console.log("IsItalic has been set to " +  isUnderline)
         this.updateTextStyle();
     }
     getIsItalic() {
