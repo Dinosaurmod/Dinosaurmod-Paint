@@ -214,9 +214,9 @@ class TextTool extends paper.Tool {
             let transformParts = [];
             transformParts.push(`matrix(${calculated.a}, ${calculated.b}, ${calculated.c}, ${calculated.d}, ${calculated.tx}, ${calculated.ty})`);
 
-            if ((!!TextTool.isItalic)) {
+            if (!!TextTool.isItalic) {
                 transformParts.push('skewX(-15deg)');
-                console.log("element has been skewed")
+                console.log("element has been skewed");
             }
 
             let transformString = transformParts.join(' ');
@@ -228,7 +228,7 @@ class TextTool extends paper.Tool {
 
             this.element.style.transform = transformString;
 
-            if (TextTool.isUnderlined === true) {
+            if (!!TextTool.isUnderlined) {
                 this.element.style.textDecoration = 'underline';
                 this.element.style.textDecorationColor = this.element.style.color || 'inherit';
                 console.log("element has been given underline");
@@ -441,6 +441,28 @@ class TextTool extends paper.Tool {
         } else {
             this.textBox.justification = 'left';
         }
+        if (!!this.textBox) {
+            let transformParts = [];
+
+            if ((!!TextTool.isItalic)) {
+                this.textBox.style.transform += (' skewX(-15deg)');
+                console.log("textBox has been skewed")
+            }
+
+            if (!TextTool.isItalic) {
+                this.textBox.style.transform = this.textBox.style.transform.replace(/skewX\([^)]+\)\s*/g, '');
+                console.log("textBox has been unskewed");
+            }
+
+            if (!!TextTool.isUnderlined) {
+                this.textBox.style.textDecoration = 'underline';
+                this.textBox.style.textDecorationColor = this.textBox.style.color || 'inherit';
+                console.log("textBox has been given underline");
+            } else {
+                this.textBox.style.textDecoration = 'none';
+                console.log("textBox has been revoked from having underline");
+            }
+        }  
 
         this.element.focus({preventScroll: true});
         this.eventListener = this.handleTextInput.bind(this);
