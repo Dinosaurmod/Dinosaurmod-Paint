@@ -25,9 +25,6 @@ const textAlignment = {
  * drawn on or erased. This way they can preserve their ability to have the text edited.
  */
 class TextTool extends paper.Tool {
-    this.isItalic = false;
-    this.isUnderline = false;
-
     static set textAlignment (value) {
         textAlignment.value = value;
     }
@@ -68,6 +65,8 @@ class TextTool extends paper.Tool {
     constructor (textAreaElement, setSelectedItems, clearSelectedItems, setCursor, onUpdateImage, setTextEditTarget,
         changeFont, isBitmap) {
         super();
+        this.isItalic = false;
+        this.isUnderline = false;
         this.element = textAreaElement;
         this.setSelectedItems = setSelectedItems;
         this.clearSelectedItems = clearSelectedItems;
