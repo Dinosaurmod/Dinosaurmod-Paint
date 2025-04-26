@@ -230,6 +230,7 @@ class TextTool extends paper.Tool {
 
             if (TextTool.isUnderlined === true) {
                 this.element.style.textDecoration = 'underline';
+                this.element.style.textDecorationColor = this.element.style.color || 'inherit';
                 console.log("element has been given underline");
             } else {
                 this.element.style.textDecoration = 'none';
