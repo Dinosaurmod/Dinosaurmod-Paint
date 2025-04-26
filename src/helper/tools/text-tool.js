@@ -456,18 +456,14 @@ class TextTool extends paper.Tool {
                 console.log("element has been unskewed");
             }
 
-            this.textBox.style.transform = transformString;
             this.element.style.transform = transformString;
 
             if (!!TextTool.isUnderlined) {
                 this.element.style.textDecoration = 'underline';
                 this.element.style.textDecorationColor = this.element.style.color || 'inherit';
-                this.textBox.style.textDecoration = 'underline';
-                this.textBox.style.textDecorationColor = this.textBox.style.color || 'inherit';
                 console.log("element has been given underline");
             } else {
                 this.element.style.textDecoration = 'none';
-                this.textBox.style.textDecoration = 'none';
                 console.log("element has been revoked from having underline");
             }
         }
@@ -505,6 +501,7 @@ class TextTool extends paper.Tool {
 
             if (!!TextTool.isItalic) {
                 transformParts.push('skewX(-15deg)');
+                this.textBox.matrix = new paper.Matrix().skew(0, -15);
                 console.log("element has been skewed");
             }
 
@@ -512,21 +509,18 @@ class TextTool extends paper.Tool {
 
             if (!TextTool.isItalic) {
                 transformString = transformString.replace(/skewX\([^)]+\)\s*/g, '');
+                this.textBox.matrix = new paper.Matrix();
                 console.log("element has been unskewed");
             }
 
-            this.textBox.style.transform = transformString;
             this.element.style.transform = transformString;
 
             if (!!TextTool.isUnderlined) {
                 this.element.style.textDecoration = 'underline';
                 this.element.style.textDecorationColor = this.element.style.color || 'inherit';
-                this.textBox.style.textDecoration = 'underline';
-                this.textBox.style.textDecorationColor = this.textBox.style.color || 'inherit';
                 console.log("element has been given underline");
             } else {
                 this.element.style.textDecoration = 'none';
-                this.textBox.style.textDecoration = 'none';
                 console.log("element has been revoked from having underline");
             }
         }
