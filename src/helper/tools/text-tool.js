@@ -493,24 +493,24 @@ class TextTool extends paper.Tool {
             this.eventListener = null;
         }
         if (!!this.textBox) {
-            let transformParts = [];
+            let target = this.textBox
 
             if ((!!TextTool.isItalic)) {
-                this.element.style.transform += (' skewX(-15deg)');
+                target.style.transform += (' skewX(-15deg)');
                 console.log("element has been skewed")
             }
 
             if (!TextTool.isItalic) {
-                this.element.style.transform = this.element.style.transform.replace(/skewX\([^)]+\)\s*/g, '');
+                target.style.transform = target.style.transform.replace(/skewX\([^)]+\)\s*/g, '');
                 console.log("element has been unskewed");
             }
 
             if (!!TextTool.isUnderlined) {
-                this.element.style.textDecoration = 'underline';
-                this.element.style.textDecorationColor = this.element.style.color || 'inherit';
+                target.style.textDecoration = 'underline';
+                target.style.textDecorationColor = target.style.color || 'inherit';
                 console.log("element has been given underline");
             } else {
-                this.element.style.textDecoration = 'none';
+                target.style.textDecoration = 'none';
                 console.log("element has been revoked from having underline");
             }
         }  
