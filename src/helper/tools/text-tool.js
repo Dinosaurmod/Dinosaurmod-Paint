@@ -492,6 +492,28 @@ class TextTool extends paper.Tool {
             this.element.removeEventListener('input', this.eventListener);
             this.eventListener = null;
         }
+        if (!!this.textBox) {
+            let transformParts = [];
+
+            if ((!!TextTool.isItalic)) {
+                this.element.style.transform += (' skewX(-15deg)');
+                console.log("element has been skewed")
+            }
+
+            if (!TextTool.isItalic) {
+                this.element.style.transform = this.element.style.transform.replace(/skewX\([^)]+\)\s*/g, '');
+                console.log("element has been unskewed");
+            }
+
+            if (!!TextTool.isUnderlined) {
+                this.element.style.textDecoration = 'underline';
+                this.element.style.textDecorationColor = this.element.style.color || 'inherit';
+                console.log("element has been given underline");
+            } else {
+                this.element.style.textDecoration = 'none';
+                console.log("element has been revoked from having underline");
+            }
+        }  
         if (this.textBox && this.lastTypeEvent) {
             // Finished editing a textbox, save undo state
             // Select the textbox so that it will be selected if the user performs undo.
