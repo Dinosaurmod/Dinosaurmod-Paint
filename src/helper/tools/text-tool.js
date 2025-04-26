@@ -211,13 +211,23 @@ class TextTool extends paper.Tool {
             tx = -this.element.parentElement.clientWidth / 2;
         }
         if (!!this.element) {
-            if ((TextTool.isItalic === true)) {
-                this.element.style.transform += ' skewX(-15deg)';
+            let transformParts = [];
+            transformParts.push(`matrix(${calculated.a}, ${calculated.b}, ${calculated.c}, ${calculated.d}, ${calculated.tx}, ${calculated.ty})`);
+
+            if ((!!TextTool.isItalic)) {
+                transformParts.push('skewX(-15deg)');
                 console.log("element has been skewed")
-            } else {
-                this.element.style.transform = this.element.style.transform.replace(/skewX\([^)]+\)/, '');
-                console.log("element has been unskewed")
             }
+
+            let transformString = transformParts.join(' ');
+
+            if (!TextTool.isItalic) {
+                transformString = transformString.replace(/skewX\([^)]+\)\s*/g, '');
+                console.log("element has been unskewed");
+            }
+
+            this.element.style.transform = transformString;
+
             if (TextTool.isUnderlined === true) {
                 this.element.style.textDecoration = 'underline';
                 console.log("element has been given underline");
