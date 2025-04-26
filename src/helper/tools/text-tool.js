@@ -21,10 +21,10 @@ const textAlignment = {
 }
 
 const otherTextState = {
-    isItalic = {
+    isItalic: {
         value: false
     },
-    isUnderlined = {
+    isUnderlined: {
         value: false
     }
 }
@@ -36,7 +36,6 @@ const otherTextState = {
 class TextTool extends paper.Tool {
     static set isItalic (value) {
         isItalic.value = value;
-        this.updateTextStyle()
     }
     static get isItalic () {
         return otherTextState.isItalic.value;
@@ -44,7 +43,6 @@ class TextTool extends paper.Tool {
 
     static set isUnderlined (value) {
         otherTextState.isUnderlined.value = value;
-        this.updateTextStyle()
     }
     static get isUnderlined () {
         return otherTextState.isUnderlined.value;
