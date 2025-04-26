@@ -19,8 +19,8 @@ jobs:
           node-version: 14.x
       - name: Fix Git SSH to HTTPS
         run: |
-          git config --global url."https://github.com/".insteadOf "ssh://git@github.com/"
           git config --global url."https://github.com/".insteadOf "git@github.com:"
+          git config --global url."https://github.com/".insteadOf "ssh://git@github.com/"
       - run: npm ci
       - run: npm test
       - name: Repository Dispatch
