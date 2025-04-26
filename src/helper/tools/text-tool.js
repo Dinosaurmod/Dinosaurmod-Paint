@@ -20,11 +20,36 @@ const textAlignment = {
     value: "left"
 }
 
+const otherTextState = {
+    isItalic = {
+        value: false
+    },
+    isUnderlined = {
+        value: false
+    }
+}
+
 /**
  * Tool for adding text. Text elements have limited editability; they can't be reshaped,
  * drawn on or erased. This way they can preserve their ability to have the text edited.
  */
 class TextTool extends paper.Tool {
+    static set isItalic (value) {
+        isItalic.value = value;
+        this.updateTextStyle()
+    }
+    static get isItalic () {
+        return otherTextState.isItalic.value;
+    }
+
+    static set isUnderlined (value) {
+        otherTextState.isUnderlined.value = value;
+        this.updateTextStyle()
+    }
+    static get isUnderlined () {
+        return otherTextState.isUnderlined.value;
+    }
+
     static set textAlignment (value) {
         textAlignment.value = value;
     }
@@ -65,8 +90,6 @@ class TextTool extends paper.Tool {
     constructor (textAreaElement, setSelectedItems, clearSelectedItems, setCursor, onUpdateImage, setTextEditTarget,
         changeFont, isBitmap) {
         super();
-        this.isItalic = false;
-        this.isUnderline = false;
         this.element = textAreaElement;
         this.setSelectedItems = setSelectedItems;
         this.clearSelectedItems = clearSelectedItems;
@@ -176,36 +199,6 @@ class TextTool extends paper.Tool {
         }
         this.calculateMatrix(viewMtx);
     }
-    updateTextStyle() {
-        if (!this.element) return;
-        
-        if (this.isItalic) {
-            this.element.style.transform += ' skewX(-15deg)';
-            console.log("element has been skewed")
-        } else {
-            this.element.style.transform = this.element.style.transform.replace(/skewX\([^)]+\)/, '');
-            console.log("element has been unskewed")
-        }
-    
-        this.element.style.textDecoration = this.isUnderline ? 'underline' : 'none';
-        console.log("element has been " + this.isUnderline ? 'given underline' : 'revoked from having underline';)
-    }    
-    setItalic(isItalic) {
-        this.isItalic = isItalic;
-        console.log("IsItalic has been set to " +  isItalic)
-        this.updateTextStyle();
-    }
-    setUnderline(isUnderline) {
-        this.isUnderline = isUnderline;
-        console.log("IsItalic has been set to " +  isUnderline)
-        this.updateTextStyle();
-    }
-    getIsItalic() {
-        return this.isItalic;
-    }
-    getIsUnderline() {
-        return this.isUnderline;
-    }    
     calculateMatrix (viewMtx) {
         const textBoxMtx = this.textBox.matrix;
         const calculated = new paper.Matrix();
@@ -219,6 +212,22 @@ class TextTool extends paper.Tool {
         if ((TextTool.textAlignment === "center") && this.element.parentElement) {
             tx = -this.element.parentElement.clientWidth / 2;
         }
+        if (!!this.element) {
+            if ((TextTool.isItalic === true)) {
+                this.element.style.transform += ' skewX(-15deg)';
+                console.log("element has been skewed")
+            } else {
+                this.element.style.transform = this.element.style.transform.replace(/skewX\([^)]+\)/, '');
+                console.log("element has been unskewed")
+            }
+            if (TextTool.isUnderlined === true) {
+                this.element.style.textDecoration = 'underline';
+                console.log("element has been given underline");
+            } else {
+                this.element.style.textDecoration = 'none';
+                console.log("element has been revoked from having underline");
+            }
+        }
         // The transform origin in paper is x at justification side, y at the baseline of the text.
         // The offset from (0, 0) to the upper left corner is recorded by internalBounds
         // (so this.textBox.internalBounds.y is negative).
@@ -230,8 +239,6 @@ class TextTool extends paper.Tool {
         calculated.append(textBoxMtx);
         this.element.style.transform = `matrix(${calculated.a}, ${calculated.b}, ${calculated.c}, ${calculated.d},
              ${calculated.tx}, ${calculated.ty})`;
-
-        this.updateTextStyle();
     }
     setColorState (colorState) {
         this.colorState = colorState;
@@ -416,7 +423,6 @@ class TextTool extends paper.Tool {
         this.element.style.display = 'initial';
         this.element.value = textBox.content ? textBox.content : '';
         this.calculateMatrix(paper.view.matrix);
-        this.updateTextStyle();
 
         if (TextTool.textAlignment === "right") {
             // make both the textbox and the textarea element grow to the left
