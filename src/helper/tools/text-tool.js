@@ -35,7 +35,7 @@ const otherTextState = {
  */
 class TextTool extends paper.Tool {
     static set isItalic (value) {
-        isItalic.value = value;
+        otherTextState.isItalic.value = value;
     }
     static get isItalic () {
         return otherTextState.isItalic.value;
