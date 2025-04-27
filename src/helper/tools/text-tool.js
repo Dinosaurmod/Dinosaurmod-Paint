@@ -198,6 +198,8 @@ class TextTool extends paper.Tool {
         this.calculateMatrix(viewMtx);
     }
     updateTextElementStyle() {
+        this.setTextEditTarget(this.textBox.id);
+
         let baseTransform = this.element.style.transform || '';
         baseTransform = baseTransform.replace(/skewX\([^)]+\)\s*/g, '');
 
@@ -396,6 +398,7 @@ class TextTool extends paper.Tool {
             this.element.style.transformOrigin =
                 `${-this.textBox.internalBounds.x / 2}px ${-this.textBox.internalBounds.y}px`;
         }
+        this.updateTextElementStyle();
     }
     beginSelect () {
         if (this.textBox) {
