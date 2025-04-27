@@ -512,17 +512,10 @@ class TextTool extends paper.Tool {
     applyFinalTransformations() {
         const calculated = new paper.Matrix();
         let tx = 0;
-        
-        if ((TextTool.textAlignment === "right") && this.element.parentElement) {
-            tx = -this.element.parentElement.clientWidth;
-        }
-        if ((TextTool.textAlignment === "center") && this.element.parentElement) {
-            tx = -this.element.parentElement.clientWidth / 2;
-        }
     
         calculated.translate(tx, this.textBox.internalBounds.y);
-        calculated.append(paper.view.matrix);
         calculated.append(this.textBox.matrix);
+        calculated.append(paper.view.matrix);
     
         this.textBox.matrix = calculated;
     }
