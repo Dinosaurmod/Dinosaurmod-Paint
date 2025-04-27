@@ -197,6 +197,23 @@ class TextTool extends paper.Tool {
         }
         this.calculateMatrix(viewMtx);
     }
+    updateTextElementStyle() {
+        let baseTransform = this.element.style.transform || '';
+        baseTransform = baseTransform.replace(/skewX\([^)]+\)\s*/g, '');
+
+        if (TextTool.isItalic) {
+            baseTransform += ' skewX(-15deg)';
+        }
+
+        this.element.style.transform = baseTransform.trim();
+
+        if (TextTool.isUnderlined) {
+            this.element.style.textDecoration = 'underline';
+            this.element.style.textDecorationColor = this.element.style.color || 'inherit';
+        } else {
+            this.element.style.textDecoration = 'none';
+        }
+    }
     calculateMatrix (viewMtx) {
         const textBoxMtx = this.textBox.matrix;
         const calculated = new paper.Matrix();
@@ -210,44 +227,24 @@ class TextTool extends paper.Tool {
         if ((TextTool.textAlignment === "center") && this.element.parentElement) {
             tx = -this.element.parentElement.clientWidth / 2;
         }
-        if (!!this.element) {
-            let transformParts = [];
-            transformParts.push(`matrix(${calculated.a}, ${calculated.b}, ${calculated.c}, ${calculated.d}, ${calculated.tx}, ${calculated.ty})`);
 
-            if (!!TextTool.isItalic) {
-                transformParts.push('skewX(-15deg)');
-                console.log("element has been skewed");
-            }
-
-            let transformString = transformParts.join(' ');
-
-            if (!TextTool.isItalic) {
-                transformString = transformString.replace(/skewX\([^)]+\)\s*/g, '');
-                console.log("element has been unskewed");
-            }
-
-            this.element.style.transform = transformString;
-
-            if (!!TextTool.isUnderlined) {
-                this.element.style.textDecoration = 'underline';
-                this.element.style.textDecorationColor = this.element.style.color || 'inherit';
-                console.log("element has been given underline");
-            } else {
-                this.element.style.textDecoration = 'none';
-                console.log("element has been revoked from having underline");
-            }
-        }
         // The transform origin in paper is x at justification side, y at the baseline of the text.
         // The offset from (0, 0) to the upper left corner is recorded by internalBounds
         // (so this.textBox.internalBounds.y is negative).
         // Move the transform origin down to the text baseline to match paper
+        let existingTransform = this.element.style.transform || '';
+        existingTransform = existingTransform.replace(/matrix\([^)]+\)\s*/g, '');
+        
         this.element.style.transformOrigin = `${-this.textBox.internalBounds.x}px ${-this.textBox.internalBounds.y}px`;
-        // Start by translating the element up so that its (0, 0) is now at the text baseline, like in paper
+        
         calculated.translate(tx, this.textBox.internalBounds.y);
         calculated.append(viewMtx);
         calculated.append(textBoxMtx);
-        this.element.style.transform = `matrix(${calculated.a}, ${calculated.b}, ${calculated.c}, ${calculated.d},
-             ${calculated.tx}, ${calculated.ty})`;
+        let newMatrixTransform = `matrix(${calculated.a}, ${calculated.b}, ${calculated.c}, ${calculated.d}, ${calculated.tx}, ${calculated.ty})`;
+
+        this.element.style.transform = existingTransform + ' ' + newMatrixTransform;
+
+        this.updateTextElementStyle();
     }
     setColorState (colorState) {
         this.colorState = colorState;
@@ -441,32 +438,7 @@ class TextTool extends paper.Tool {
         } else {
             this.textBox.justification = 'left';
         }
-        if (!!this.element) {
-            let transformParts = [];
-
-            if (!!TextTool.isItalic) {
-                transformParts.push('skewX(-15deg)');
-                console.log("element has been skewed");
-            }
-
-            let transformString = transformParts.join(' ');
-
-            if (!TextTool.isItalic) {
-                transformString = transformString.replace(/skewX\([^)]+\)\s*/g, '');
-                console.log("element has been unskewed");
-            }
-
-            this.element.style.transform = transformString;
-
-            if (!!TextTool.isUnderlined) {
-                this.element.style.textDecoration = 'underline';
-                this.element.style.textDecorationColor = this.element.style.color || 'inherit';
-                console.log("element has been given underline");
-            } else {
-                this.element.style.textDecoration = 'none';
-                console.log("element has been revoked from having underline");
-            }
-        }
+        this.updateTextElementStyle();
 
         this.element.focus({preventScroll: true});
         this.eventListener = this.handleTextInput.bind(this);
@@ -492,32 +464,8 @@ class TextTool extends paper.Tool {
             this.setTextEditTarget();
         }
 
-        if (!!this.element) {
-            let transformParts = [];
+        this.updateTextElementStyle();
 
-            if (!!TextTool.isItalic) {
-                transformParts.push('skewX(-15deg)');
-                console.log("element has been skewed");
-            }
-
-            let transformString = transformParts.join(' ');
-
-            if (!TextTool.isItalic) {
-                transformString = transformString.replace(/skewX\([^)]+\)\s*/g, '');
-                console.log("element has been unskewed");
-            }
-
-            this.element.style.transform = transformString;
-
-            if (!!TextTool.isUnderlined) {
-                this.element.style.textDecoration = 'underline';
-                this.element.style.textDecorationColor = this.element.style.color || 'inherit';
-                console.log("element has been given underline");
-            } else {
-                this.element.style.textDecoration = 'none';
-                console.log("element has been revoked from having underline");
-            }
-        }
         this.element.style.display = 'none';
         if (this.eventListener) {
             this.element.removeEventListener('input', this.eventListener);
