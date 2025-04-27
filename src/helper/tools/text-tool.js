@@ -524,7 +524,7 @@ class TextTool extends paper.Tool {
         calculated.append(paper.view.matrix);
         calculated.append(this.textBox.matrix);
     
-        this.textBox.applyMatrix(calculated);
+        this.textBox.matrix = calculated;
     }
 }
 
