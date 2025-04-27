@@ -234,9 +234,10 @@ class TextTool extends paper.Tool {
         // Move the transform origin down to the text baseline to match paper
         let existingTransform = this.element.style.transform || '';
         existingTransform = existingTransform.replace(/matrix\([^)]+\)\s*/g, '');
-        
+
         this.element.style.transformOrigin = `${-this.textBox.internalBounds.x}px ${-this.textBox.internalBounds.y}px`;
-        
+
+        // Start by translating the element up so that its (0, 0) is now at the text baseline, like in paper
         calculated.translate(tx, this.textBox.internalBounds.y);
         calculated.append(viewMtx);
         calculated.append(textBoxMtx);
@@ -465,6 +466,10 @@ class TextTool extends paper.Tool {
         }
 
         this.updateTextElementStyle();
+        
+        if (this.textBox && this.textBox.content.trim() !== '') {
+            this.applyFinalTransformations();
+        }
 
         this.element.style.display = 'none';
         if (this.eventListener) {
@@ -503,6 +508,23 @@ class TextTool extends paper.Tool {
             this.commitText();
         }
         this.boundingBoxTool.deactivateTool();
+    }
+    applyFinalTransformations() {
+        const calculated = new paper.Matrix();
+        let tx = 0;
+        
+        if ((TextTool.textAlignment === "right") && this.element.parentElement) {
+            tx = -this.element.parentElement.clientWidth;
+        }
+        if ((TextTool.textAlignment === "center") && this.element.parentElement) {
+            tx = -this.element.parentElement.clientWidth / 2;
+        }
+    
+        calculated.translate(tx, this.textBox.internalBounds.y);
+        calculated.append(paper.view.matrix);
+        calculated.append(this.textBox.matrix);
+    
+        this.textBox.applyMatrix(calculated);
     }
 }
 
