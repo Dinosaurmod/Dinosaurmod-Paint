@@ -491,17 +491,12 @@ class TextTool extends paper.Tool {
             this.guide = null;
             this.setTextEditTarget();
         }
-        this.element.style.display = 'none';
-        if (this.eventListener) {
-            this.element.removeEventListener('input', this.eventListener);
-            this.eventListener = null;
-        }
+
         if (!!this.element) {
             let transformParts = [];
 
             if (!!TextTool.isItalic) {
                 transformParts.push('skewX(-15deg)');
-                this.textBox.matrix = new paper.Matrix().skew(0, -15);
                 console.log("element has been skewed");
             }
 
@@ -509,7 +504,6 @@ class TextTool extends paper.Tool {
 
             if (!TextTool.isItalic) {
                 transformString = transformString.replace(/skewX\([^)]+\)\s*/g, '');
-                this.textBox.matrix = new paper.Matrix();
                 console.log("element has been unskewed");
             }
 
@@ -523,6 +517,11 @@ class TextTool extends paper.Tool {
                 this.element.style.textDecoration = 'none';
                 console.log("element has been revoked from having underline");
             }
+        }
+        this.element.style.display = 'none';
+        if (this.eventListener) {
+            this.element.removeEventListener('input', this.eventListener);
+            this.eventListener = null;
         }
         if (this.textBox && this.lastTypeEvent) {
             // Finished editing a textbox, save undo state
