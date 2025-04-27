@@ -466,10 +466,6 @@ class TextTool extends paper.Tool {
         }
 
         this.updateTextElementStyle();
-        
-        if (this.textBox && this.textBox.content.trim() !== '') {
-            this.applyFinalTransformations();
-        }
 
         this.element.style.display = 'none';
         if (this.eventListener) {
@@ -508,16 +504,6 @@ class TextTool extends paper.Tool {
             this.commitText();
         }
         this.boundingBoxTool.deactivateTool();
-    }
-    applyFinalTransformations() {
-        const calculated = new paper.Matrix();
-        let tx = 0;
-    
-        calculated.translate(tx, this.textBox.internalBounds.y);
-        calculated.append(this.textBox.matrix);
-        calculated.append(paper.view.matrix);
-    
-        this.textBox.matrix = calculated;
     }
 }
 
