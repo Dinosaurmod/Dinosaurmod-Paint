@@ -271,7 +271,7 @@ const FixedToolsComponent = props => {
                             className={styles.modUnselect}
                             enterExitTransitionDurationMs={20}
                             popoverContent={
-                            <>
+                            <div>
                                 <InputGroup
                                     className={styles.modContextMenu}
                                     rtl={props.rtl}
@@ -351,7 +351,7 @@ const FixedToolsComponent = props => {
                                         <span>{props.intl.formatMessage(messages.unlock)}</span>
                                     </Button>
                                 </InputGroup>
-                            </>
+                            <div/>
                             }
                             tipSize={.01}
                         >
