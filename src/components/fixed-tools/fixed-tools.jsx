@@ -6,6 +6,7 @@ import MediaQuery from 'react-responsive';
 
 import {shouldShowGroup, shouldShowUngroup} from '../../helper/group';
 import {shouldShowBringForward, shouldShowSendBackward} from '../../helper/order';
+import {shouldShowUnlock, shouldShowLock} from '../../helper/lock';
 
 import BufferedInputHOC from '../forms/buffered-input-hoc.jsx';
 import Button from '../button/button.jsx';
@@ -22,6 +23,7 @@ import {hideLabel} from '../../lib/hide-label';
 import styles from './fixed-tools.css';
 
 import groupIcon from './icons/group.svg';
+import lockIcon from './icons/lock.svg';
 import redoIcon from './icons/redo.svg';
 import sendBackIcon from './icons/send-back.svg';
 import sendBackwardIcon from './icons/send-backward.svg';
@@ -29,6 +31,7 @@ import sendForwardIcon from './icons/send-forward.svg';
 import sendFrontIcon from './icons/send-front.svg';
 import undoIcon from './icons/undo.svg';
 import ungroupIcon from './icons/ungroup.svg';
+import unlockIcon from './icons/unlock.svg';
 
 const BufferedInput = BufferedInputHOC(Input);
 const messages = defineMessages({
@@ -76,6 +79,16 @@ const messages = defineMessages({
         defaultMessage: 'Back',
         description: 'Label for the `Send to back of canvas` button',
         id: 'paint.paintEditor.back'
+    },
+    lock: {
+        defaultMessage: 'Lock',
+        description: 'Label for the `lock object` button',
+        id: 'paint.paintEditor.lock'
+    },
+    unlock: {
+        defaultMessage: 'unlock',
+        description: 'Label for the `Unlock object` button',
+        id: 'paint.paintEditor.unlock'
     },
     more: {
         defaultMessage: 'More',
@@ -229,6 +242,28 @@ const FixedToolsComponent = props => {
                     </InputGroup> */}
                 </MediaQuery> : null
             }
+
+            {isVector(props.format) ?
+                <MediaQuery minWidth={layout.fullSizeEditorMinWidth}>
+                    <InputGroup className={styles.row}>
+                        <LabeledIconButton
+                            disabled={!shouldShowLock()}
+                            hideLabel={hideLabel(props.intl.locale)}
+                            imgSrc={lockIcon}
+                            title={props.intl.formatMessage(messages.lock)}
+                            onClick={props.onLockItems}
+                        />
+                        <LabeledIconButton
+                            disabled={!shouldShowUnlock()}
+                            hideLabel={hideLabel(props.intl.locale)}
+                            imgSrc={unlockIcon}
+                            title={props.intl.formatMessage(messages.unlock)}
+                            onClick={props.onUnlockItems}
+                        />
+                    </InputGroup>
+                </MediaQuery> : null
+            }
+
             {isVector(props.format) ?
                 <MediaQuery maxWidth={layout.fullSizeEditorMinWidth - 1}>
                     <InputGroup>
@@ -282,6 +317,39 @@ const FixedToolsComponent = props => {
                                         <span>{'Rotation Point'}</span>
                                     </Button> */}
                                 </InputGroup>
+                                <InputGroup
+                                    className={styles.modContextMenu}
+                                    rtl={props.rtl}
+                                >
+                                    <Button
+                                        className={classNames(styles.modMenuItem, {
+                                            [styles.modDisabled]: !shouldShowLock()
+                                        })}
+                                        disabled={!shouldShowLock()}
+                                        onClick={props.onLockItems}
+                                    >
+                                        <img
+                                            className={styles.menuItemIcon}
+                                            draggable={false}
+                                            src={lockIcon}
+                                        />
+                                        <span>{props.intl.formatMessage(messages.lock)}</span>
+                                    </Button>
+                                    <Button
+                                        className={classNames(styles.modMenuItem, {
+                                            [styles.modDisabled]: !shouldShowUnlock()
+                                        })}
+                                        disabled={!shouldShowUnlock()}
+                                        onClick={props.onUnlockItems}
+                                    >
+                                        <img
+                                            className={styles.menuItemIcon}
+                                            draggable={false}
+                                            src={unlockIcon}
+                                        />
+                                        <span>{props.intl.formatMessage(messages.unlock)}</span>
+                                    </Button>
+                                </InputGroup>
                             }
                             tipSize={.01}
                         >
@@ -301,12 +369,14 @@ FixedToolsComponent.propTypes = {
     intl: intlShape,
     name: PropTypes.string,
     onGroup: PropTypes.func.isRequired,
+    onLockItems: PropTypes.func.isRequired,
     onRedo: PropTypes.func.isRequired,
     onSendBackward: PropTypes.func.isRequired,
     onSendForward: PropTypes.func.isRequired,
     onSendToBack: PropTypes.func.isRequired,
     onSendToFront: PropTypes.func.isRequired,
     onUndo: PropTypes.func.isRequired,
+    onUnlockItems: PropTypes.func.isRequired,
     onUngroup: PropTypes.func.isRequired,
     onUpdateName: PropTypes.func.isRequired,
     rtl: PropTypes.bool.isRequired,

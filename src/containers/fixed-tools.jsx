@@ -14,6 +14,7 @@ import {setLayout} from '../reducers/layout';
 import {getSelectedLeafItems} from '../helper/selection';
 import {bringToFront, sendBackward, sendToBack, bringForward} from '../helper/order';
 import {groupSelection, ungroupSelection} from '../helper/group';
+import {lockItems, unlockItems} from '../helper/lock';
 
 import Formats, {isBitmap} from '../lib/format';
 import bindAll from 'lodash.bindall';
@@ -26,6 +27,8 @@ class FixedTools extends React.Component {
             'handleSendForward',
             'handleSendToBack',
             'handleSendToFront',
+            'handleLockItems',
+            'handleUnlockItems',
             'handleSetSelectedItems',
             'handleGroup',
             'handleUngroup'
@@ -49,6 +52,12 @@ class FixedTools extends React.Component {
     handleSendToFront () {
         bringToFront(this.props.onUpdateImage);
     }
+    handleLockItems () {
+        lockItems(this.props.onUpdateImage);
+    }
+    handleUnlockItems () {
+        unlockItems(this.props.onUpdateImage);
+    }
     handleSetSelectedItems () {
         this.props.setSelectedItems(this.props.format);
     }
@@ -59,12 +68,14 @@ class FixedTools extends React.Component {
                 canUndo={this.props.canUndo}
                 name={this.props.name}
                 onGroup={this.handleGroup}
+                onLockItems={this.handleLockItems}
                 onRedo={this.props.onRedo}
                 onSendBackward={this.handleSendBackward}
                 onSendForward={this.handleSendForward}
                 onSendToBack={this.handleSendToBack}
                 onSendToFront={this.handleSendToFront}
                 onUndo={this.props.onUndo}
+                onUnlockItems={this.handleUnlockItems}
                 onUngroup={this.handleUngroup}
                 onUpdateImage={this.props.onUpdateImage}
                 onUpdateName={this.props.onUpdateName}
