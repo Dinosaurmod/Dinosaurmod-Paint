@@ -1,4 +1,4 @@
-import paper from '@dinosaurmod/paper';
+import paper from '@turbowarp/paper';
 import log from '../../log/log';
 import keyMirror from 'keymirror';
 

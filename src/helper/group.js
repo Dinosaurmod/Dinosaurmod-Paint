@@ -1,4 +1,4 @@
-import paper from '@dinosaurmod/paper';
+import paper from '@turbowarp/paper';
 import {getRootItem, isGroupItem} from './item';
 import {clearSelection, getSelectedRootItems, setItemSelection} from './selection';
 

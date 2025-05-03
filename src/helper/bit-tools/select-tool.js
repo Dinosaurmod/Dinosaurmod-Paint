@@ -1,4 +1,4 @@
-import paper from '@dinosaurmod/paper';
+import paper from '@turbowarp/paper';
 import Modes from '../../lib/modes';
 
 import {getRaster} from '../layer';

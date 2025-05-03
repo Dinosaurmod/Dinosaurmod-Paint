@@ -1,4 +1,4 @@
-import paper from '@dinosaurmod/paper';
+import paper from '@turbowarp/paper';
 import {getRaster, getGuideLayer, createCanvas} from '../layer';
 import {doesColorRequireMask, forEachLinePoint, getBrushMark} from '../bitmap';
 

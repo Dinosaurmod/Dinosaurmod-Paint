@@ -24,6 +24,7 @@
     "url": "git+ssh://git@github.com/LLK/scratch-paint.git"
   },
   "dependencies": {
+    "@turbowarp/paper": "^0.12.202407262155",
     "classnames": "2.2.5",
     "keymirror": "0.1.1",
     "lodash.bindall": "4.4.0",
@@ -33,7 +34,6 @@
     "prop-types": "^15.5.10"
   },
   "peerDependencies": {
-    "@dinosaurmod/paper": "^0.12.202407262155",
     "react": "^16",
     "react-dom": "^16",
     "react-intl": "^2",
@@ -58,7 +58,6 @@
     "babel-preset-env": "1.7.0",
     "babel-preset-react": "6.24.1",
     "css-loader": "3.4.0",
-    "@dinosaurmod/paper": "^0.12.202407262155",
     "enzyme": "3.11.0",
     "enzyme-adapter-react-16": "1.15.6",
     "eslint": "5.16.0",

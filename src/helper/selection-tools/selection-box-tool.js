@@ -1,4 +1,4 @@
-import paper from '@dinosaurmod/paper';
+import paper from '@turbowarp/paper';
 import {rectSelect} from '../guides';
 import {clearSelection, processRectangularSelection} from '../selection';
 import {getRaster} from '../layer';
