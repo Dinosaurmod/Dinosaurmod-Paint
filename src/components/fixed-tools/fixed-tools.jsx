@@ -86,7 +86,7 @@ const messages = defineMessages({
         id: 'paint.paintEditor.lock'
     },
     unlock: {
-        defaultMessage: 'unlock',
+        defaultMessage: 'Unlock',
         description: 'Label for the `Unlock object` button',
         id: 'paint.paintEditor.unlock'
     },
