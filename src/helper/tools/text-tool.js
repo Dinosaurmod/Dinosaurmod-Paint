@@ -198,16 +198,11 @@ class TextTool extends paper.Tool {
         this.calculateMatrix(viewMtx);
     }
     updateTextElementStyle() {
-        this.setTextEditTarget(this.textBox.id);
-
-        let baseTransform = this.element.style.transform || '';
-        baseTransform = baseTransform.replace(/skewX\([^)]+\)\s*/g, '');
-
         if (TextTool.isItalic) {
-            baseTransform += ' skewX(-15deg)';
+            this.element.style.fontStyle = 'italic';
+        } else {
+            this.element.style.fontStyle = 'normal';
         }
-
-        this.element.style.transform = baseTransform.trim();
 
         if (TextTool.isUnderlined) {
             this.element.style.textDecoration = 'underline';
