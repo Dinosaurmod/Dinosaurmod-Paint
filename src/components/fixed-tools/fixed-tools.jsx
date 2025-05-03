@@ -214,7 +214,7 @@ const FixedToolsComponent = props => {
 
             {isVector(props.format) ?
                 <MediaQuery minWidth={layout.fullSizeEditorMinWidth}>
-                    <InputGroup className={styles.row}>
+                    <InputGroup className={styles.modDashedBorder}>
                         <LabeledIconButton
                             disabled={!shouldShowBringForward()}
                             hideLabel={hideLabel(props.intl.locale)}
@@ -245,7 +245,7 @@ const FixedToolsComponent = props => {
 
             {isVector(props.format) ?
                 <MediaQuery minWidth={layout.fullSizeEditorMinWidth}>
-                    <InputGroup className={styles.row}>
+                    <InputGroup className={styles.modDashedBorder}>
                         <LabeledIconButton
                             disabled={!shouldShowLock()}
                             hideLabel={hideLabel(props.intl.locale)}
