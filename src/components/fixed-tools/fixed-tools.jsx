@@ -351,7 +351,7 @@ const FixedToolsComponent = props => {
                                         <span>{props.intl.formatMessage(messages.unlock)}</span>
                                     </Button>
                                 </InputGroup>
-                            <div/>
+                            </div>
                             }
                             tipSize={.01}
                         >
