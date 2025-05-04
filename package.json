@@ -26,6 +26,7 @@
   "dependencies": {
     "@turbowarp/paper": "^0.12.202407262155",
     "classnames": "2.2.5",
+    "dinosaurmod-paper": "https://github.com/Dinosaurmod/paper.js.git#develop-builds",
     "keymirror": "0.1.1",
     "lodash.bindall": "4.4.0",
     "lodash.omit": "4.5.0",
