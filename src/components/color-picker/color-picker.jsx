@@ -220,14 +220,14 @@ class ColorPickerComponent extends React.Component {
                                         title="Add Gradient"
                                         onClick={this.props.onAddGradient}
                                         className={styles.gradientButton}
-                                        disabled={isMaxGradient}
+                                        disabled={this.props.isMaxGradient}
                                     />
                                     <LabeledIconButton
                                         imgSrc={deleteGradientIcon}
                                         title="Remove Gradient"
                                         onClick={this.props.onRemoveGradient}
                                         className={styles.gradientButton}
-                                        disabled={isMinGradient}
+                                        disabled={this.props.isMinGradient}
                                     />
                                 </div>
                                 <div className={styles.divider} />

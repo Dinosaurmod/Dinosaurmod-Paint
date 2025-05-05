@@ -182,10 +182,10 @@ class ColorPicker extends React.Component {
         this.props.onChangeGradientType(GradientTypes.VERTICAL);
     }
     handleAddGradient () {
-        this.gradientCount = Math.min(Math.max((this.gradientCount += 1), 1), 7)
+        this.gradientCount = Math.min(Math.max((this.gradientCount + 1), 1), 7)
     }
     handleRemoveGradient () {
-        this.gradientCount = Math.min(Math.max((this.gradientCount -= 1), 1), 7)
+        this.gradientCount = Math.min(Math.max((this.gradientCount - 1), 1), 7)
     }
     handleIsMaxGradient () {
         if (this.gradientCount > 6) return true;
