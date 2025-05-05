@@ -213,24 +213,27 @@ class ColorPickerComponent extends React.Component {
                             </div>
                         )}
                         {this.props.gradientType === GradientTypes.SOLID || this.props.gradientType === GradientTypes.RADIAL ? null : (
-                            <div className={styles.gradientControlButtons}>
-                                <LabeledIconButton
-                                    imgSrc={addGradientIcon}
-                                    title="Add Gradient"
-                                    onClick={this.props.onAddGradient}
-                                    className={styles.gradientButton}
-                                    disabled={this.props.gradientCount >= 7}
-                                />
-                                <LabeledIconButton
-                                    imgSrc={deleteGradientIcon}
-                                    title="Remove Gradient"
-                                    onClick={this.props.onRemoveGradient}
-                                    className={styles.gradientButton}
-                                    disabled={this.props.gradientCount <= 1}
-                                />
-                            </div>                        
+                            <div>
+                                <div className={styles.gradientControlButtons}>
+                                    <LabeledIconButton
+                                        imgSrc={addGradientIcon}
+                                        title="Add Gradient"
+                                        onClick={this.props.onAddGradient}
+                                        className={styles.gradientButton}
+                                        disabled={this.props.gradientCount >= 7}
+                                    />
+                                    <LabeledIconButton
+                                        imgSrc={deleteGradientIcon}
+                                        title="Remove Gradient"
+                                        onClick={this.props.onRemoveGradient}
+                                        className={styles.gradientButton}
+                                        disabled={this.props.gradientCount <= 1}
+                                    />
+                                </div>
+                                <div className={styles.divider} />
+                            </div>
                         )}
-                        <div className={styles.divider} />
+                        
                     </div>
                 ) : null}
                 <div className={styles.row}>
