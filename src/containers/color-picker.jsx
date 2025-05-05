@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import paper from 'dinosaurmod-paper';
 import parseColor from 'parse-color';
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useState } from 'react';
 
 import {changeColorIndex} from '../reducers/color-index';
 import {clearSelectedItems} from '../reducers/selected-items';
@@ -43,6 +43,8 @@ const hsvToHex = (h, s, v, a) => {
     return color;
 };
 
+const [state, setState] = useState(0);
+
 // Important! This component ignores new color props except when isEyeDropping
 // This is to make the HSV <=> RGB conversion stable. The sliders manage their
 // own changes until unmounted or color changes with props.isEyeDropping = true.
@@ -74,7 +76,8 @@ class ColorPicker extends React.Component {
             hue: hsv[0],
             saturation: hsv[1],
             brightness: hsv[2],
-            alpha: hsv[3]
+            alpha: hsv[3],
+            forceUpdateKey: 0
         };
         this.gradientCount = 1
     }
@@ -183,16 +186,18 @@ class ColorPicker extends React.Component {
     }
     handleAddGradient () {
         this.gradientCount = Math.min(Math.max((this.gradientCount + 1), 1), 7)
+        this.setState(prevState => ({
+            forceUpdateKey: prevState.forceUpdateKey + 1
+        }))
     }
     handleRemoveGradient () {
         this.gradientCount = Math.min(Math.max((this.gradientCount - 1), 1), 7)
+        this.setState(prevState => ({
+            forceUpdateKey: prevState.forceUpdateKey + 1
+        }))
     }
-    handleIsMaxGradient () {
-        return this.gradientCount >= 7
-    }
-    handleIsMinGradient () {
-        return this.gradientCount <= 1
-    }
+    handleIsMaxGradient = () => this.gradientCount >= 7;
+    handleIsMinGradient = () => this.gradientCount <= 1;
     render () {
         return (
             <ColorPickerComponent
@@ -201,6 +206,7 @@ class ColorPicker extends React.Component {
                 color2={this.props.color2}
                 colorIndex={this.props.colorIndex}
                 gradientType={this.props.gradientType}
+                key={this.state.forceUpdateKey}
                 hue={this.state.hue}
                 isEyeDropping={this.props.isEyeDropping}
                 mode={this.props.mode}
