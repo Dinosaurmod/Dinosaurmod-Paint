@@ -155,7 +155,6 @@ body :global(.Popover) {
     gap: 8px;
     align-items: center;
     justify-content: center;
-    -moz-appearance: textfield;
     margin-top: 8px;
     width: 12px;
     height: 12px;
