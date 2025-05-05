@@ -49,7 +49,7 @@ import alignRightIcon from './icons/alignRight.svg';
 import alignCenterIcon from './icons/alignCenter.svg';
 
 import italicIcon from './icons/italic.svg';
-import underlineIcon from './icons/underline.svg';
+//import underlineIcon from './icons/underline.svg';
 
 import bitBrushIcon from '../bit-brush-mode/brush.svg';
 import bitEraserIcon from '../bit-eraser-mode/eraser.svg';
@@ -654,12 +654,12 @@ const ModeToolsComponent = props => {
                             title={'Italic'}
                             onClick={props.onTextItalic}
                         />
-                        <LabeledIconButton
+                        {/*<LabeledIconButton
                             hideLabel
                             imgSrc={underlineIcon}
                             title={'Underline'}
                             onClick={props.onTextUnderline}
-                        />
+                        />*/}
                     </InputGroup>
                 </div>
             );
