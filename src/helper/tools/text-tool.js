@@ -198,6 +198,7 @@ class TextTool extends paper.Tool {
         this.calculateMatrix(viewMtx);
     }
     updateTextElementStyle() {
+        let textBox = this.textBox
         if (!textBox.originalMatrix) {
             textBox.originalMatrix = textBox.matrix.clone();
         }
