@@ -150,3 +150,18 @@ body :global(.Popover) {
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
 }
+
+.gradientControlButtons {
+    width: 28px;
+    height: 16px;
+    text-align: center;
+    -moz-appearance: textfield;
+    font: inherit;
+    font-weight: bold;
+}
+[dir="ltr"] .gradientControlButtons {
+    margin-left: 10px;
+}
+[dir="rtl"] .gradientControlButtons {
+    margin-right: 10px;
+}

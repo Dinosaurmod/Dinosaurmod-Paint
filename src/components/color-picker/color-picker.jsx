@@ -19,6 +19,8 @@ import fillRadialIcon from './icons/fill-radial-enabled.svg';
 import fillSolidIcon from './icons/fill-solid-enabled.svg';
 import fillVertGradientIcon from './icons/fill-vert-gradient-enabled.svg';
 import swapIcon from './icons/swap.svg';
+import addGradientIcon from './icons/add-gradient.svg';
+import deleteGradientIcon from './icons/delete-gradient.svg';
 import Modes from '../../lib/modes';
 import alphaBackground from './alpha.png';
 import BufferedInputHOC from '../forms/buffered-input-hoc.jsx';
@@ -210,6 +212,24 @@ class ColorPickerComponent extends React.Component {
                                 </div>
                             </div>
                         )}
+                        {this.props.gradientType === GradientTypes.SOLID || this.props.gradientType === GradientTypes.RADIAL ? null : (
+                            <div className={styles.gradientControlButtons}>
+                                <LabeledIconButton
+                                    imgSrc={addGradientIcon}
+                                    title="Add Gradient"
+                                    onClick={this.props.onAddGradient}
+                                    className={styles.gradientButton}
+                                    disabled={this.props.gradientCount >= 7}
+                                />
+                                <LabeledIconButton
+                                    imgSrc={deleteGradientIcon}
+                                    title="Remove Gradient"
+                                    onClick={this.props.onRemoveGradient}
+                                    className={styles.gradientButton}
+                                    disabled={this.props.gradientCount <= 1}
+                                />
+                            </div>                        
+                        )}
                     </div>
                 ) : null}
                 <div className={styles.row}>
@@ -383,6 +403,9 @@ ColorPickerComponent.propTypes = {
     onChangeGradientTypeRadial: PropTypes.func.isRequired,
     onChangeGradientTypeSolid: PropTypes.func.isRequired,
     onChangeGradientTypeVertical: PropTypes.func.isRequired,
+    gradientCount: PropTypes.number.isRequired,
+    onAddGradient: PropTypes.func.isRequired,
+    onRemoveGradient: PropTypes.func.isRequired,
     onHueChange: PropTypes.func.isRequired,
     onSaturationChange: PropTypes.func.isRequired,
     onSelectColor: PropTypes.func.isRequired,

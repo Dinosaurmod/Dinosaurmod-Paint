@@ -55,6 +55,8 @@ class ColorPicker extends React.Component {
             'handleChangeGradientTypeRadial',
             'handleChangeGradientTypeSolid',
             'handleChangeGradientTypeVertical',
+            'handleAddGradient',
+            'handleRemoveGradient',
             'handleHueChange',
             'handleSaturationChange',
             'handleBrightnessChange',
@@ -72,6 +74,7 @@ class ColorPicker extends React.Component {
             brightness: hsv[2],
             alpha: hsv[3]
         };
+        this.gradientCount = 1
     }
     componentWillReceiveProps (newProps) {
         const color = newProps.colorIndex === 0 ? this.props.color : this.props.color2;
@@ -176,6 +179,12 @@ class ColorPicker extends React.Component {
     handleChangeGradientTypeVertical () {
         this.props.onChangeGradientType(GradientTypes.VERTICAL);
     }
+    handleAddGradient () {
+        this.gradientCount += 1
+    }
+    handleRemoveGradient () {
+        this.gradientCount -= 1
+    }
     render () {
         return (
             <ColorPickerComponent
@@ -200,6 +209,9 @@ class ColorPicker extends React.Component {
                 onChangeGradientTypeRadial={this.handleChangeGradientTypeRadial}
                 onChangeGradientTypeSolid={this.handleChangeGradientTypeSolid}
                 onChangeGradientTypeVertical={this.handleChangeGradientTypeVertical}
+                gradientCount={this.gradientCount}
+                onAddGradient={this.handleAddGradient}
+                onRemoveGradient={this.handleRemoveGradient}
                 onHueChange={this.handleHueChange}
                 onSaturationChange={this.handleSaturationChange}
                 onSelectColor={this.props.onSelectColor}
