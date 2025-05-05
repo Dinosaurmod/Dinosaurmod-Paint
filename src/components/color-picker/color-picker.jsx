@@ -220,16 +220,17 @@ class ColorPickerComponent extends React.Component {
                                         title="Add Gradient"
                                         onClick={this.props.onAddGradient}
                                         className={styles.gradientButton}
-                                        disabled={this.props.isMaxGradient}
+                                        disabled={}
                                     />
                                     <LabeledIconButton
                                         imgSrc={deleteGradientIcon}
                                         title="Remove Gradient"
                                         onClick={this.props.onRemoveGradient}
                                         className={styles.gradientButton}
-                                        disabled={this.props.isMinGradient}
+                                        disabled={}
                                     />
                                 </div>
+                                <span className={styles.labelName}>{this.props.gradientCount + "Gradients"}</span>
                                 <div className={styles.divider} />
                             </div>
                         )}
@@ -410,8 +411,6 @@ ColorPickerComponent.propTypes = {
     gradientCount: PropTypes.number.isRequired,
     onAddGradient: PropTypes.func.isRequired,
     onRemoveGradient: PropTypes.func.isRequired,
-    isMaxGradient: PropTypes.bool.isRequired,
-    isMinGradient: PropTypes.bool.isRequired,
     onHueChange: PropTypes.func.isRequired,
     onSaturationChange: PropTypes.func.isRequired,
     onSelectColor: PropTypes.func.isRequired,
