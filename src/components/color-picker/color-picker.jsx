@@ -230,7 +230,7 @@ class ColorPickerComponent extends React.Component {
                                         disabled={false}
                                     />
                                 </div>
-                                <span className={styles.labelName}>{this.props.gradientCount + "Gradients"}</span>
+                                <span className={styles.labelName}>{this.props.gradientCount + " Gradients"}</span>
                                 <div className={styles.divider} />
                             </div>
                         )}
