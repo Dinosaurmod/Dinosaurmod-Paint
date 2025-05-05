@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import ProrgpTypes from 'prop-types';
 import {defineMessages, FormattedMessage, injectIntl, intlShape} from 'react-intl';
 
 import classNames from 'classnames';
@@ -29,6 +29,8 @@ import {makeAlphaComponent} from '../../lib/tw-color-utils';
 import TWColorReadout from '../tw-color-readout/tw-color-readout.jsx';
 
 const BufferedInput = BufferedInputHOC(Input);
+
+const {gradientCount} = this.props;
 
 const hsvToHex = (h, s, v) =>
     // Scale hue back up to [0, 360] from [0, 100]
@@ -220,14 +222,14 @@ class ColorPickerComponent extends React.Component {
                                         title="Add Gradient"
                                         onClick={this.props.onAddGradient}
                                         className={styles.gradientButton}
-                                        disabled={this.props.gradientCount >= 7}
+                                        disabled={gradientCount >= 7}
                                     />
                                     <LabeledIconButton
                                         imgSrc={deleteGradientIcon}
                                         title="Remove Gradient"
                                         onClick={this.props.onRemoveGradient}
                                         className={styles.gradientButton}
-                                        disabled={this.props.gradientCount <= 1}
+                                        disabled={gradientCount <= 1}
                                     />
                                 </div>
                                 <div className={styles.divider} />
