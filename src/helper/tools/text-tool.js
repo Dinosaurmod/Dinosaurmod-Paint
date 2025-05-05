@@ -199,10 +199,10 @@ class TextTool extends paper.Tool {
     }
     updateTextElementStyle() {
         if (TextTool.isItalic) {
-            this.element.style.fontStyle = 'italic';
+            //this.element.style.fontStyle = 'italic';
             this.textBox.fontStyle = 'italic';
         } else {
-            this.element.style.fontStyle = 'normal';
+            //this.element.style.fontStyle = 'normal';
             this.textBox.fontStyle = 'normal';
         }
 
