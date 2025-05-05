@@ -168,7 +168,7 @@ class TextTool extends paper.Tool {
     setFont (font) {
         this.font = font;
         if (this.textBox) {
-            this.textBox.font = font;
+            this.textBox.font = (TextTool.isItalic ? 'italic' : 'normal') + ' ' + font;
         }
         const selected = getSelectedLeafItems();
         for (const item of selected) {
@@ -200,10 +200,10 @@ class TextTool extends paper.Tool {
     updateTextElementStyle() {
         if (TextTool.isItalic) {
             this.element.style.fontStyle = 'italic';
-            this.textBox.style.fontStyle = 'italic';
+            //this.textBox.fontStyle = 'italic';
         } else {
             this.element.style.fontStyle = 'normal';
-            this.textBox.style.fontStyle = 'normal';
+            //this.textBox.fontStyle = 'normal';
         }
 
         if (TextTool.isUnderlined) {
