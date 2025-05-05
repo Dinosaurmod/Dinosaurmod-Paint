@@ -168,7 +168,7 @@ class TextTool extends paper.Tool {
     setFont (font) {
         this.font = font;
         if (this.textBox) {
-            this.textBox.font = (TextTool.isItalic ? 'italic' : 'normal') + ' ' + font;
+            this.textBox.font = font;
         }
         const selected = getSelectedLeafItems();
         for (const item of selected) {
@@ -198,12 +198,21 @@ class TextTool extends paper.Tool {
         this.calculateMatrix(viewMtx);
     }
     updateTextElementStyle() {
+        if (!textBox.originalMatrix) {
+            textBox.originalMatrix = textBox.matrix.clone();
+        }
+        
+        if (TextTool.isItalic) {
+            textBox.matrix = textBox.originalMatrix.clone();
+            textBox.skew(-15, 0);
+        } else {
+            textBox.matrix = textBox.originalMatrix.clone();
+        }
+
         if (TextTool.isItalic) {
             this.element.style.fontStyle = 'italic';
-            //this.textBox.fontStyle = 'italic';
         } else {
             this.element.style.fontStyle = 'normal';
-            //this.textBox.fontStyle = 'normal';
         }
 
         if (TextTool.isUnderlined) {
