@@ -230,6 +230,7 @@ class ColorPickerComponent extends React.Component {
                                 />
                             </div>                        
                         )}
+                        <div className={styles.divider} />
                     </div>
                 ) : null}
                 <div className={styles.row}>
