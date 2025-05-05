@@ -152,13 +152,12 @@ body :global(.Popover) {
 }
 
 .gradientControlButtons {
+    display: flex;
+    flex-wrap: wrap;
     gap: 8px;
     align-items: center;
     justify-content: center;
     margin-top: 8px;
-    width: 12px;
-    height: 12px;
-    padding: 0;
 }
 [dir="ltr"] .gradientControlButtons {
     margin-left: 10px;

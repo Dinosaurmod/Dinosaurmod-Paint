@@ -84,8 +84,6 @@ class ColorPickerComponent extends React.Component {
         return css;
     }
     render () {
-        const {gradientCount} = this.props;
-
         return (
             <div
                 className={styles.colorPickerContainer}
@@ -222,14 +220,14 @@ class ColorPickerComponent extends React.Component {
                                         title="Add Gradient"
                                         onClick={this.props.onAddGradient}
                                         className={styles.gradientButton}
-                                        disabled={gradientCount >= 7}
+                                        disabled={isMaxGradient}
                                     />
                                     <LabeledIconButton
                                         imgSrc={deleteGradientIcon}
                                         title="Remove Gradient"
                                         onClick={this.props.onRemoveGradient}
                                         className={styles.gradientButton}
-                                        disabled={gradientCount <= 1}
+                                        disabled={isMinGradient}
                                     />
                                 </div>
                                 <div className={styles.divider} />
@@ -412,6 +410,8 @@ ColorPickerComponent.propTypes = {
     gradientCount: PropTypes.number.isRequired,
     onAddGradient: PropTypes.func.isRequired,
     onRemoveGradient: PropTypes.func.isRequired,
+    isMaxGradient: PropTypes.func.isRequired,
+    isMinGradient: PropTypes.func.isRequired,
     onHueChange: PropTypes.func.isRequired,
     onSaturationChange: PropTypes.func.isRequired,
     onSelectColor: PropTypes.func.isRequired,

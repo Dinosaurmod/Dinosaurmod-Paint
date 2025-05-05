@@ -57,6 +57,8 @@ class ColorPicker extends React.Component {
             'handleChangeGradientTypeVertical',
             'handleAddGradient',
             'handleRemoveGradient',
+            'handleIsMaxGradient',
+            'handleIsMinGradient',
             'handleHueChange',
             'handleSaturationChange',
             'handleBrightnessChange',
@@ -180,10 +182,18 @@ class ColorPicker extends React.Component {
         this.props.onChangeGradientType(GradientTypes.VERTICAL);
     }
     handleAddGradient () {
-        this.gradientCount += 1
+        this.gradientCount = Math.min(Math.max((this.gradientCount += 1), 1), 7)
     }
     handleRemoveGradient () {
-        this.gradientCount -= 1
+        this.gradientCount = Math.min(Math.max((this.gradientCount -= 1), 1), 7)
+    }
+    handleIsMaxGradient () {
+        if (this.gradientCount > 6) return true;
+        return false;
+    }
+    handleIsMinGradient () {
+        if (this.gradientCount < 2) return true;
+        return false;
     }
     render () {
         return (
@@ -212,6 +222,8 @@ class ColorPicker extends React.Component {
                 gradientCount={this.gradientCount}
                 onAddGradient={this.handleAddGradient}
                 onRemoveGradient={this.handleRemoveGradient}
+                isMaxGradient={this.handleIsMaxGradient}
+                isMinGradient={this.handleIsMinGradient}
                 onHueChange={this.handleHueChange}
                 onSaturationChange={this.handleSaturationChange}
                 onSelectColor={this.props.onSelectColor}
