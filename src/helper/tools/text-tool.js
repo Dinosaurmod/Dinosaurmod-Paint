@@ -199,11 +199,11 @@ class TextTool extends paper.Tool {
     }
     updateTextElementStyle() {
         if (TextTool.isItalic) {
-            //this.element.style.fontStyle = 'italic';
-            this.textBox.fontStyle = 'italic';
+            this.element.style.fontStyle = 'italic';
+            this.textBox.style.fontStyle = 'italic';
         } else {
-            //this.element.style.fontStyle = 'normal';
-            this.textBox.fontStyle = 'normal';
+            this.element.style.fontStyle = 'normal';
+            this.textBox.style.fontStyle = 'normal';
         }
 
         if (TextTool.isUnderlined) {
