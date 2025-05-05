@@ -196,8 +196,8 @@ class ColorPicker extends React.Component {
             forceUpdateKey: prevState.forceUpdateKey + 1
         }))
     }
-    handleIsMaxGradient = () => this.gradientCount >= 7;
-    handleIsMinGradient = () => this.gradientCount <= 1;
+    handleIsMaxGradient () {return this.gradientCount >= 7;}
+    handleIsMinGradient () {return this.gradientCount <= 1;}
     render () {
         return (
             <ColorPickerComponent
