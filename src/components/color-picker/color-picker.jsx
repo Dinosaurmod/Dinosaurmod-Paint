@@ -30,8 +30,6 @@ import TWColorReadout from '../tw-color-readout/tw-color-readout.jsx';
 
 const BufferedInput = BufferedInputHOC(Input);
 
-const {gradientCount} = this.props;
-
 const hsvToHex = (h, s, v) =>
     // Scale hue back up to [0, 360] from [0, 100]
     parseColor(`hsv(${3.6 * h}, ${s}, ${v})`).hex
@@ -86,6 +84,8 @@ class ColorPickerComponent extends React.Component {
         return css;
     }
     render () {
+        const {gradientCount} = this.props;
+
         return (
             <div
                 className={styles.colorPickerContainer}
