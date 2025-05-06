@@ -166,10 +166,15 @@ body :global(.Popover) {
     margin-right: 10px;
 }
 .gradientControlButton {
-    width: 12px;
+    width: 18px;
     height: 48px;
     padding: 0;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+    text-align: center;
+}
+.gradientControlButton img {
+    margin-bottom: 2px;
 }
