@@ -212,6 +212,7 @@ class ColorPickerComponent extends React.Component {
                                 </div>
                             </div>
                         )}
+                        {/*
                         {this.props.gradientType === GradientTypes.SOLID || this.props.gradientType === GradientTypes.RADIAL ? null : (
                             <div>
                                 <div className={styles.gradientControlButtons}>
@@ -234,7 +235,7 @@ class ColorPickerComponent extends React.Component {
                                 <div className={styles.divider} />
                             </div>
                         )}
-                        
+                        */}
                     </div>
                 ) : null}
                 <div className={styles.row}>

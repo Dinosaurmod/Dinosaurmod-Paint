@@ -155,7 +155,7 @@ body :global(.Popover) {
     display: flex;
     flex-wrap: wrap;
     gap: 4px;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
     margin-top: 4px;
 }
