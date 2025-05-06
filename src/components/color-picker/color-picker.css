@@ -158,7 +158,7 @@ body :global(.Popover) {
     align-items: center;
     justify-content: center;
     margin-top: 8px;
-    width: 4px;
+    width: fit-content;
 }
 [dir="ltr"] .gradientControlButtons {
     margin-left: 4px;
