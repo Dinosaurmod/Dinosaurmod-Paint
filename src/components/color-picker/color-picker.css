@@ -161,8 +161,8 @@ body :global(.Popover) {
     width: 4px;
 }
 [dir="ltr"] .gradientControlButtons {
-    margin-left: 10px;
+    margin-left: 4px;
 }
 [dir="rtl"] .gradientControlButtons {
-    margin-right: 10px;
+    margin-right: 4px;
 }
