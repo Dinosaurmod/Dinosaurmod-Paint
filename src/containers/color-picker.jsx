@@ -72,7 +72,8 @@ class ColorPicker extends React.Component {
             hue: hsv[0],
             saturation: hsv[1],
             brightness: hsv[2],
-            alpha: hsv[3]
+            alpha: hsv[3],
+            forceUpdateKey: 0
         };
         this.gradientCount = 1
     }
@@ -86,7 +87,8 @@ class ColorPicker extends React.Component {
                 hue: hsv[0],
                 saturation: hsv[1],
                 brightness: hsv[2],
-                alpha: hsv[3]
+                alpha: hsv[3],
+                forceUpdateKey: this.state.forceUpdateKey
             });
         }
     }
@@ -181,9 +183,15 @@ class ColorPicker extends React.Component {
     }
     handleAddGradient () {
         this.gradientCount = Math.min(Math.max((this.gradientCount + 1), 1), 7)
+        this.setState(prevState => ({
+            forceUpdateKey: prevState.forceUpdateKey + 1
+        }))
     }
     handleRemoveGradient () {
         this.gradientCount = Math.min(Math.max((this.gradientCount - 1), 1), 7)
+        this.setState(prevState => ({
+            forceUpdateKey: prevState.forceUpdateKey + 1
+        }))
     }
     render () {
         return (
@@ -199,6 +207,7 @@ class ColorPicker extends React.Component {
                 rtl={this.props.rtl}
                 saturation={this.state.saturation}
                 alpha={this.state.alpha * 100}
+                key={this.state.forceUpdateKey}
                 onAlphaChange={this.handleAlphaChange}
                 hexColor={colorToHex(this.props.colorIndex === 0 ? this.props.color : this.props.color2)}
                 onHexColorChange={this.handleHexColorChange}
