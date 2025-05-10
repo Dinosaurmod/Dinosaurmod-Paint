@@ -195,12 +195,14 @@ class ColorPicker extends React.Component {
             forceUpdateKey: prevState.forceUpdateKey + 1
         }))
     }
-    handleColorStopChange () {
+    handleColorStopChange (colorStop) {
+        this.props.colorStop = colorStop
         this.setState(prevState => ({
             forceUpdateKey: prevState.forceUpdateKey + 1
         }))
     }
-    handleColor2StopChange () {
+    handleColor2StopChange (color2Stop) {
+        this.props.color2Stop = color2Stop
         this.setState(prevState => ({
             forceUpdateKey: prevState.forceUpdateKey + 1
         }))

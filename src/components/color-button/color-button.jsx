@@ -14,8 +14,8 @@ const colorToBackground = (color, color2, gradientType, colorStop, color2Stop) =
     if (color === MIXED || (gradientType !== GradientTypes.SOLID && color2 === MIXED)) return 'white';
     if (color === null) color = 'white';
     if (color2 === null) color2 = 'white';
-    if (colorStop === null) colorStop = '0';
-    if (color2Stop === null) color2Stop = '100';
+    if (!colorStop) colorStop = '0';
+    if (!color2Stop) color2Stop = '100';
     const colorStructure = `${color} ${colorStop}%, ${color2} ${color2Stop}%`
     switch (gradientType) {
     case GradientTypes.SOLID: return color;
