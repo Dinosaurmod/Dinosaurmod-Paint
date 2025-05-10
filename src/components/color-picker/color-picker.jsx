@@ -84,6 +84,10 @@ class ColorPickerComponent extends React.Component {
         return css;
     }
     render () {
+        if ((!this.props.gradientType === GradientTypes.SOLID) && (!this.props.gradientType === GradientTypes.RADIAL)) {
+            if (!this.props.colorStop) this.props.colorStop = 0;
+            if (!this.props.color2Stop) this.props.color2Stop = 100;
+        }
         return (
             <div
                 className={styles.colorPickerContainer}
