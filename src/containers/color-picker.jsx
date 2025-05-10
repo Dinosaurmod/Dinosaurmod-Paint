@@ -78,6 +78,8 @@ class ColorPicker extends React.Component {
             forceUpdateKey: 0
         };
         this.gradientCount = 1
+        this.props.colorStop = 0
+        this.props.color2Stop = 100
     }
     componentWillReceiveProps (newProps) {
         const color = newProps.colorIndex === 0 ? this.props.color : this.props.color2;
