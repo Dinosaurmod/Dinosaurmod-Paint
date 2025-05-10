@@ -176,6 +176,10 @@ class ColorPickerComponent extends React.Component {
                                             />
                                         ) : null}
                                     </div>
+                                    <TWColorReadout
+                                        value={this.props.colorStop}
+                                        onChange={this.props.onColorStopChange}
+                                    />
                                     <LabeledIconButton
                                         className={styles.swapButton}
                                         imgSrc={swapIcon}
@@ -209,6 +213,10 @@ class ColorPickerComponent extends React.Component {
                                             />
                                         ) : null}
                                     </div>
+                                    <TWColorReadout
+                                        value={this.props.color2Stop}
+                                        onChange={this.props.onColor2StopChange}
+                                    />
                                 </div>
                             </div>
                         )}
@@ -397,6 +405,8 @@ ColorPickerComponent.propTypes = {
     brightness: PropTypes.number.isRequired,
     color: PropTypes.string,
     color2: PropTypes.string,
+    colorStop: PropTypes.number,
+    color2Stop: PropTypes.number,
     colorIndex: PropTypes.number.isRequired,
     gradientType: PropTypes.oneOf(Object.keys(GradientTypes)).isRequired,
     hue: PropTypes.number.isRequired,
@@ -413,6 +423,8 @@ ColorPickerComponent.propTypes = {
     onAddGradient: PropTypes.func.isRequired,
     onRemoveGradient: PropTypes.func.isRequired,
     onHueChange: PropTypes.func.isRequired,
+    onColorStopChange: PropTypes.func.isRequired,
+    onColor2StopChange: PropTypes.func.isRequired,
     onSaturationChange: PropTypes.func.isRequired,
     onSelectColor: PropTypes.func.isRequired,
     onSelectColor2: PropTypes.func.isRequired,

@@ -19,6 +19,8 @@ const ColorIndicatorComponent = props => (
                 <ColorPicker
                     color={props.color}
                     color2={props.color2}
+                    colorStop={props.colorStop}
+                    color2Stop={props.color2Stop}
                     gradientType={props.gradientType}
                     shouldShowGradientTools={props.shouldShowGradientTools}
                     onChangeColor={props.onChangeColor}
@@ -34,6 +36,8 @@ const ColorIndicatorComponent = props => (
                 <ColorButton
                     color={props.color}
                     color2={props.color2}
+                    colorStop={props.colorStop}
+                    color2Stop={props.color2Stop}
                     gradientType={props.gradientType}
                     onClick={props.onOpenColor}
                     outline={props.outline}
@@ -48,6 +52,8 @@ ColorIndicatorComponent.propTypes = {
     disabled: PropTypes.bool.isRequired,
     color: PropTypes.string,
     color2: PropTypes.string,
+    colorStop: PropTypes.number,
+    color2Stop: PropTypes.number,
     colorModalVisible: PropTypes.bool.isRequired,
     gradientType: PropTypes.oneOf(Object.keys(GradientTypes)).isRequired,
     label: PropTypes.string.isRequired,
