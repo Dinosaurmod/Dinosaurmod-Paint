@@ -836,7 +836,7 @@ const mapDispatchToProps = dispatch => ({
     }
 });
 
-isPerfectValue = ModeToolsComponent.propTypes.isPerfectValue
+const isPerfectValue = ModeToolsComponent.propTypes.isPerfectValue
 
 export {
     isPerfectValue
