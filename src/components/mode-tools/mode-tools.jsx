@@ -745,7 +745,7 @@ ModeToolsComponent.propTypes = {
     brushValue: PropTypes.number,
     segValue: PropTypes.number,
     className: PropTypes.string,
-    isPerfectValue: PropTypes.bool,
+    // isPerfectValue: PropTypes.bool,
     clipboardItems: PropTypes.arrayOf(PropTypes.array),
     eraserValue: PropTypes.number,
     roundedCornerValue: PropTypes.number,

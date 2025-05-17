@@ -92,7 +92,9 @@ class OvalTool extends paper.Tool {
     handleMouseDrag (event) {
         if (event.event.button > 0 || !this.active) return; // only first mouse button
 
-        const isPerfectValue = window._store.getState().isPerfectValue;
+        const isPerfectValue = !!window._store.getState().isPerfectValue;
+
+        console.log("isPerfectValue Value: " + isPerfectValue)
 
         if (this.isBoundingBoxMode) {
             this.boundingBoxTool.onMouseDrag(event);
