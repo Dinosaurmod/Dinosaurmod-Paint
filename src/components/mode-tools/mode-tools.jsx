@@ -258,8 +258,8 @@ const ModeToolsComponent = props => {
                 const currentPerfectValue = props.isPerfectValue;
                 const changeFunctionPerfectChange = props.onPerfectChange;
                 return (
-                    <div>
-                        <div className={classNames(props.className, styles.modeTools, styles.modDashedBorder)}>
+                    <div className={classNames(props.className, styles.modeTools)}>
+                        <div className={classNames(props.className, styles.modDashedBorder)}>
                             <div>
                                 <img
                                     alt={props.intl.formatMessage(messages.roundedCornerSize)}
@@ -278,7 +278,7 @@ const ModeToolsComponent = props => {
                                 onSubmit={changeFunction}
                             />
                         </div>
-                        <div className={classNames(props.className, styles.modeTools)}>
+                        <div className={classNames(props.className)}>
                             <Label text={props.intl.formatMessage(messages.perfect)}>
                             <LiveBooleanInput
                                 range
@@ -300,8 +300,8 @@ const ModeToolsComponent = props => {
                 const currentPerfectValue = props.isPerfectValue;
                 const changeFunctionPerfectChange = props.onPerfectChange;
                 return (
-                    <div>
-                        <div className={classNames(props.className, styles.modeTools, styles.modDashedBorder)}>
+                    <div className={classNames(props.className, styles.modeTools)}>
+                        <div className={classNames(props.className, styles.modDashedBorder)}>
                             <div>
                                 <img
                                     alt={props.intl.formatMessage(messages.currentSideCount)}
@@ -320,7 +320,7 @@ const ModeToolsComponent = props => {
                                 onSubmit={changeFunction}
                             />
                         </div>
-                        <div className={classNames(props.className, styles.modeTools)}>
+                        <div className={classNames(props.className)}>
                             <Label text={props.intl.formatMessage(messages.perfect)}>
                             <LiveBooleanInput
                                 range
