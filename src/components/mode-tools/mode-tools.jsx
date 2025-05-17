@@ -723,8 +723,8 @@ const ModeToolsComponent = props => {
                         <LiveBooleanInput
                             range
                             small
-                            value={currentPerfectValue}
-                            onSubmit={changeFunctionPerfectChange}
+                            checked={!!currentPerfectValue}
+                            onChange={changeFunctionPerfectChange}
                         />
                         </Label>
                     </div>

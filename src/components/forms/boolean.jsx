@@ -9,6 +9,8 @@ const Input = props => {
     return (
         <input
             type="checkbox"
+            checked={checked}
+            onChange={onChange}
             {...componentProps}
             className={classNames(
                 styles.inputBoolean,
@@ -25,12 +27,15 @@ const Input = props => {
 Input.propTypes = {
     className: PropTypes.string,
     range: PropTypes.bool,
-    small: PropTypes.bool
+    small: PropTypes.bool,
+    checked: PropTypes.bool.isRequired,
+    onChange: PropTypes.func.isRequired
 };
 
 Input.defaultProps = {
     range: false,
-    small: false
+    small: false,
+    checked: false
 };
 
 export default Input;
