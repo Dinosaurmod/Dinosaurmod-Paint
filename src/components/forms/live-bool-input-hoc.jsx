@@ -24,7 +24,7 @@ export default function (Input) {
         }
         handleChange (e) {
             if (e.target.checked !== null) {
-                this.props.onChange(e.target.value);
+                this.props.onChange(e.target.checked);
             }
             this.setState({checked: e.target.checked});
         }
@@ -43,7 +43,7 @@ export default function (Input) {
 
     LiveBoolInput.propTypes = {
         onChange: PropTypes.func.isRequired,
-        value: PropTypes.bool
+        checked: PropTypes.bool
     };
 
     return LiveBoolInput;
