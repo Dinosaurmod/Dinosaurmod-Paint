@@ -20,6 +20,7 @@ import { setIsPerfectValue } from '../../reducers/isperfect';
 
 import FontDropdown from '../../containers/font-dropdown.jsx';
 import LiveInputHOC from '../forms/live-input-hoc.jsx';
+import LiveBoolInputHOC from '../forms/live-input-hoc.jsx';
 import Label from '../forms/label.jsx';
 import { defineMessages, injectIntl, intlShape } from 'react-intl';
 import Input from '../forms/input.jsx';
@@ -75,7 +76,7 @@ import { MAX_STROKE_WIDTH } from '../../reducers/stroke-width';
 import selectableShapes from '../../helper/selectable-shapes.js';
 
 const LiveInput = LiveInputHOC(Input);
-const LiveBooleanInput = LiveInputHOC(BooleanInput);
+const LiveBooleanInput = LiveBoolInputHOC(BooleanInput);
 const ModeToolsComponent = props => {
     const messages = defineMessages({
         brushSize: {
