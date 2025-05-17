@@ -16,12 +16,14 @@ import { changeCurrentlySelectedShape } from '../../reducers/sussy-mode';
 import { changeBitBrushSize } from '../../reducers/bit-brush-size';
 import { changeBitEraserSize } from '../../reducers/bit-eraser-size';
 import { setShapesFilled } from '../../reducers/fill-bitmap-shapes';
+import { setIsPerfectValue } from '../../reducers/is-perfect-value';
 
 import FontDropdown from '../../containers/font-dropdown.jsx';
 import LiveInputHOC from '../forms/live-input-hoc.jsx';
 import Label from '../forms/label.jsx';
 import { defineMessages, injectIntl, intlShape } from 'react-intl';
 import Input from '../forms/input.jsx';
+import BooleanInput from '../forms/boolean.jsx';
 import InputGroup from '../input-group/input-group.jsx';
 import LabeledIconButton from '../labeled-icon-button/labeled-icon-button.jsx';
 import Modes from '../../lib/modes';
@@ -73,6 +75,7 @@ import { MAX_STROKE_WIDTH } from '../../reducers/stroke-width';
 import selectableShapes from '../../helper/selectable-shapes.js';
 
 const LiveInput = LiveInputHOC(Input);
+const LiveBooleanInput = LiveInputHOC(BooleanInput);
 const ModeToolsComponent = props => {
     const messages = defineMessages({
         brushSize: {
@@ -717,10 +720,9 @@ const ModeToolsComponent = props => {
                 return (
                     <div>
                         <Label text={props.intl.formatMessage(messages.perfect)}>
-                        <LiveInput
+                        <LiveBooleanInput
                             range
                             small
-                            type="boolean"
                             value={currentPerfectValue}
                             onSubmit={changeFunctionPerfectChange}
                         />
@@ -796,6 +798,7 @@ const mapStateToProps = state => ({
     segValue: state.scratchPaint.brushMode.segSize,
     clipboardItems: state.scratchPaint.clipboard.items,
     eraserValue: state.scratchPaint.eraserMode.brushSize,
+    isPerfectValue: state.scratchPaint.isPerfectValue,
     roundedCornerValue: state.scratchPaint.roundedRectMode.roundedCornerSize,
     trianglePolyValue: state.scratchPaint.triangleMode.trianglePolyCount,
     currentlySelectedShape: state.scratchPaint.sussyMode.currentlySelectedShape
@@ -826,7 +829,7 @@ const mapDispatchToProps = dispatch => ({
         dispatch(changeEraserSize(eraserSize));
     },
     onPerfectChange: isPerfectValue => {
-        dispatch(console.log("New isPerfectValue Value: " + isPerfectValue));
+        dispatch(setIsPerfectValue(isPerfectValue));
     },
     onFillShapes: () => {
         dispatch(setShapesFilled(true));
@@ -835,12 +838,6 @@ const mapDispatchToProps = dispatch => ({
         dispatch(setShapesFilled(false));
     }
 });
-
-const isPerfectValue = ModeToolsComponent.propTypes.isPerfectValue
-
-export {
-    isPerfectValue
-}
 
 export default connect(
     mapStateToProps,

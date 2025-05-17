@@ -16,6 +16,7 @@ import fillModeReducer from './fill-mode';
 import fontReducer from './font';
 import formatReducer from './format';
 import hoverReducer from './hover';
+import isPerfectValueReducer from './isperfect';
 import layoutReducer from './layout';
 import modalsReducer from './modals';
 import selectedItemReducer from './selected-items';
@@ -43,6 +44,7 @@ export default combineReducers({
     font: fontReducer,
     format: formatReducer,
     hoveredItemId: hoverReducer,
+    isPerfectValue: isPerfectValueReducer,
     layout: layoutReducer,
     modals: modalsReducer,
     selectedItems: selectedItemReducer,

@@ -1,0 +1,16 @@
+@import "../../css/units.css";
+@import "../../css/colors.css";
+
+.input-boolean {
+    accent-color: $motion-primary;
+}
+
+.input-small {
+    width: 3rem;
+    text-align: center;
+}
+
+.input-small-range {
+    width: 4rem;
+    text-align: center;
+}

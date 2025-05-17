@@ -8,6 +8,8 @@ import {getSquareDimensions} from '../math';
 import BoundingBoxTool from '../selection-tools/bounding-box-tool';
 import NudgeTool from '../selection-tools/nudge-tool';
 
+const isPerfectValue = window._store.getState().isperfect.isPerfectValue;
+
 /**
  * Tool for drawing ovals.
  */
@@ -145,7 +147,7 @@ class OvalTool extends paper.Tool {
         const downPoint = new paper.Point(event.downPoint.x, event.downPoint.y);
         const point = new paper.Point(event.point.x, event.point.y);
         const squareDimensions = getSquareDimensions(event.downPoint, event.point);
-        if (event.modifiers.shift) {
+        if (event.modifiers.shift || isPerfectValue) {
             this.oval.size = squareDimensions.size.abs();
         } else {
             this.oval.size = downPoint.subtract(point);
@@ -153,7 +155,7 @@ class OvalTool extends paper.Tool {
 
         if (event.modifiers.alt) {
             this.oval.position = downPoint;
-        } else if (event.modifiers.shift) {
+        } else if (event.modifiers.shift || isPerfectValue) {
             this.oval.position = squareDimensions.position;
         } else {
             this.oval.position = downPoint.subtract(this.oval.size.multiply(0.5));

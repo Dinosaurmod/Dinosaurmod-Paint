@@ -107,7 +107,7 @@ class OvalTool extends paper.Tool {
 
         if (event.modifiers.alt) {
             this.oval.position = downPoint;
-        } else if (event.modifiers.shift) {
+        } else if (event.modifiers.shift || isPerfectValue) {
             this.oval.position = squareDimensions.position;
         } else {
             this.oval.position = downPoint.subtract(this.oval.size.multiply(0.5));
