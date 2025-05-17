@@ -516,10 +516,11 @@ ModeTools.propTypes = {
 const mapStateToProps = state => ({
     format: state.scratchPaint.format,
     mode: state.scratchPaint.mode,
-    setIsPerfectValue: (value) => dispatch({ type: 'SET_IS_PERFECT_VALUE', payload: value }),
     selectedItems: state.scratchPaint.selectedItems
 });
 const mapDispatchToProps = dispatch => ({
+    setIsPerfectValue: (value) => 
+        dispatch({ type: 'SET_IS_PERFECT_VALUE', payload: value }),
     clearSelectedItems: () => {
         dispatch(clearSelectedItems());
     },
