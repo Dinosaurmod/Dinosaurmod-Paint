@@ -180,10 +180,10 @@ class ColorPickerComponent extends React.Component {
                                             />
                                         ) : null}
                                     </div>
-                                    <TWColorReadout
+                                    {/*<TWColorReadout
                                         value={this.props.colorStop}
                                         onChange={this.props.onColorStopChange}
-                                    />
+                                    />*/}
                                     <LabeledIconButton
                                         className={styles.swapButton}
                                         imgSrc={swapIcon}
@@ -217,10 +217,10 @@ class ColorPickerComponent extends React.Component {
                                             />
                                         ) : null}
                                     </div>
-                                    <TWColorReadout
+                                    {/*<TWColorReadout
                                         value={this.props.color2Stop}
                                         onChange={this.props.onColor2StopChange}
-                                    />
+                                    />*/}
                                 </div>
                             </div>
                         )}
