@@ -258,33 +258,38 @@ const ModeToolsComponent = props => {
                 const currentPerfectValue = props.isPerfectValue;
                 const changeFunctionPerfectChange = props.onPerfectChange;
                 return (
-                    <div className={classNames(props.className, styles.modeTools)}>
-                        <div>
-                            <img
-                                alt={props.intl.formatMessage(messages.roundedCornerSize)}
-                                className={styles.modeToolsIcon}
-                                draggable={false}
-                                src={currentIcon}
+                    <div>
+                        <div className={classNames(props.className, styles.modeTools, styles.modDashedBorder)}>
+                            <div>
+                                <img
+                                    alt={props.intl.formatMessage(messages.roundedCornerSize)}
+                                    className={styles.modeToolsIcon}
+                                    draggable={false}
+                                    src={currentIcon}
+                                />
+                            </div>
+                            <LiveInput
+                                range
+                                small
+                                max={1000}
+                                min="1"
+                                type="number"
+                                value={currentCornerValue}
+                                onSubmit={changeFunction}
                             />
                         </div>
-                        <LiveInput
-                            range
-                            small
-                            max={1000}
-                            min="1"
-                            type="number"
-                            value={currentCornerValue}
-                            onSubmit={changeFunction}
-                        />
-                        <Label text={props.intl.formatMessage(messages.perfect)}>
-                        <LiveBooleanInput
-                            range
-                            small
-                            checked={!!currentPerfectValue}
-                            onChange={changeFunctionPerfectChange}
-                        />
-                        </Label>
+                        <div className={classNames(props.className, styles.modeTools)}>
+                            <Label text={props.intl.formatMessage(messages.perfect)}>
+                            <LiveBooleanInput
+                                range
+                                small
+                                checked={!!currentPerfectValue}
+                                onChange={changeFunctionPerfectChange}
+                            />
+                            </Label>
+                        </div>
                     </div>
+                    
                 );
             }
         case Modes.TRIANGLE:
@@ -295,32 +300,36 @@ const ModeToolsComponent = props => {
                 const currentPerfectValue = props.isPerfectValue;
                 const changeFunctionPerfectChange = props.onPerfectChange;
                 return (
-                    <div className={classNames(props.className, styles.modeTools)}>
-                        <div>
-                            <img
-                                alt={props.intl.formatMessage(messages.currentSideCount)}
-                                className={styles.modeToolsIcon}
-                                draggable={false}
-                                src={currentIcon}
+                    <div>
+                        <div className={classNames(props.className, styles.modeTools, styles.modDashedBorder)}>
+                            <div>
+                                <img
+                                    alt={props.intl.formatMessage(messages.currentSideCount)}
+                                    className={styles.modeToolsIcon}
+                                    draggable={false}
+                                    src={currentIcon}
+                                />
+                            </div>
+                            <LiveInput
+                                range
+                                small
+                                max={1000}
+                                min="3"
+                                type="number"
+                                value={currentSideValue}
+                                onSubmit={changeFunction}
                             />
                         </div>
-                        <LiveInput
-                            range
-                            small
-                            max={1000}
-                            min="3"
-                            type="number"
-                            value={currentSideValue}
-                            onSubmit={changeFunction}
-                        />
-                        <Label text={props.intl.formatMessage(messages.perfect)}>
-                        <LiveBooleanInput
-                            range
-                            small
-                            checked={!!currentPerfectValue}
-                            onChange={changeFunctionPerfectChange}
-                        />
-                        </Label>
+                        <div className={classNames(props.className, styles.modeTools)}>
+                            <Label text={props.intl.formatMessage(messages.perfect)}>
+                            <LiveBooleanInput
+                                range
+                                small
+                                checked={!!currentPerfectValue}
+                                onChange={changeFunctionPerfectChange}
+                            />
+                            </Label>
+                        </div>
                     </div>
                 );
             }
