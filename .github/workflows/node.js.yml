@@ -1,4 +1,4 @@
-name: Node.js CI
+name: Node.js CI (Modified)
 
 on:
   push:
@@ -21,6 +21,7 @@ jobs:
         run: |
           git config --global url."https://github.com/".insteadOf "git@github.com:"
           git config --global url."https://github.com/".insteadOf "ssh://git@github.com/"
+      - run: npm cache clean --force
       - run: npm ci
       - run: npm test
       - name: Repository Dispatch
