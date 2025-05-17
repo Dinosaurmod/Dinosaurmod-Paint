@@ -7,7 +7,6 @@ import bindAll from 'lodash.bindall';
 import CopyPasteHOC from '../hocs/copy-paste-hoc.jsx';
 import ModeToolsComponent from '../components/mode-tools/mode-tools.jsx';
 import {clearSelectedItems, setSelectedItems} from '../reducers/selected-items';
-import { setIsPerfectValue } from '../reducers/isperfect';
 import {
     setItemSelection,
     deleteSelection,
@@ -517,7 +516,7 @@ ModeTools.propTypes = {
 const mapStateToProps = state => ({
     format: state.scratchPaint.format,
     mode: state.scratchPaint.mode,
-    isPerfectValue: state.scratchPaint.isPerfectValue,
+    setIsPerfectValue: (value) => dispatch({ type: 'SET_IS_PERFECT_VALUE', payload: value }),
     selectedItems: state.scratchPaint.selectedItems
 });
 const mapDispatchToProps = dispatch => ({
