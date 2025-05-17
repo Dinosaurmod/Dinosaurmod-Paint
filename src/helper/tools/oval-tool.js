@@ -26,7 +26,7 @@ class OvalTool extends paper.Tool {
         this.setSelectedItems = setSelectedItems;
         this.clearSelectedItems = clearSelectedItems;
         this.onUpdateImage = onUpdateImage;
-        this.isPerfectValue = isPerfectValue
+        this.isPerfectValue = isPerfectValue;
         this.boundingBoxTool = new BoundingBoxTool(
             Modes.OVAL,
             setSelectedItems,

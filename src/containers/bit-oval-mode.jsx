@@ -71,7 +71,8 @@ class BitOvalMode extends React.Component {
             this.props.setSelectedItems,
             this.props.clearSelectedItems,
             this.props.setCursor,
-            this.props.onUpdateImage
+            this.props.onUpdateImage,
+            () => this.props.isPerfectValue
         );
         this.tool.setColor(this.props.color);
         this.tool.setFilled(this.props.filled);
@@ -99,6 +100,7 @@ BitOvalMode.propTypes = {
     filled: PropTypes.bool,
     handleMouseDown: PropTypes.func.isRequired,
     isOvalModeActive: PropTypes.bool.isRequired,
+    isPerfectValue: PropTypes.bool.isRequired,
     onChangeFillColor: PropTypes.func.isRequired,
     onUpdateImage: PropTypes.func.isRequired,
     selectedItems: PropTypes.arrayOf(PropTypes.instanceOf(paper.Item)),
@@ -112,6 +114,7 @@ const mapStateToProps = state => ({
     color: state.scratchPaint.color.fillColor,
     filled: state.scratchPaint.fillBitmapShapes,
     isOvalModeActive: state.scratchPaint.mode === Modes.BIT_OVAL,
+    isPerfectValue: state.scratchPaint.isPerfectValue,
     selectedItems: state.scratchPaint.selectedItems,
     thickness: state.scratchPaint.bitBrushSize,
     zoom: state.scratchPaint.viewBounds.scaling.x

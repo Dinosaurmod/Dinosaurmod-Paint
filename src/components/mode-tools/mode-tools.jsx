@@ -715,8 +715,9 @@ const ModeToolsComponent = props => {
                 );
             }
         case Modes.OVAL: 
-            {   
+            {
                 const currentPerfectValue = props.isPerfectValue;
+                setIsPerfectValue(currentPerfectValue);
                 const changeFunctionPerfectChange = props.onPerfectChange;
                 return (
                     <div>
