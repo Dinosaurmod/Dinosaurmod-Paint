@@ -448,11 +448,7 @@ class ModeTools extends React.Component {
         }
     }
     render () {
-        let changePerfectOnce = false;
-        if (!changePerfectOnce) {
-            changePerfectOnce = true;
-            this.props.setIsPerfectValue(false)
-        }
+        this.props.setIsPerfectValue(false);
         return (
             <ModeToolsComponent
                 hasSelectedUncurvedPoints={this.hasSelectedUncurvedPoints()}
