@@ -28,11 +28,12 @@ class RoundedRectTool extends paper.Tool {
      * @param {function} setCursor Callback to set the visible mouse cursor
      * @param {!function} onUpdateImage A callback to call when the image visibly changes
      */
-    constructor (setSelectedItems, clearSelectedItems, setCursor, onUpdateImage) {
+    constructor (setSelectedItems, clearSelectedItems, setCursor, onUpdateImage, isPerfectValue) {
         super();
         this.setSelectedItems = setSelectedItems;
         this.clearSelectedItems = clearSelectedItems;
         this.onUpdateImage = onUpdateImage;
+        this.isPerfectValue = isPerfectValue;
         this.boundingBoxTool = new BoundingBoxTool(
             Modes.ROUNDED_RECT,
             setSelectedItems,
@@ -106,13 +107,15 @@ class RoundedRectTool extends paper.Tool {
             return;
         }
 
+        const isPerfectValue = this.isPerfectValue();
+
         if (this.rect) {
             this.rect.remove();
         }
 
         const rect = new paper.Rectangle(event.downPoint, event.point);
         const squareDimensions = getSquareDimensions(event.downPoint, event.point);
-        if (event.modifiers.shift) {
+        if (event.modifiers.shift || isPerfectValue) {
             rect.size = squareDimensions.size.abs();
         }
 
@@ -121,7 +124,7 @@ class RoundedRectTool extends paper.Tool {
         this.rect = new paper.Path.Rectangle(rect, this.roundedCornerSize);
         if (event.modifiers.alt) {
             this.rect.position = event.downPoint;
-        } else if (event.modifiers.shift) {
+        } else if (event.modifiers.shift || isPerfectValue) {
             this.rect.position = squareDimensions.position;
         } else {
             const dimensions = event.point.subtract(event.downPoint);

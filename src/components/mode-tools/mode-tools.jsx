@@ -77,9 +77,7 @@ import selectableShapes from '../../helper/selectable-shapes.js';
 
 const LiveInput = LiveInputHOC(Input);
 const LiveBooleanInput = LiveBoolInputHOC(BooleanInput);
-setIsPerfectValue(false)
 const ModeToolsComponent = props => {
-    setIsPerfectValue(false)
     const messages = defineMessages({
         brushSize: {
             defaultMessage: 'Size',
@@ -257,6 +255,8 @@ const ModeToolsComponent = props => {
                 const currentIcon = roundedRectIcon;
                 const currentCornerValue = props.roundedCornerValue;
                 const changeFunction = props.onRoundedCornerSliderChange;
+                const currentPerfectValue = props.isPerfectValue;
+                const changeFunctionPerfectChange = props.onPerfectChange;
                 return (
                     <div className={classNames(props.className, styles.modeTools)}>
                         <div>
@@ -276,6 +276,14 @@ const ModeToolsComponent = props => {
                             value={currentCornerValue}
                             onSubmit={changeFunction}
                         />
+                        <Label text={props.intl.formatMessage(messages.perfect)}>
+                        <LiveBooleanInput
+                            range
+                            small
+                            checked={!!currentPerfectValue}
+                            onChange={changeFunctionPerfectChange}
+                        />
+                        </Label>
                     </div>
                 );
             }
@@ -284,6 +292,8 @@ const ModeToolsComponent = props => {
                 const currentIcon = triangleIcon;
                 const currentSideValue = props.trianglePolyValue;
                 const changeFunction = props.onPolyCountSliderChange;
+                const currentPerfectValue = props.isPerfectValue;
+                const changeFunctionPerfectChange = props.onPerfectChange;
                 return (
                     <div className={classNames(props.className, styles.modeTools)}>
                         <div>
@@ -303,6 +313,14 @@ const ModeToolsComponent = props => {
                             value={currentSideValue}
                             onSubmit={changeFunction}
                         />
+                        <Label text={props.intl.formatMessage(messages.perfect)}>
+                        <LiveBooleanInput
+                            range
+                            small
+                            checked={!!currentPerfectValue}
+                            onChange={changeFunctionPerfectChange}
+                        />
+                        </Label>
                     </div>
                 );
             }
@@ -716,6 +734,8 @@ const ModeToolsComponent = props => {
                     </div>
                 );
             }
+        case Modes.RECT:
+        /* falls through */
         case Modes.OVAL: 
             {
                 const currentPerfectValue = props.isPerfectValue;
