@@ -451,7 +451,7 @@ class ModeTools extends React.Component {
         let changePerfectOnce = false;
         if (!changePerfectOnce) {
             changePerfectOnce = true;
-            setIsPerfectValue(false)
+            this.props.setIsPerfectValue(false)
         }
         return (
             <ModeToolsComponent
