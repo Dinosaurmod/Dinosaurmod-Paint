@@ -155,6 +155,11 @@ const ModeToolsComponent = props => {
             description: 'Label for the button that sets the bitmap rectangle/oval mode to draw filled-in shapes',
             id: 'paint.modeTools.outlined'
         },
+        perfect: {
+            defaultMessage: 'Perfect',
+            description: 'Label for the button that makes the pc perfect circle/square feature available in mobile aswell',
+            id: 'paint.modeTools.perfect'
+        },
         movementCenter: {
             defaultMessage: 'Center',
             description: 'Label for the button that moves the selected objects to the center of the canvas',
@@ -705,6 +710,24 @@ const ModeToolsComponent = props => {
                     </div>
                 );
             }
+        case Modes.OVAL: 
+            {   
+                const currentPerfectValue = props.isPerfectValue;
+                const changeFunctionPerfectChange = props.onPerfectChange;
+                return (
+                    <div>
+                        <Label text={props.intl.formatMessage(messages.perfect)}>
+                        <LiveInput
+                            range
+                            small
+                            type="boolean"
+                            value={currentPerfectValue}
+                            onSubmit={changeFunctionPerfectChange}
+                        />
+                        </Label>
+                    </div>
+                )
+            }
         default:
             // Leave empty for now, if mode not supported
             return (
@@ -718,7 +741,7 @@ ModeToolsComponent.propTypes = {
     bitEraserSize: PropTypes.number,
     brushValue: PropTypes.number,
     segValue: PropTypes.number,
-    className: PropTypes.string,
+    isPerfectValue: PropTypes.bool,
     clipboardItems: PropTypes.arrayOf(PropTypes.array),
     eraserValue: PropTypes.number,
     roundedCornerValue: PropTypes.number,
@@ -738,6 +761,7 @@ ModeToolsComponent.propTypes = {
     onCurvePoints: PropTypes.func.isRequired,
     onDelete: PropTypes.func.isRequired,
     onEraserSliderChange: PropTypes.func,
+    onPerfectChange: PropTypes.func,
     onFillShapes: PropTypes.func.isRequired,
     onFlipHorizontal: PropTypes.func.isRequired,
     onFlipVertical: PropTypes.func.isRequired,
@@ -800,6 +824,9 @@ const mapDispatchToProps = dispatch => ({
     onEraserSliderChange: eraserSize => {
         dispatch(changeEraserSize(eraserSize));
     },
+    onPerfectChange: isPerfectValue => {
+        dispatch(console.log("New isPerfectValue Value: " + isPerfectValue));
+    },
     onFillShapes: () => {
         dispatch(setShapesFilled(true));
     },
@@ -807,6 +834,12 @@ const mapDispatchToProps = dispatch => ({
         dispatch(setShapesFilled(false));
     }
 });
+
+isPerfectValue = ModeToolsComponent.propTypes.isPerfectValue
+
+export {
+    isPerfectValue
+}
 
 export default connect(
     mapStateToProps,
