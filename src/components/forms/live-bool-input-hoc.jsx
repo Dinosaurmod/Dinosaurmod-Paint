@@ -24,7 +24,7 @@ export default function (Input) {
         }
         handleChange (e) {
             if (e.target.checked !== null) {
-                this.props.onChange(val);
+                this.props.onChange(e.target.value);
             }
             this.setState({checked: e.target.checked});
         }
