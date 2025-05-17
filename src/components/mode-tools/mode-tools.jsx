@@ -20,7 +20,7 @@ import { setIsPerfectValue } from '../../reducers/isperfect';
 
 import FontDropdown from '../../containers/font-dropdown.jsx';
 import LiveInputHOC from '../forms/live-input-hoc.jsx';
-import LiveBoolInputHOC from '../forms/live-input-hoc.jsx';
+import LiveBoolInputHOC from '../forms/live-bool-input-hoc.jsx';
 import Label from '../forms/label.jsx';
 import { defineMessages, injectIntl, intlShape } from 'react-intl';
 import Input from '../forms/input.jsx';
