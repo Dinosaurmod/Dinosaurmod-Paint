@@ -741,6 +741,7 @@ ModeToolsComponent.propTypes = {
     bitEraserSize: PropTypes.number,
     brushValue: PropTypes.number,
     segValue: PropTypes.number,
+    className: PropTypes.string,
     isPerfectValue: PropTypes.bool,
     clipboardItems: PropTypes.arrayOf(PropTypes.array),
     eraserValue: PropTypes.number,
