@@ -259,7 +259,6 @@ const ModeToolsComponent = props => {
                 const changeFunctionPerfectChange = props.onPerfectChange;
                 return (
                     <div className={classNames(props.className, styles.modeTools)}>
-                        <div>
                             <div>
                                 <img
                                     alt={props.intl.formatMessage(messages.roundedCornerSize)}
@@ -277,8 +276,6 @@ const ModeToolsComponent = props => {
                                 value={currentCornerValue}
                                 onSubmit={changeFunction}
                             />
-                        </div>
-                        <div className={classNames(props.className)}>
                             <Label text={props.intl.formatMessage(messages.perfect)}>
                             <LiveBooleanInput
                                 range
@@ -287,9 +284,7 @@ const ModeToolsComponent = props => {
                                 onChange={changeFunctionPerfectChange}
                             />
                             </Label>
-                        </div>
                     </div>
-                    
                 );
             }
         case Modes.TRIANGLE:
@@ -301,7 +296,6 @@ const ModeToolsComponent = props => {
                 const changeFunctionPerfectChange = props.onPerfectChange;
                 return (
                     <div className={classNames(props.className, styles.modeTools)}>
-                        <div>
                             <div>
                                 <img
                                     alt={props.intl.formatMessage(messages.currentSideCount)}
@@ -319,8 +313,6 @@ const ModeToolsComponent = props => {
                                 value={currentSideValue}
                                 onSubmit={changeFunction}
                             />
-                        </div>
-                        <div className={classNames(props.className)}>
                             <Label text={props.intl.formatMessage(messages.perfect)}>
                             <LiveBooleanInput
                                 range
@@ -329,7 +321,6 @@ const ModeToolsComponent = props => {
                                 onChange={changeFunctionPerfectChange}
                             />
                             </Label>
-                        </div>
                     </div>
                 );
             }
