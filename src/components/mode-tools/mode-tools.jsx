@@ -259,7 +259,7 @@ const ModeToolsComponent = props => {
                 const changeFunctionPerfectChange = props.onPerfectChange;
                 return (
                     <div className={classNames(props.className, styles.modeTools)}>
-                        <div className={classNames(props.className, styles.modDashedBorder)}>
+                        <div>
                             <div>
                                 <img
                                     alt={props.intl.formatMessage(messages.roundedCornerSize)}
@@ -301,7 +301,7 @@ const ModeToolsComponent = props => {
                 const changeFunctionPerfectChange = props.onPerfectChange;
                 return (
                     <div className={classNames(props.className, styles.modeTools)}>
-                        <div className={classNames(props.className, styles.modDashedBorder)}>
+                        <div>
                             <div>
                                 <img
                                     alt={props.intl.formatMessage(messages.currentSideCount)}
