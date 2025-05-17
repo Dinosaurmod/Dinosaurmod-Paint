@@ -77,7 +77,9 @@ import selectableShapes from '../../helper/selectable-shapes.js';
 
 const LiveInput = LiveInputHOC(Input);
 const LiveBooleanInput = LiveBoolInputHOC(BooleanInput);
+setIsPerfectValue(false)
 const ModeToolsComponent = props => {
+    setIsPerfectValue(false)
     const messages = defineMessages({
         brushSize: {
             defaultMessage: 'Size',
