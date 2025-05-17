@@ -21,11 +21,12 @@ class OvalTool extends paper.Tool {
      * @param {function} setCursor Callback to set the visible mouse cursor
      * @param {!function} onUpdateImage A callback to call when the image visibly changes
      */
-    constructor (setSelectedItems, clearSelectedItems, setCursor, onUpdateImage) {
+    constructor (setSelectedItems, clearSelectedItems, setCursor, onUpdateImage, isPerfectValue) {
         super();
         this.setSelectedItems = setSelectedItems;
         this.clearSelectedItems = clearSelectedItems;
         this.onUpdateImage = onUpdateImage;
+        this.isPerfectValue = isPerfectValue
         this.boundingBoxTool = new BoundingBoxTool(
             Modes.OVAL,
             setSelectedItems,
@@ -92,7 +93,7 @@ class OvalTool extends paper.Tool {
     handleMouseDrag (event) {
         if (event.event.button > 0 || !this.active) return; // only first mouse button
 
-        const isPerfectValue = !!window._store.getState().isPerfectValue;
+        const isPerfectValue = this.isPerfectValue();
 
         console.log("isPerfectValue Value: " + isPerfectValue)
 
