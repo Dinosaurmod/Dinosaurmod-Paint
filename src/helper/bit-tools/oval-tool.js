@@ -8,7 +8,7 @@ import {getSquareDimensions} from '../math';
 import BoundingBoxTool from '../selection-tools/bounding-box-tool';
 import NudgeTool from '../selection-tools/nudge-tool';
 
-const isPerfectValue = window._store.getState().isperfect.isPerfectValue;
+import '../reducer-store.js';
 
 /**
  * Tool for drawing ovals.
@@ -138,6 +138,8 @@ class OvalTool extends paper.Tool {
     }
     handleMouseDrag (event) {
         if (event.event.button > 0 || !this.active) return; // only first mouse button
+
+        const isPerfectValue = window._store?.getState()?.isperfect?.isPerfectValue;
 
         if (this.isBoundingBoxMode) {
             this.boundingBoxTool.onMouseDrag(event);
