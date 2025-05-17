@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import styles from './boolean.css';
 
 const Input = props => {
-    const {small, range, ...componentProps} = props;
+    const {small, range, checked, onChange, ...componentProps} = props;
     return (
         <input
             type="checkbox"
