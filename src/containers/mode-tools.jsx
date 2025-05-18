@@ -448,7 +448,6 @@ class ModeTools extends React.Component {
         }
     }
     render () {
-        this.props.setIsPerfectValue(false);
         return (
             <ModeToolsComponent
                 hasSelectedUncurvedPoints={this.hasSelectedUncurvedPoints()}
@@ -515,8 +514,6 @@ const mapStateToProps = state => ({
     selectedItems: state.scratchPaint.selectedItems
 });
 const mapDispatchToProps = dispatch => ({
-    setIsPerfectValue: (value) => 
-        dispatch({ type: 'SET_IS_PERFECT_VALUE', payload: value }),
     clearSelectedItems: () => {
         dispatch(clearSelectedItems());
     },

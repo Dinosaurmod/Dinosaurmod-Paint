@@ -2,7 +2,7 @@
 import classNames from 'classnames';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import Dropdown from '../dropdown/dropdown.jsx';
 import MediaQuery from 'react-responsive';
@@ -170,6 +170,12 @@ const ModeToolsComponent = props => {
             id: 'paint.modeTools.movementCenter'
         }
     });
+
+    useEffect(() => {
+        if (props.isPerfectValue !== false) {
+            props.onPerfectChange(false);
+        }
+    }, []);
 
     switch (props.mode) {
         case Modes.BRUSH:
