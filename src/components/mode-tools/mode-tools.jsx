@@ -288,7 +288,7 @@ const ModeToolsComponent = props => {
                                 small
                                 checked={!!currentPerfectValue}
                                 onChange={changeFunctionPerfectChange}
-                                style="transform: translate(40%, 0%)"
+                                style={{transform: "translate(40%, 0%)"}}
                             />
                             </Label>
                     </div>
@@ -326,7 +326,7 @@ const ModeToolsComponent = props => {
                                 small
                                 checked={!!currentPerfectValue}
                                 onChange={changeFunctionPerfectChange}
-                                style="transform: translate(40%, 0%)"
+                                style={{transform: "translate(40%, 0%)"}}
                             />
                             </Label>
                     </div>
@@ -756,7 +756,7 @@ const ModeToolsComponent = props => {
                             small
                             checked={!!currentPerfectValue}
                             onChange={changeFunctionPerfectChange}
-                            style="transform: translate(40%, 0%)"
+                            style={{transform: "translate(40%, 0%)"}}
                         />
                         </Label>
                     </div>
