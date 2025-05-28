@@ -5,12 +5,13 @@ import classNames from 'classnames';
 import styles from './boolean.css';
 
 const Input = props => {
-    const {small, range, checked, onChange, ...componentProps} = props;
+    const {small, range, checked, onChange, style, ...componentProps} = props;
     return (
         <input
             type="checkbox"
             checked={checked}
             onChange={onChange}
+            style={style}
             {...componentProps}
             className={classNames(
                 styles.inputBoolean,
@@ -26,6 +27,7 @@ const Input = props => {
 
 Input.propTypes = {
     className: PropTypes.string,
+    style: PropTypes.object,
     range: PropTypes.bool,
     small: PropTypes.bool,
     checked: PropTypes.bool.isRequired,
@@ -35,7 +37,8 @@ Input.propTypes = {
 Input.defaultProps = {
     range: false,
     small: false,
-    checked: false
+    checked: false,
+    style: {}
 };
 
 export default Input;

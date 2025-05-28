@@ -160,7 +160,7 @@ const ModeToolsComponent = props => {
             id: 'paint.modeTools.outlined'
         },
         perfect: {
-            defaultMessage: 'Perfect',
+            defaultMessage: 'Perfect Shape',
             description: 'Label for the button that makes the pc perfect circle/square feature available in mobile aswell',
             id: 'paint.modeTools.perfect'
         },
@@ -282,12 +282,13 @@ const ModeToolsComponent = props => {
                                 value={currentCornerValue}
                                 onSubmit={changeFunction}
                             />
-                            <Label text={props.intl.formatMessage(messages.perfect)}>
+                            <Label text={"   " + props.intl.formatMessage(messages.perfect)}>
                             <LiveBooleanInput
                                 range
                                 small
                                 checked={!!currentPerfectValue}
                                 onChange={changeFunctionPerfectChange}
+                                style="transform: translate(40%, 0%)"
                             />
                             </Label>
                     </div>
@@ -319,12 +320,13 @@ const ModeToolsComponent = props => {
                                 value={currentSideValue}
                                 onSubmit={changeFunction}
                             />
-                            <Label text={props.intl.formatMessage(messages.perfect)}>
+                            <Label text={"   " + props.intl.formatMessage(messages.perfect)}>
                             <LiveBooleanInput
                                 range
                                 small
                                 checked={!!currentPerfectValue}
                                 onChange={changeFunctionPerfectChange}
+                                style="transform: translate(40%, 0%)"
                             />
                             </Label>
                     </div>
@@ -754,6 +756,7 @@ const ModeToolsComponent = props => {
                             small
                             checked={!!currentPerfectValue}
                             onChange={changeFunctionPerfectChange}
+                            style="transform: translate(40%, 0%)"
                         />
                         </Label>
                     </div>
