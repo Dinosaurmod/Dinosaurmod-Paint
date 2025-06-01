@@ -215,40 +215,18 @@ const ModeToolsComponent = props => {
                             />
                         </Label>
 
-                        {hasAccuracyOption ? (<>
-                            <Label text={props.intl.formatMessage(messages.brushSize)}>
-                                <LiveInput
-                                    range
-                                    small
-                                    max={MAX_STROKE_WIDTH}
-                                    min="1"
-                                    type="number"
-                                    value={currentBrushValue}
-                                    onSubmit={changeFunction}
-                                />
-                            </Label>
-
+                        {hasAccuracyOption && (
                             <Label text={props.intl.formatMessage(messages.brushSeg)}>
                                 <LiveInput
                                     range
                                     small
-                                    max={MAX_STROKE_WIDTH * 10}
+                                    max={1000}
                                     min="0"
                                     type="number"
                                     value={currentSegValue}
                                     onSubmit={changeFunctionSeg}
                                 />
                             </Label>
-                        </>) : (
-                        <LiveInput
-                            range
-                            small
-                            max={MAX_STROKE_WIDTH * 10}
-                            min="1"
-                            type="number"
-                            value={currentSegValue}
-                            onSubmit={changeFunctionSeg}
-                        />
                         )}
                     </div>
                 );
