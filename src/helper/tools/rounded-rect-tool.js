@@ -9,7 +9,7 @@ import NudgeTool from '../selection-tools/nudge-tool';
 // since we arent a blob tool we have to improvise
 // this gets set by the reducer when the corner value is changed
 const toolCornerSize = {
-    value: 8
+    value: 0
 }
 
 /**
@@ -75,7 +75,7 @@ class RoundedRectTool extends paper.Tool {
     setRoundedCornerSize () {
         // For performance, make sure this is an integer
         this.roundedCornerSize = toolCornerSize.value;
-        this.roundedCornerSize = Math.max(1, ~~this.roundedCornerSize);
+        this.roundedCornerSize = Math.max(0, ~~this.roundedCornerSize);
     }
     /**
      * Should be called if the selection changes to update the bounds of the bounding box.
