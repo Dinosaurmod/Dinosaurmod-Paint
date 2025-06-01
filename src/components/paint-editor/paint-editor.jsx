@@ -175,9 +175,6 @@ const PaintEditorComponent = props => (
                     <OvalMode
                         onUpdateImage={props.onUpdateImage}
                     />
-                    <RectMode
-                        onUpdateImage={props.onUpdateImage}
-                    />
                     <RoundedRectMode
                         onUpdateImage={props.onUpdateImage}
                     />
