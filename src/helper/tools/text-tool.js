@@ -197,6 +197,16 @@ class TextTool extends paper.Tool {
         }
         this.calculateMatrix(viewMtx);
     }
+    /*skewTextElement(x,y) {
+        let textBox = this.textBox;
+        if (!textBox) return;
+
+        if (!textBox.originalMatrix) {
+            textBox.originalMatrix = textBox.matrix.clone();
+        }
+        textBox.matrix = textBox.originalMatrix.clone();
+        textBox.skew(x, y);
+    }*/
     updateTextElementStyle() {
         let textBox = this.textBox;
         if (!textBox) return;

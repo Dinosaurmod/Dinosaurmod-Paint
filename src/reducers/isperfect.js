@@ -4,7 +4,7 @@ const initialState = false;
 
 const reducer = function (state, action) {
     if (typeof state === 'undefined') state = initialState;
-    console.log('isperfect reducer called, state:', state, 'action:', action);
+    // console.log('isperfect reducer called, state:', state, 'action:', action);
     switch (action.type) {
         case SET_IS_PERFECT_VALUE:
             return action.isPerfectValue;
