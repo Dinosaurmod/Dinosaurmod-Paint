@@ -343,7 +343,7 @@ class TextTool extends paper.Tool {
                 // is 120%, but for some reason they are slightly off from each other.
                 // This value was obtained experimentally.
                 leading: 46.15,
-                textDecoration = 'none'
+                textDecoration: 'none'
             });
             this.beginTextEdit(this.textBox);
         }
