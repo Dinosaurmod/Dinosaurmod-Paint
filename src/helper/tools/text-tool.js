@@ -231,8 +231,10 @@ class TextTool extends paper.Tool {
         if (TextTool.isUnderlined) {
             this.element.style.textDecoration = 'underline';
             this.element.style.textDecorationColor = this.element.style.color || 'inherit';
+            textBox.textDecoration = 'underline';
         } else {
             this.element.style.textDecoration = 'none';
+            textBox.textDecoration = 'none';
         }
     }
     calculateMatrix (viewMtx) {
@@ -340,7 +342,8 @@ class TextTool extends paper.Tool {
                 // Default leading for both the HTML text area and paper.PointText
                 // is 120%, but for some reason they are slightly off from each other.
                 // This value was obtained experimentally.
-                leading: 46.15
+                leading: 46.15,
+                textDecoration = 'none'
             });
             this.beginTextEdit(this.textBox);
         }
