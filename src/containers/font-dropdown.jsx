@@ -32,6 +32,7 @@ class FontDropdown extends React.Component {
             'handleChangeFontFredoka',
             'handleChangeFontArchivo',
             'handleChangeFontArchivoBlack',
+            'handleChangeFontImpact',
             'handleChangeFontChinese',
             'handleChangeFontJapanese',
             'handleChangeFontKorean',
@@ -262,6 +263,11 @@ class FontDropdown extends React.Component {
             this.props.changeFont(Fonts.ARCHIVOBLACK);
         }
     }
+    handleChangeFontImpact() {
+        if (this.dropDown.isOpen()) {
+            this.props.changeFont(Fonts.IMPACT);
+        }
+    }
     handleChangeFontScratch() {
         if (this.dropDown.isOpen()) {
             this.props.changeFont(Fonts.SCRATCH);
@@ -393,6 +399,7 @@ class FontDropdown extends React.Component {
                 onHoverArchivoBlack={this.handleChangeFontArchivoBlack}
                 onHoverScratch={this.handleChangeFontScratch}
                 onHoverFredoka={this.handleChangeFontFredoka}
+                onHoverImpact={this.handleChangeFontImpact}
                 onHoverSansSerif={this.handleChangeFontSansSerif}
                 onHoverSerif={this.handleChangeFontSerif}
                 onOpenDropdown={this.handleOpenDropdown}
