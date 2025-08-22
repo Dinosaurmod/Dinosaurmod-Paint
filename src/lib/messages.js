@@ -51,6 +51,11 @@ const messages = defineMessages({
         description: 'Label for the text tool',
         id: 'paint.textMode.text'
     },
+    perspective: {
+        defaultMessage: 'Perspective',
+        description: 'Label for the perspective tool',
+        id: 'paint.textMode.perspective'
+    },
     sussy: {
         defaultMessage: 'Shapes',
         description: 'Label for the shape tool',
