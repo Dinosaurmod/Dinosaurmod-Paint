@@ -3,9 +3,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {injectIntl, intlShape} from 'react-intl';
 
+import {setReducerValue} from "../../reducers/isperfect.js";
+
 import Button from '../button/button.jsx';
 
 import styles from './tool-select-base.css';
+
+const {set} = setReducerValue();
 
 const formatWithKeyBinding = (description, keybinding) => {
     if (!keybinding) {
@@ -23,7 +27,10 @@ const ToolSelectComponent = props => (
         }
         disabled={props.disabled}
         title={formatWithKeyBinding(props.intl.formatMessage(props.imgDescriptor), props.keybinding)}
-        onClick={props.onMouseDown}
+        onClick={() => {
+            props.onMouseDown();
+            set(false)
+        }}
     >
         <img
             alt={props.intl.formatMessage(props.imgDescriptor)}
