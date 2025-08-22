@@ -25,6 +25,5 @@ const setIsPerfectValue = function (isPerfectValue) {
 export {
     reducer as default,
     setIsPerfectValue,
-    SET_IS_PERFECT_VALUE,
-    setReducerValue
+    SET_IS_PERFECT_VALUE
 };
