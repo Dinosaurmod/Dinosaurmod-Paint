@@ -62,7 +62,8 @@ class ArrowMode extends React.Component {
             this.props.setSelectedItems,
             this.props.clearSelectedItems,
             this.props.setCursor,
-            this.props.onUpdateImage
+            this.props.onUpdateImage,
+            () => this.props.isPerfectValue
         );
         this.tool.setColorState(this.props.colorState);
         this.tool.activate();
@@ -143,13 +144,15 @@ ArrowMode.propTypes = {
     onUpdateImage: PropTypes.func.isRequired,
     selectedItems: PropTypes.arrayOf(PropTypes.instanceOf(paper.Item)),
     setCursor: PropTypes.func.isRequired,
-    setSelectedItems: PropTypes.func.isRequired
+    setSelectedItems: PropTypes.func.isRequired,
+    isPerfectValue: PropTypes.bool.isRequired
 };
 
 const mapStateToProps = state => ({
     colorState: state.scratchPaint.color,
     isArrowModeActive: state.scratchPaint.mode === Modes.ARROW,
-    selectedItems: state.scratchPaint.selectedItems
+    selectedItems: state.scratchPaint.selectedItems,
+    isPerfectValue: state.scratchPaint.isPerfectValue
 });
 const mapDispatchToProps = dispatch => ({
     clearSelectedItems: () => {

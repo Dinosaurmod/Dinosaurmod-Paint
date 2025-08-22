@@ -62,11 +62,12 @@ class ArrowTool extends paper.Tool {
      * @param {function} setCursor Callback to set the visible mouse cursor
      * @param {!function} onUpdateImage A callback to call when the image visibly changes
      */
-    constructor(setSelectedItems, clearSelectedItems, setCursor, onUpdateImage) {
+    constructor(setSelectedItems, clearSelectedItems, setCursor, onUpdateImage, isPerfectValue) {
         super();
         this.setSelectedItems = setSelectedItems;
         this.clearSelectedItems = clearSelectedItems;
         this.onUpdateImage = onUpdateImage;
+        this.isPerfectValue = isPerfectValue;
         this.boundingBoxTool = new BoundingBoxTool(
             Modes.ARROW,
             setSelectedItems,
@@ -186,6 +187,8 @@ class ArrowTool extends paper.Tool {
             return;
         }
 
+        const isPerfectValue = this.isPerfectValue();
+
         if (this.tri) {
             this.tri.remove();
         }
@@ -228,7 +231,7 @@ class ArrowTool extends paper.Tool {
             const y2 = event.point.y;
 
             pathOptions.angle = 90 - this.calculateDirection(x1, y1, x2, y2);
-            if (event.modifiers.shift) {
+            if (event.modifiers.shift || isPerfectValue) {
                 pathOptions.angle = Math.round((pathOptions.angle / 360) * 8) * 45;
             }
         }

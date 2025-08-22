@@ -766,6 +766,24 @@ const ModeToolsComponent = props => {
                     </div>
                 )
             }
+        case Modes.ARROW:
+            {
+                const currentPerfectValue = props.isPerfectValue;
+                const changeFunctionPerfectChange = props.onPerfectChange;
+                return (
+                    <div>
+                        <Label text={props.intl.formatMessage(messages.perfect)}>
+                        <LiveBooleanInput
+                            range
+                            small
+                            checked={!!currentPerfectValue}
+                            onChange={changeFunctionPerfectChange}
+                            style={{transform: "translate(-40%, 0%)"}}
+                        />
+                        </Label>
+                    </div>
+                )
+            }
         default:
             // Leave empty for now, if mode not supported
             return (
