@@ -15,15 +15,6 @@ const reducer = function (state, action) {
     }
 };
 
-const setReducerValue = function () {
-    const [state, dispatch] = useReducer(reducer, { count: 0 });
-
-    return {
-        state,
-        set: (val) => dispatch({ type: "SET", payload: val }),
-    };
-}
-
 const setIsPerfectValue = function (isPerfectValue) {
     return {
         type: SET_IS_PERFECT_VALUE,

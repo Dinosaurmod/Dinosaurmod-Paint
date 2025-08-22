@@ -1,15 +1,14 @@
 import classNames from 'classnames';
+import { connect } from 'react-redux';
 import React from 'react';
 import PropTypes from 'prop-types';
 import {injectIntl, intlShape} from 'react-intl';
 
-import {setReducerValue} from "../../reducers/isperfect.js";
+import {setIsPerfectValue} from "../../reducers/isperfect.js";
 
 import Button from '../button/button.jsx';
 
 import styles from './tool-select-base.css';
-
-const {set} = setReducerValue();
 
 const formatWithKeyBinding = (description, keybinding) => {
     if (!keybinding) {
@@ -29,7 +28,7 @@ const ToolSelectComponent = props => (
         title={formatWithKeyBinding(props.intl.formatMessage(props.imgDescriptor), props.keybinding)}
         onClick={() => {
             props.onMouseDown();
-            set(false)
+            props.setIsPerfectValueTo(false);
         }}
     >
         <img
@@ -53,7 +52,17 @@ ToolSelectComponent.propTypes = {
     imgSrc: PropTypes.string.isRequired,
     intl: intlShape.isRequired,
     isSelected: PropTypes.bool.isRequired,
-    onMouseDown: PropTypes.func.isRequired
+    onMouseDown: PropTypes.func.isRequired,
+    setIsPerfectValueTo: PropTypes.func.isRequired
 };
 
-export default injectIntl(ToolSelectComponent);
+const mapDispatchToProps = dispatch => ({
+    setIsPerfectValueTo: e => {
+        dispatch(setIsPerfectValue(e));
+    }
+});
+
+export default connect(
+    (_ => ({})),
+    mapDispatchToProps
+)(injectIntl(ToolSelectComponent));
