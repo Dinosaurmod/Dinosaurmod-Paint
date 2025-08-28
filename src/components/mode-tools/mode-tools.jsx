@@ -191,7 +191,7 @@ const ModeToolsComponent = props => {
             prev === topLeftRoundedIcon ? topLeftSharpIcon : topLeftRoundedIcon
         );
         props.onCornersToRoundChange({
-            "top-left": icon1 === topLeftRoundedIcon
+            "top-left": !icon1 == topLeftRoundedIcon
         });
     };
 
@@ -200,7 +200,7 @@ const ModeToolsComponent = props => {
             prev === topLeftRoundedIcon ? topLeftSharpIcon : topLeftRoundedIcon
         );
         props.onCornersToRoundChange({
-            "top-right": icon2 === topLeftRoundedIcon
+            "top-right": !icon2 == topLeftRoundedIcon
         });
     };
 
@@ -209,7 +209,7 @@ const ModeToolsComponent = props => {
             prev === topLeftRoundedIcon ? topLeftSharpIcon : topLeftRoundedIcon
         );
         props.onCornersToRoundChange({
-            "bottom-left": icon3 === topLeftRoundedIcon
+            "bottom-left": !icon3 == topLeftRoundedIcon
         });
     };
 
@@ -218,7 +218,7 @@ const ModeToolsComponent = props => {
             prev === topLeftRoundedIcon ? topLeftSharpIcon : topLeftRoundedIcon
         );
         props.onCornersToRoundChange({
-            "bottom-right": icon4 === topLeftRoundedIcon
+            "bottom-right": !icon4 == topLeftRoundedIcon
         });
     };
 
@@ -779,14 +779,10 @@ const ModeToolsComponent = props => {
                         <LabeledIconButton
                             imgSrc={italicIcon}
                             title={'Italic'}
-                            onClick={() => {props.onTextItalic(); updateUI()}}
-                            highlighted={props.isTextItalic}
                         />
                         <LabeledIconButton
                             imgSrc={underlineIcon}
                             title={'Underline'}
-                            onClick={() => {props.onTextUnderline(); updateUI()}}
-                            highlighted={props.isTextUnderline}
                         />
                     </InputGroup>
                 </div>

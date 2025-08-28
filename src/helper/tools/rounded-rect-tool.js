@@ -124,6 +124,7 @@ class RoundedRectTool extends paper.Tool {
         this.setRoundedCornerSize();
         console.log(this.cornersToRound())
         this.rect = new paper.Path.Rectangle(rect, this.roundedCornerSize, this.cornersToRound());
+        console.log(this.rect)
         if (event.modifiers.alt) {
             this.rect.position = event.downPoint;
         } else if (event.modifiers.shift || isPerfectValue) {
