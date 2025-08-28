@@ -222,6 +222,12 @@ const ModeToolsComponent = props => {
         });
     };
 
+    const [, setTick] = useState(0);
+
+    const updateUI = () => {
+        setTick(t => t + 1);
+    };
+
     switch (props.mode) {
         case Modes.BRUSH:
         /* falls through */
@@ -751,21 +757,21 @@ const ModeToolsComponent = props => {
                             hideLabel
                             imgSrc={alignLeftIcon}
                             title={'Left Align'}
-                            onClick={props.onTextAlignLeft}
+                            onClick={() => {props.onTextAlignLeft(); updateUI()}}
                             highlighted={props.textAlignmentProp === "left"}
                         />
                         <LabeledIconButton
                             hideLabel
                             imgSrc={alignCenterIcon}
                             title={'Center Align'}
-                            onClick={props.onTextAlignCenter}
+                            onClick={() => {props.onTextAlignCenter(); updateUI()}}
                             highlighted={props.textAlignmentProp === "center"}
                         />
                         <LabeledIconButton
                             hideLabel
                             imgSrc={alignRightIcon}
                             title={'Right Align'}
-                            onClick={props.onTextAlignRight}
+                            onClick={() => {props.onTextAlignRight(); updateUI()}}
                             highlighted={props.textAlignmentProp === "right"}
                         />
                     </InputGroup>
@@ -773,13 +779,13 @@ const ModeToolsComponent = props => {
                         <LabeledIconButton
                             imgSrc={italicIcon}
                             title={'Italic'}
-                            onClick={props.onTextItalic}
+                            onClick={() => {props.onTextItalic(); updateUI()}}
                             highlighted={props.isTextItalic}
                         />
                         <LabeledIconButton
                             imgSrc={underlineIcon}
                             title={'Underline'}
-                            onClick={props.onTextUnderline}
+                            onClick={() => {props.onTextUnderline(); updateUI()}}
                             highlighted={props.isTextUnderline}
                         />
                     </InputGroup>
