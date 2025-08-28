@@ -17,6 +17,7 @@ import fontReducer from './font';
 import formatReducer from './format';
 import hoverReducer from './hover';
 import isPerfectValueReducer from './isperfect';
+import cornersToRoundReducer from './corners-to-round';
 import layoutReducer from './layout';
 import modalsReducer from './modals';
 import selectedItemReducer from './selected-items';
@@ -52,5 +53,6 @@ export default combineReducers({
     theme: themeReducer,
     undo: undoReducer,
     viewBounds: viewBoundsReducer,
-    zoomLevels: zoomLevelsReducer
+    zoomLevels: zoomLevelsReducer,
+    cornersToRound: cornersToRoundReducer
 });

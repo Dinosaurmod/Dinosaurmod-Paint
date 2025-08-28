@@ -43,8 +43,11 @@ class ModeTools extends React.Component {
             'handleTextAlignLeft',
             'handleTextAlignRight',
             'handleTextAlignCenter',
+            'handleGetTextAlignment',
             'handleTextItalic',
             'handleTextUnderline',
+            'handleGetTextItalic',
+            'handleGetTextUnderline',
             'handleMergeShape',
             'handleMaskShape',
             'handleSubtractShape',
@@ -302,13 +305,22 @@ class ModeTools extends React.Component {
     handleTextAlignRight () {
         TextTool.textAlignment = "right";
     }
+    handleGetTextAlignment () {
+        return TextTool.textAlignment;
+    }
 
     handleTextItalic () {
         TextTool.isItalic = (!TextTool.isItalic)
     }
-
     handleTextUnderline () {
         TextTool.isUnderlined = (!TextTool.isUnderlined)
+    }
+
+    handleGetTextItalic () {
+        return !!TextTool.isItalic
+    }
+    handleGetTextUnderline () {
+        return !!TextTool.isUnderlined
     }
 
     handleMergeShape (specificOperation) {
@@ -479,8 +491,13 @@ class ModeTools extends React.Component {
                 onTextAlignRight={this.handleTextAlignRight}
                 onTextAlignCenter={this.handleTextAlignCenter}
 
+                textAlignmentProp={this.handleGetTextAlignment()}
+
                 onTextItalic={this.handleTextItalic}
                 onTextUnderline={this.handleTextUnderline}
+
+                isTextItalic={this.handleGetTextItalic()}
+                isTextUnderline={this.handleGetTextUnderline()}
 
                 onMergeShape={this.handleMergeShape}
                 onMaskShape={this.handleMaskShape}

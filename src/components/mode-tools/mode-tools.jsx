@@ -2,7 +2,7 @@
 import classNames from 'classnames';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import Dropdown from '../dropdown/dropdown.jsx';
 import MediaQuery from 'react-responsive';
@@ -17,6 +17,7 @@ import { changeBitBrushSize } from '../../reducers/bit-brush-size';
 import { changeBitEraserSize } from '../../reducers/bit-eraser-size';
 import { setShapesFilled } from '../../reducers/fill-bitmap-shapes';
 import { setIsPerfectValue } from '../../reducers/isperfect';
+import { setCornersToRound } from '../../reducers/corners-to-round';
 
 import FontDropdown from '../../containers/font-dropdown.jsx';
 import LiveInputHOC from '../forms/live-input-hoc.jsx';
@@ -53,6 +54,9 @@ import alignCenterIcon from './icons/alignCenter.svg';
 
 import italicIcon from './icons/italic.svg';
 import underlineIcon from './icons/underline.svg';
+
+import topLeftRoundedIcon from './icons/top-left-rounded.svg';
+import topLeftSharpIcon from './icons/top-left-sharp.svg';
 
 import bitBrushIcon from '../bit-brush-mode/brush.svg';
 import bitEraserIcon from '../bit-eraser-mode/eraser.svg';
@@ -177,6 +181,47 @@ const ModeToolsComponent = props => {
         }
     }, []);
 
+    const [icon1, setIcon1] = useState(topLeftRoundedIcon);
+    const [icon2, setIcon2] = useState(topLeftRoundedIcon);
+    const [icon3, setIcon3] = useState(topLeftRoundedIcon);
+    const [icon4, setIcon4] = useState(topLeftRoundedIcon);
+
+    const handleIcon1Click = () => {
+        setIcon1(prev =>
+            prev === topLeftRoundedIcon ? topLeftSharpIcon : topLeftRoundedIcon
+        );
+        props.onCornersToRoundChange({
+            "top-left": icon1 === topLeftRoundedIcon
+        });
+    };
+
+    const handleIcon2Click = () => {
+        setIcon2(prev =>
+            prev === topLeftRoundedIcon ? topLeftSharpIcon : topLeftRoundedIcon
+        );
+        props.onCornersToRoundChange({
+            "top-right": icon2 === topLeftRoundedIcon
+        });
+    };
+
+    const handleIcon3Click = () => {
+        setIcon3(prev =>
+            prev === topLeftRoundedIcon ? topLeftSharpIcon : topLeftRoundedIcon
+        );
+        props.onCornersToRoundChange({
+            "bottom-left": icon3 === topLeftRoundedIcon
+        });
+    };
+
+    const handleIcon4Click = () => {
+        setIcon4(prev =>
+            prev === topLeftRoundedIcon ? topLeftSharpIcon : topLeftRoundedIcon
+        );
+        props.onCornersToRoundChange({
+            "bottom-right": icon4 === topLeftRoundedIcon
+        });
+    };
+
     switch (props.mode) {
         case Modes.BRUSH:
         /* falls through */
@@ -295,6 +340,39 @@ const ModeToolsComponent = props => {
                                 style={{transform: "translate(-40%, 0%)"}}
                             />
                             </Label>
+                            <LabeledIconButton
+                                hideLabel
+                                imgSrc={icon1}
+                                title={'Top Left'}
+                                onClick={handleIcon1Click}
+                            />
+                            <LabeledIconButton
+                                hideLabel
+                                imgSrc={icon2}
+                                imgStyles={{
+                                    transform: "rotate(90deg)"
+                                }}
+                                title={'Top Right'}
+                                onClick={handleIcon2Click}
+                            />
+                            <LabeledIconButton
+                                hideLabel
+                                imgSrc={icon3}
+                                imgStyles={{
+                                    transform: "rotate(270deg)"
+                                }}
+                                title={'Bottom Left'}
+                                onClick={handleIcon3Click}
+                            />
+                            <LabeledIconButton
+                                hideLabel
+                                imgSrc={icon4}
+                                imgStyles={{
+                                    transform: "rotate(180deg)"
+                                }}
+                                title={'Bottom Right'}
+                                onClick={handleIcon4Click}
+                            />
                     </div>
                 );
             }
@@ -674,32 +752,35 @@ const ModeToolsComponent = props => {
                             imgSrc={alignLeftIcon}
                             title={'Left Align'}
                             onClick={props.onTextAlignLeft}
+                            highlighted={props.textAlignmentProp === "left"}
                         />
                         <LabeledIconButton
                             hideLabel
                             imgSrc={alignCenterIcon}
                             title={'Center Align'}
                             onClick={props.onTextAlignCenter}
+                            highlighted={props.textAlignmentProp === "center"}
                         />
                         <LabeledIconButton
                             hideLabel
                             imgSrc={alignRightIcon}
                             title={'Right Align'}
                             onClick={props.onTextAlignRight}
+                            highlighted={props.textAlignmentProp === "right"}
                         />
                     </InputGroup>
                     <InputGroup className={classNames(styles.modDashedBorder, styles.modLabeledIconHeight)}>
                         <LabeledIconButton
-                            hideLabel
                             imgSrc={italicIcon}
                             title={'Italic'}
                             onClick={props.onTextItalic}
+                            highlighted={props.isTextItalic}
                         />
                         <LabeledIconButton
-                            hideLabel
                             imgSrc={underlineIcon}
                             title={'Underline'}
                             onClick={props.onTextUnderline}
+                            highlighted={props.isTextUnderline}
                         />
                     </InputGroup>
                 </div>
@@ -819,6 +900,7 @@ ModeToolsComponent.propTypes = {
     onDelete: PropTypes.func.isRequired,
     onEraserSliderChange: PropTypes.func,
     onPerfectChange: PropTypes.func,
+    onCornersToRoundChange: PropTypes.func,
     onFillShapes: PropTypes.func.isRequired,
     onFlipHorizontal: PropTypes.func.isRequired,
     onFlipVertical: PropTypes.func.isRequired,
@@ -832,9 +914,13 @@ ModeToolsComponent.propTypes = {
     onTextAlignLeft: PropTypes.func.isRequired,
     onTextAlignRight: PropTypes.func.isRequired,
     onTextAlignCenter: PropTypes.func.isRequired,
+    textAlignmentProp: PropTypes.string.isRequired,
 
     onTextItalic: PropTypes.func.isRequired,
     onTextUnderline: PropTypes.func.isRequired,
+
+    isTextItalic: PropTypes.bool.isRequired,
+    isTextUnderline: PropTypes.bool.isRequired,
 
     onMergeShape: PropTypes.func.isRequired,
     onMaskShape: PropTypes.func.isRequired,
@@ -884,6 +970,9 @@ const mapDispatchToProps = dispatch => ({
     },
     onPerfectChange: isPerfectValue => {
         dispatch(setIsPerfectValue(isPerfectValue));
+    },
+    onCornersToRoundChange: cornersToRound => {
+        dispatch(setCornersToRound(cornersToRound));
     },
     onFillShapes: () => {
         dispatch(setShapesFilled(true));

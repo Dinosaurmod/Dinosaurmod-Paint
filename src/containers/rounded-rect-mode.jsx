@@ -64,7 +64,8 @@ class RoundedRectMode extends React.Component {
             this.props.clearSelectedItems,
             this.props.setCursor,
             this.props.onUpdateImage,
-            () => this.props.isPerfectValue
+            () => this.props.isPerfectValue,
+            () => this.props.cornersToRound
         );
         this.tool.setColorState(this.props.colorState);
         this.tool.activate();
@@ -149,14 +150,16 @@ RoundedRectMode.propTypes = {
     selectedItems: PropTypes.arrayOf(PropTypes.instanceOf(paper.Item)),
     setCursor: PropTypes.func.isRequired,
     setSelectedItems: PropTypes.func.isRequired,
-    isPerfectValue: PropTypes.bool.isRequired
+    isPerfectValue: PropTypes.bool.isRequired,
+    cornersToRound: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = state => ({
     colorState: state.scratchPaint.color,
     isRoundedRectModeActive: state.scratchPaint.mode === Modes.ROUNDED_RECT,
     selectedItems: state.scratchPaint.selectedItems,
-    isPerfectValue: state.scratchPaint.isPerfectValue
+    isPerfectValue: state.scratchPaint.isPerfectValue,
+    cornersToRound: state.scratchPaint.cornersToRound
 });
 const mapDispatchToProps = dispatch => ({
     clearSelectedItems: () => {

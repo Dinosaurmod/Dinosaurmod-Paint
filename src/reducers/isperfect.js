@@ -1,5 +1,3 @@
-import { useReducer } from "react";
-
 const SET_IS_PERFECT_VALUE = 'scratch-paint/isPerfectValue/SET_IS_PERFECT_VALUE';
 
 const initialState = false;

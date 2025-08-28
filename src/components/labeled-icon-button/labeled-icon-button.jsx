@@ -15,6 +15,7 @@ const LabeledIconButton = ({
     hideLabel,
     imgAlt,
     imgSrc,
+    imgStyles,
     onClick,
     title,
     ...props
@@ -30,6 +31,7 @@ const LabeledIconButton = ({
             draggable={false}
             src={imgSrc}
             title={title}
+            style={imgStyles}
         />
         {!hideLabel && <span className={styles.editFieldTitle}>{title}</span>}
     </Button>
@@ -40,6 +42,7 @@ LabeledIconButton.propTypes = {
     hideLabel: PropTypes.bool,
     highlighted: PropTypes.bool,
     imgAlt: PropTypes.string,
+    imgStyles: PropTypes.object,
     imgSrc: PropTypes.string.isRequired,
     onClick: PropTypes.func.isRequired,
     title: PropTypes.string.isRequired

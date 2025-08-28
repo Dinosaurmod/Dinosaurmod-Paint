@@ -28,12 +28,13 @@ class RoundedRectTool extends paper.Tool {
      * @param {function} setCursor Callback to set the visible mouse cursor
      * @param {!function} onUpdateImage A callback to call when the image visibly changes
      */
-    constructor (setSelectedItems, clearSelectedItems, setCursor, onUpdateImage, isPerfectValue) {
+    constructor (setSelectedItems, clearSelectedItems, setCursor, onUpdateImage, isPerfectValue, cornersToRound) {
         super();
         this.setSelectedItems = setSelectedItems;
         this.clearSelectedItems = clearSelectedItems;
         this.onUpdateImage = onUpdateImage;
         this.isPerfectValue = isPerfectValue;
+        this.cornersToRound = cornersToRound;
         this.boundingBoxTool = new BoundingBoxTool(
             Modes.ROUNDED_RECT,
             setSelectedItems,
@@ -121,7 +122,7 @@ class RoundedRectTool extends paper.Tool {
 
         // update corner size
         this.setRoundedCornerSize();
-        this.rect = new paper.Path.Rectangle(rect, this.roundedCornerSize);
+        this.rect = new paper.Path.Rectangle(rect, this.roundedCornerSize, this.cornersToRound());
         if (event.modifiers.alt) {
             this.rect.position = event.downPoint;
         } else if (event.modifiers.shift || isPerfectValue) {
