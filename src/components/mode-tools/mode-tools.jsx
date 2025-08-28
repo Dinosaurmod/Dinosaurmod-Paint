@@ -187,38 +187,50 @@ const ModeToolsComponent = props => {
     const [icon4, setIcon4] = useState(topLeftRoundedIcon);
 
     const handleIcon1Click = () => {
-        setIcon1(prev =>
-            prev === topLeftRoundedIcon ? topLeftSharpIcon : topLeftRoundedIcon
-        );
-        props.onCornersToRoundChange({
-            "top-left": !icon1 == topLeftRoundedIcon
+        setIcon1(prev => {
+            const next = prev === topLeftRoundedIcon ? topLeftSharpIcon : topLeftRoundedIcon;
+
+            props.onCornersToRoundChange({
+                "top-left": next === topLeftRoundedIcon
+            });
+
+            return next;
         });
     };
 
     const handleIcon2Click = () => {
-        setIcon2(prev =>
-            prev === topLeftRoundedIcon ? topLeftSharpIcon : topLeftRoundedIcon
-        );
-        props.onCornersToRoundChange({
-            "top-right": !icon2 == topLeftRoundedIcon
+        setIcon2(prev => {
+            const next = prev === topLeftRoundedIcon ? topLeftSharpIcon : topLeftRoundedIcon;
+
+            props.onCornersToRoundChange({
+                "top-right": next === topLeftRoundedIcon,
+            });
+
+            return next;
         });
     };
 
     const handleIcon3Click = () => {
-        setIcon3(prev =>
-            prev === topLeftRoundedIcon ? topLeftSharpIcon : topLeftRoundedIcon
-        );
-        props.onCornersToRoundChange({
-            "bottom-left": !icon3 == topLeftRoundedIcon
+        setIcon3(prev => {
+            const next = prev === topLeftRoundedIcon ? topLeftSharpIcon : topLeftRoundedIcon;
+
+            props.onCornersToRoundChange({
+                "bottom-left": next === topLeftRoundedIcon,
+            });
+
+            return next;
         });
     };
 
     const handleIcon4Click = () => {
-        setIcon4(prev =>
-            prev === topLeftRoundedIcon ? topLeftSharpIcon : topLeftRoundedIcon
-        );
-        props.onCornersToRoundChange({
-            "bottom-right": !icon4 == topLeftRoundedIcon
+        setIcon4(prev => {
+            const next = prev === topLeftRoundedIcon ? topLeftSharpIcon : topLeftRoundedIcon;
+
+            props.onCornersToRoundChange({
+                "bottom-right": next === topLeftRoundedIcon,
+            });
+
+            return next;
         });
     };
 
