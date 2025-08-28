@@ -191,7 +191,7 @@ const ModeToolsComponent = props => {
             const next = prev === topLeftRoundedIcon ? topLeftSharpIcon : topLeftRoundedIcon;
 
             props.onCornersToRoundChange({
-                "top-left": next === topLeftRoundedIcon
+                "topLeft": next === topLeftRoundedIcon
             });
 
             return next;
@@ -203,7 +203,7 @@ const ModeToolsComponent = props => {
             const next = prev === topLeftRoundedIcon ? topLeftSharpIcon : topLeftRoundedIcon;
 
             props.onCornersToRoundChange({
-                "top-right": next === topLeftRoundedIcon,
+                "topRight": next === topLeftRoundedIcon,
             });
 
             return next;
@@ -215,7 +215,7 @@ const ModeToolsComponent = props => {
             const next = prev === topLeftRoundedIcon ? topLeftSharpIcon : topLeftRoundedIcon;
 
             props.onCornersToRoundChange({
-                "bottom-left": next === topLeftRoundedIcon,
+                "bottomLeft": next === topLeftRoundedIcon,
             });
 
             return next;
@@ -227,7 +227,7 @@ const ModeToolsComponent = props => {
             const next = prev === topLeftRoundedIcon ? topLeftSharpIcon : topLeftRoundedIcon;
 
             props.onCornersToRoundChange({
-                "bottom-right": next === topLeftRoundedIcon,
+                "bottomRight": next === topLeftRoundedIcon,
             });
 
             return next;

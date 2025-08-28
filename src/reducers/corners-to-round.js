@@ -1,9 +1,9 @@
 const SET_CORNERS_TO_ROUND = 'scratch-paint/rounded-rect-mode/CORNERS_TO_ROUND';
 const initialState = {
-    "top-left": true,
-    "top-right": true,
-    "bottom-left": true,
-    "bottom-right": true
+    "topLeft": true,
+    "topRight": true,
+    "bottomLeft": true,
+    "bottomRight": true
 };
 
 const reducer = function (state, action) {
