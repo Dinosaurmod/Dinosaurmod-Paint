@@ -853,6 +853,8 @@ const ModeToolsComponent = props => {
                     </div>
                 );
             }
+        case Modes.LINE:
+            /* falls through */
         case Modes.RECT:
         /* falls through */
         case Modes.OVAL: 

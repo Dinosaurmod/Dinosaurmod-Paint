@@ -162,7 +162,7 @@ class LineMode extends React.Component {
 
         // If shift is held, act like event.point always lies on a straight or 45 degree line from the last point
         let endPoint = event.point;
-        if (event.modifiers.shift) {
+        if (event.modifiers.shift || this.props.isPerfectValue) {
             const line = event.point.subtract(this.path.lastSegment.previous.point);
             endPoint = this.path.lastSegment.previous.point.add(snapDeltaToAngle(line, Math.PI / 4));
         }
@@ -289,12 +289,14 @@ LineMode.propTypes = {
     isLineModeActive: PropTypes.bool.isRequired,
     onChangeStrokeColor: PropTypes.func.isRequired,
     onChangeStrokeWidth: PropTypes.func.isRequired,
-    onUpdateImage: PropTypes.func.isRequired
+    onUpdateImage: PropTypes.func.isRequired,
+    isPerfectValue: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = state => ({
     colorState: state.scratchPaint.color,
-    isLineModeActive: state.scratchPaint.mode === Modes.LINE
+    isLineModeActive: state.scratchPaint.mode === Modes.LINE,
+    isPerfectValue: state.scratchPaint.isPerfectValue
 });
 const mapDispatchToProps = dispatch => ({
     clearSelectedItems: () => {
