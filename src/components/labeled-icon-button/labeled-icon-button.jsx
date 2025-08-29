@@ -17,23 +17,26 @@ const LabeledIconButton = ({
     imgSrc,
     imgStyles,
     onClick,
+    small,
     title,
     ...props
 }) => (
     <Button
-        className={classNames(className, styles.modEditField)}
+        className={classNames(className, 
+            small ? styles.modEditFieldSmall : styles.modEditField
+        )}
         onClick={onClick}
         {...props}
     >
         <img
             alt={imgAlt || title}
-            className={styles.editFieldIcon}
+            className={small ? styles.editFieldIconSmall : styles.editFieldIcon}
             draggable={false}
             src={imgSrc}
             title={title}
             style={imgStyles}
         />
-        {!hideLabel && <span className={styles.editFieldTitle}>{title}</span>}
+        {!hideLabel && <span className={small ? styles.editFieldTitleSmall : styles.editFieldTitle}>{title}</span>}
     </Button>
 );
 
@@ -41,6 +44,7 @@ LabeledIconButton.propTypes = {
     className: PropTypes.string,
     hideLabel: PropTypes.bool,
     highlighted: PropTypes.bool,
+    small: PropTypes.bool,
     imgAlt: PropTypes.string,
     imgStyles: PropTypes.object,
     imgSrc: PropTypes.string.isRequired,

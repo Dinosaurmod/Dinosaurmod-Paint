@@ -26,3 +26,28 @@ $border-radius: 0.25rem;
     margin-top: .125rem;
     font-size: .625rem;
 }
+
+.mod-edit-field-small {
+    background: none;
+    border: none;
+    display: inline-block;
+    padding: .125rem .1625rem;
+    outline: none;
+    border-radius: $border-radius;
+    min-width: 1.5rem;
+    font-size: 0.425rem;
+    text-align: center;
+}
+
+.edit-field-icon-small {
+    width: 0.75rem;
+    height: 0.75rem;
+    flex-grow: 1;
+    vertical-align: middle;
+}
+
+.edit-field-title-small {
+    display: block;
+    margin-top: .0625rem;
+    font-size: .3125rem;
+}

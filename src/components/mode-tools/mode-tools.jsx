@@ -358,39 +358,51 @@ const ModeToolsComponent = props => {
                                 style={{transform: "translate(-40%, 0%)"}}
                             />
                             </Label>
-                            <LabeledIconButton
-                                hideLabel
-                                imgSrc={icon1}
-                                title={'Top Left'}
-                                onClick={handleIcon1Click}
-                            />
-                            <LabeledIconButton
-                                hideLabel
-                                imgSrc={icon2}
-                                imgStyles={{
-                                    transform: "rotate(90deg)"
+                            <div
+                                style={{
+                                    display: 'grid',
+                                    gridTemplateColumns: 'repeat(2, 1fr)',
+                                    gap: '10px 10px'
                                 }}
-                                title={'Top Right'}
-                                onClick={handleIcon2Click}
-                            />
-                            <LabeledIconButton
-                                hideLabel
-                                imgSrc={icon3}
-                                imgStyles={{
-                                    transform: "rotate(270deg)"
-                                }}
-                                title={'Bottom Left'}
-                                onClick={handleIcon3Click}
-                            />
-                            <LabeledIconButton
-                                hideLabel
-                                imgSrc={icon4}
-                                imgStyles={{
-                                    transform: "rotate(180deg)"
-                                }}
-                                title={'Bottom Right'}
-                                onClick={handleIcon4Click}
-                            />
+                            >
+                                <LabeledIconButton
+                                    hideLabel
+                                    small
+                                    imgSrc={icon1}
+                                    title={'Top Left'}
+                                    onClick={handleIcon1Click}
+                                />
+                                <LabeledIconButton
+                                    hideLabel
+                                    small
+                                    imgSrc={icon2}
+                                    imgStyles={{
+                                        transform: "rotate(90deg)"
+                                    }}
+                                    title={'Top Right'}
+                                    onClick={handleIcon2Click}
+                                />
+                                <LabeledIconButton
+                                    hideLabel
+                                    small
+                                    imgSrc={icon3}
+                                    imgStyles={{
+                                        transform: "rotate(270deg)"
+                                    }}
+                                    title={'Bottom Left'}
+                                    onClick={handleIcon3Click}
+                                />
+                                <LabeledIconButton
+                                    hideLabel
+                                    small
+                                    imgSrc={icon4}
+                                    imgStyles={{
+                                        transform: "rotate(180deg)"
+                                    }}
+                                    title={'Bottom Right'}
+                                    onClick={handleIcon4Click}
+                                />
+                            </div>
                     </div>
                 );
             }
