@@ -362,7 +362,7 @@ const ModeToolsComponent = props => {
                                 style={{
                                     display: 'grid',
                                     gridTemplateColumns: 'repeat(2, 1fr)',
-                                    gap: '8px 8px'
+                                    gap: '1px 1px'
                                 }}
                             >
                                 <LabeledIconButton

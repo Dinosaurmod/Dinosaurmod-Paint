@@ -30,7 +30,9 @@ $border-radius: 0.25rem;
 .mod-edit-field-small {
     background: none;
     border: none;
-    display: inline-block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     padding: .125rem;
     outline: none;
     border-radius: $border-radius;
@@ -43,8 +45,6 @@ $border-radius: 0.25rem;
 .edit-field-icon-small {
     width: 0.75rem;
     height: 0.75rem;
-    flex-grow: 1;
-    vertical-align: middle;
 }
 
 .edit-field-title-small {
