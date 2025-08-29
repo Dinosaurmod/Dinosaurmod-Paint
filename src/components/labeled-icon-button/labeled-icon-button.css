@@ -31,10 +31,11 @@ $border-radius: 0.25rem;
     background: none;
     border: none;
     display: inline-block;
-    padding: .125rem .1625rem;
+    padding: .125rem;
     outline: none;
     border-radius: $border-radius;
-    min-width: 1.5rem;
+    width: 1.5rem;
+    height: 1.5rem;
     font-size: 0.425rem;
     text-align: center;
 }
