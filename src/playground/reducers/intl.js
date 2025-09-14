@@ -12,6 +12,8 @@ Object.keys(localeData).forEach(locale => {
     addLocaleData(localeData[locale].localeData);
 });
 
+console.log(paintMessages)
+
 const intlInitialState = {
     intl: {
         defaultLocale: 'en',
