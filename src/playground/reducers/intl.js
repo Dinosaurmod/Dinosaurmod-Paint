@@ -5,6 +5,9 @@ import {IntlProvider, intlReducer} from 'react-intl-redux';
 import localeData from 'scratch-l10n';
 import paintMessages from 'scratch-l10n/locales/paint-editor-msgs';
 
+import englishMessages from '../../translations/en.json'
+import localeFolderData from '../../translations'
+
 Object.keys(localeData).forEach(locale => {
     // TODO: will need to handle locales not in the default intl - see www/custom-locales
     addLocaleData(localeData[locale].localeData);
@@ -14,13 +17,13 @@ const intlInitialState = {
     intl: {
         defaultLocale: 'en',
         locale: 'en',
-        messages: paintMessages.en.messages
+        messages: englishMessages//paintMessages.en.messages
     }
 };
 
 const updateIntl = locale => superUpdateIntl({
     locale: locale,
-    messages: paintMessages[locale].messages || paintMessages.en.messages
+    messages: paintMessages[locale].messages || englishMessages//paintMessages.en.messages
 });
 
 export {
