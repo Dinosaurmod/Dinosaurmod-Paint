@@ -10,6 +10,9 @@ import englishMessages from '../../translations/en.json'
 
 Object.keys(localeData).forEach(locale => {
     // TODO: will need to handle locales not in the default intl - see www/custom-locales
+    console.log(localeData)
+    console.log(locale)
+    console.log(localeData[locale])
     addLocaleData(localeData[locale].localeData);
 });
 
