@@ -172,6 +172,11 @@ const ModeToolsComponent = props => {
             defaultMessage: 'Center',
             description: 'Label for the button that moves the selected objects to the center of the canvas',
             id: 'paint.modeTools.movementCenter'
+        },
+        rounded: {
+            defaultMessage: 'Rounded',
+            description: 'A Label.',
+            id: 'paint.modeTools.rounded'
         }
     });
 
@@ -539,7 +544,7 @@ const ModeToolsComponent = props => {
                         disabled={props.hasSelectedRoundLineJoin}
                         hideLabel={hideLabel(props.intl.locale)}
                         imgSrc={roundLineJoin}
-                        title={'Rounded'}
+                        title={props.intl.formatMessage(messages.rounded)}
                         onClick={props.onRoundLineJoin}
                     />
                     <LabeledIconButton
@@ -584,7 +589,7 @@ const ModeToolsComponent = props => {
                             disabled={props.hasSelectedRoundEnds}
                             hideLabel={hideLabel(props.intl.locale)}
                             imgSrc={roundLine}
-                            title={'Rounded'}
+                            title={props.intl.formatMessage(messages.rounded)}
                             onClick={props.onRoundEnds}
                         />
                         <LabeledIconButton

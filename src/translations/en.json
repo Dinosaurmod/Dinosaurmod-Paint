@@ -27,6 +27,7 @@
     "paint.modeTools.flipVertical": "Flip Vertical",
     "paint.modeTools.filled": "Filled",
     "paint.modeTools.outlined": "Outlined",
+    "paint.modeTools.rounded": "Rounded",
     "paint.paintEditor.bitmap": "Convert to Bitmap",
     "paint.paintEditor.vector": "Convert to Vector",
     "paint.paintEditor.fill": "Fill",
@@ -41,5 +42,6 @@
     "paint.roundedRectMode.roundedRect": "Rounded Rectangle",
     "paint.selectMode.select": "Select",
     "paint.textMode.text": "Text",
+    "paint.triangleMode.triangle": "Triangle",
     "paint.colorPicker.swap": "Swap"
 }

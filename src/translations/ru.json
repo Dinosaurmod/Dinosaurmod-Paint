@@ -41,5 +41,6 @@
     "paint.roundedRectMode.roundedRect": "Скруглённый Прямоугольник",
     "paint.selectMode.select": "Выбрать",
     "paint.textMode.text": "Текст",
+    "paint.triangleMode.triangle": "Треугольник",
     "paint.colorPicker.swap": "Заменить"
 }

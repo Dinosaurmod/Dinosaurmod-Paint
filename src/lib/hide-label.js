@@ -2,7 +2,7 @@ const localeTooBig = [
     'ab',
     'ca',
     'cy',
-    'de',
+    //'de',
     'et',
     'el',
     'ga',
@@ -27,7 +27,7 @@ const localeTooBig = [
     'uk'
 ];
 
-const hideLabel = locale => false //locale => localeTooBig.includes(locale);
+const hideLabel = locale => localeTooBig.includes(locale);
 
 export {
     hideLabel
