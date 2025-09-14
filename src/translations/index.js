@@ -17,7 +17,7 @@ import de from './de.json';
 import el from './el.json';
 import en from './en.json';
 import eo from './eo.json';
-import es419 from './es419.json';
+import es419 from './es-419.json';
 import es from './es.json';
 import et from './et.json';
 import eu from './eu.json';
