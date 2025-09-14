@@ -6,7 +6,6 @@ import localeData from 'scratch-l10n';
 import paintMessages from 'scratch-l10n/locales/paint-editor-msgs';
 
 import englishMessages from '../../translations/en.json'
-import localeFolderData from '../../translations'
 
 Object.keys(localeData).forEach(locale => {
     // TODO: will need to handle locales not in the default intl - see www/custom-locales
