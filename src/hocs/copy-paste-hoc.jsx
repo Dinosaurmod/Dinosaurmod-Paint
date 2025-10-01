@@ -59,6 +59,7 @@ const CopyPasteHOC = function (WrappedComponent) {
                 clipboardItems.push(jsonItem);
             }
             this.props.setClipboardItems(clipboardItems);
+            console.log(clipboardItems)
         }
         handleCut () {
             let selectedItems = [];
@@ -89,6 +90,7 @@ const CopyPasteHOC = function (WrappedComponent) {
                 const jsonItem = selectedItems[i].exportJSON({asString: false});
                 clipboardItems.push(jsonItem);
             }
+            console.log(clipboardItems)
             this.props.setClipboardItems(clipboardItems);
             // delete items
             if (deleteSelection(this.props.mode, this.props.onUpdateImage)) {
