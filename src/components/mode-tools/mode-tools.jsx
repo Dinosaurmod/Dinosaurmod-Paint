@@ -239,10 +239,10 @@ const ModeToolsComponent = props => {
         });
     };
 
-    const [, setTick] = useState(0);
+    const [tick, setTick] = useState(0);
 
     const updateUI = () => {
-        setTick(t => t + 1);
+        setTick(tick + 1);
     };
 
     switch (props.mode) {
@@ -809,10 +809,10 @@ const ModeToolsComponent = props => {
                             imgSrc={italicIcon}
                             title={'Italic'}
                         />
-                        <LabeledIconButton
+                        {/*<LabeledIconButton
                             imgSrc={underlineIcon}
                             title={'Underline'}
-                        />
+                        />*/}
                     </InputGroup>
                 </div>
             );
