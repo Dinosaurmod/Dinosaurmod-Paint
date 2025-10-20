@@ -808,6 +808,8 @@ const ModeToolsComponent = props => {
                         <LabeledIconButton
                             imgSrc={italicIcon}
                             title={'Italic'}
+                            onClick={() => {props.onTextItalic(); updateUI()}}
+                            highlighted={props.isTextItalic}
                         />
                         {/*<LabeledIconButton
                             imgSrc={underlineIcon}
