@@ -5,7 +5,6 @@ import {connect} from 'react-redux';
 import bindAll from 'lodash.bindall';
 import Modes from '../lib/modes';
 import ColorStyleProptype from '../lib/color-style-proptype';
-import {changeMode} from '../reducers/modes';
 import {MIXED} from '../helper/style-path';
 
 import {changeMode} from '../reducers/modes';
