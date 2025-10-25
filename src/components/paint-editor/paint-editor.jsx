@@ -33,6 +33,7 @@ import RoundedRectMode from '../../containers/rounded-rect-mode.jsx';
 import SussyMode from '../../containers/sussy-mode.jsx';
 import TriangleMode from '../../containers/triangle-mode.jsx';
 import ArrowMode from '../../containers/arrow-mode.jsx';
+import PerspectiveMode from '../../containers/perspective-mode.jsx';
 import ReshapeMode from '../../containers/reshape-mode.jsx';
 import SelectMode from '../../containers/select-mode.jsx';
 import StrokeColorIndicatorComponent from '../../containers/stroke-color-indicator.jsx';
@@ -153,6 +154,9 @@ const PaintEditorComponent = props => (
                     <ReshapeMode
                         onUpdateImage={props.onUpdateImage}
                     />
+                    {new URLSearchParams(location.search).has('livetests') && (<PerspectiveMode
+                        onUpdateImage={props.onUpdateImage}
+                    />)}
                     <BrushMode
                         onUpdateImage={props.onUpdateImage}
                     />
