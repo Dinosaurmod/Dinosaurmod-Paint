@@ -315,12 +315,18 @@ class ModeTools extends React.Component {
     handleTextUnderline () {
         TextTool.isUnderlined = (!TextTool.isUnderlined)
     }
+    handleTextBold () {
+        TextTool.isBold = (!TextTool.isBold)
+    }
 
     handleGetTextItalic () {
         return !!TextTool.isItalic
     }
     handleGetTextUnderline () {
         return !!TextTool.isUnderlined
+    }
+    handleGetTextBold () {
+        return !!TextTool.isBold
     }
 
     handleMergeShape (specificOperation) {
@@ -495,9 +501,11 @@ class ModeTools extends React.Component {
 
                 onTextItalic={this.handleTextItalic}
                 onTextUnderline={this.handleTextUnderline}
+                onTextBold={this.handleTextBold}
 
                 isTextItalic={this.handleGetTextItalic()}
                 isTextUnderline={this.handleGetTextUnderline()}
+                isTextBold={this.handleGetTextBold()}
 
                 onMergeShape={this.handleMergeShape}
                 onMaskShape={this.handleMaskShape}

@@ -54,6 +54,7 @@ import alignCenterIcon from './icons/alignCenter.svg';
 
 import italicIcon from './icons/italic.svg';
 import underlineIcon from './icons/underline.svg';
+import boldIcon from './icons/bold.svg';
 
 import topLeftRoundedIcon from './icons/top-left-rounded.svg';
 import topLeftSharpIcon from './icons/top-left-sharp.svg';
@@ -815,6 +816,12 @@ const ModeToolsComponent = props => {
                             imgSrc={underlineIcon}
                             title={'Underline'}
                         />*/}
+                        <LabeledIconButton
+                            imgSrc={boldIcon}
+                            title={'Bold'}
+                            onClick={() => {props.onTextBold(); updateUI()}}
+                            highlighted={props.isTextBold}
+                        />
                     </InputGroup>
                 </div>
             );
@@ -953,9 +960,11 @@ ModeToolsComponent.propTypes = {
 
     onTextItalic: PropTypes.func.isRequired,
     onTextUnderline: PropTypes.func.isRequired,
+    onTextBold: PropTypes.func.isRequired,
 
     isTextItalic: PropTypes.bool.isRequired,
     isTextUnderline: PropTypes.bool.isRequired,
+    isTextBold: PropTypes.bool.isRequired,
 
     onMergeShape: PropTypes.func.isRequired,
     onMaskShape: PropTypes.func.isRequired,

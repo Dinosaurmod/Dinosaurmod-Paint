@@ -26,6 +26,9 @@ const otherTextState = {
     },
     isUnderlined: {
         value: false
+    },
+    isBold: {
+        value: false
     }
 }
 
@@ -46,6 +49,13 @@ class TextTool extends paper.Tool {
     }
     static get isUnderlined () {
         return otherTextState.isUnderlined.value;
+    }
+
+    static set isBold (value) {
+        otherTextState.isBold.value = value;
+    }
+    static get isBold () {
+        return otherTextState.isBold.value;
     }
 
     static set textAlignment (value) {
@@ -235,6 +245,14 @@ class TextTool extends paper.Tool {
         } else {
             this.element.style.textDecoration = 'none';
             textBox.textDecoration = 'none';
+        }
+
+        if (TextTool.isBold) {
+            this.element.style.fontWeight = 'bold';
+            textBox.fontWeight = 'bold';
+        } else {
+            this.element.style.fontWeight = 'normal';
+            textBox.fontWeight = 'normal';
         }
     }
     calculateMatrix (viewMtx) {
