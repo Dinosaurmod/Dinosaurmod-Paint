@@ -134,6 +134,7 @@ class ScaleTool {
         this.lastSky = 0;
 
         if (this.isPerspective || (event.modifiers.control && !this.isCorner)) {
+            let shouldDivideByBounds = false;
             // Skew
             if (this.isSkew === false) {
                 // Reset position
@@ -149,33 +150,40 @@ class ScaleTool {
             const delta = event.point.subtract(this.pivot);
             switch (this._getRectCornerNameByIndex(this.index)) {
             case 'topCenter':
+                shouldDivideByBounds = false;
                 delta.x *= -1;
                 delta.y = 0;
                 break;
             case 'bottomCenter':
+                shouldDivideByBounds = false;
                 delta.y = 0;
                 break;
             case 'leftCenter':
+                shouldDivideByBounds = false;
                 delta.y *= -1;
                 delta.x = 0;
                 break;
             case 'rightCenter':
+                shouldDivideByBounds = false;
                 delta.x = 0;
                 break;
             default:
                 if (this.isPerspective) {
                     switch (this._getRectCornerNameByIndex(this.index)) {
                     case 'bottomLeft':
+                        shouldDivideByBounds = true;
                         delta.x *= -1;
                         break;
                     case 'bottomRight':
-                        
+                        shouldDivideByBounds = true;
                         break;
                     case 'topLeft':
+                        shouldDivideByBounds = true;
                         delta.x *= -1;
                         delta.y *= -1;
                         break;
                     case 'topRight':
+                        shouldDivideByBounds = true;
                         delta.y *= -1;
                         break;
                     default:
@@ -190,7 +198,7 @@ class ScaleTool {
             skx = delta.x;
             sky = delta.y;
 
-            doShear(skx, sky);
+            doShear(shouldDivideByBounds ? (skx / skewBounds.height) : skx, shouldDivideByBounds ? (sky / skewBounds.width) : sky);
         } else {
             // Scale
             const point = event.point;
