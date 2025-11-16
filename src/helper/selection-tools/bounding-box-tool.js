@@ -50,8 +50,8 @@ class BoundingBoxTool {
         this.boundsRotHandles = [];
         this._modeMap = {};
         this._modeMap[BoundingBoxModes.SCALE] = new ScaleTool(mode, onUpdateImage, isPerspective);
-        this._modeMap[BoundingBoxModes.ROTATE] = isPerspective ? null : new RotateTool(onUpdateImage);
-        this._modeMap[BoundingBoxModes.MOVE] = isPerspective ? null : new MoveTool(mode, setSelectedItems, clearSelectedItems, onUpdateImage, switchToTextTool);
+        this._modeMap[BoundingBoxModes.ROTATE] = new RotateTool(onUpdateImage);
+        this._modeMap[BoundingBoxModes.MOVE] = new MoveTool(mode, setSelectedItems, clearSelectedItems, onUpdateImage, switchToTextTool);
         this._currentCursor = null;
         this.isPerspective = isPerspective;
     }
@@ -276,7 +276,7 @@ class BoundingBoxTool {
             if (index === 7) {
                 const offset = new paper.Point(0, 20);
 
-                const arrows = new paper.Path(ARROW_PATH);
+                const arrows = this.isPerspective ? new paper.Path('') : new paper.Path(ARROW_PATH);
                 arrows.translate(segment.point.add(offset).add(-10.5, -5));
 
                 const line = new paper.Path.Rectangle(
