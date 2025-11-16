@@ -216,6 +216,8 @@ class PaintEditor extends React.Component {
             case Modes.ERASER:
                 this.props.changeMode(Modes.BIT_ERASER);
                 break;
+            case Modes.PERSPECTIVE:
+                /* falls through */
             case Modes.RESHAPE:
                 /* falls through */
             case Modes.SELECT:
