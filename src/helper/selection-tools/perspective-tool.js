@@ -43,15 +43,15 @@ class PerspectiveTool extends paper.Tool {
         this.clearHoveredItem = clearHoveredItem;
         this.onUpdateImage = onUpdateImage;
         this.boundingBoxTool = new BoundingBoxTool(
-            Modes.SELECT,
+            Modes.PERSPECTIVE,
             setSelectedItems,
             clearSelectedItems,
             setCursor,
             onUpdateImage,
             switchToTextTool
         );
-        const nudgeTool = new NudgeTool(Modes.SELECT, this.boundingBoxTool, onUpdateImage);
-        this.selectionBoxTool = new SelectionBoxTool(Modes.SELECT, setSelectedItems, clearSelectedItems);
+        const nudgeTool = new NudgeTool(Modes.PERSPECTIVE, this.boundingBoxTool, onUpdateImage);
+        this.selectionBoxTool = new SelectionBoxTool(Modes.PERSPECTIVE, setSelectedItems, clearSelectedItems);
         this.selectionBoxMode = false;
         this.prevHoveredItemId = null;
         this.active = false;
