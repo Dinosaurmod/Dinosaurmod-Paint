@@ -5,7 +5,7 @@ import ToolSelectComponent from '../tool-select-base/tool-select-base.jsx';
 
 import perspectiveIcon from './perspective.svg';
 
-const TextModeComponent = props => (
+const PerspectiveModeComponent = props => (
     <ToolSelectComponent
         imgDescriptor={messages.perspective}
         imgSrc={perspectiveIcon}
@@ -15,9 +15,9 @@ const TextModeComponent = props => (
     />
 );
 
-TextModeComponent.propTypes = {
+PerspectiveModeComponent.propTypes = {
     isSelected: PropTypes.bool.isRequired,
     onMouseDown: PropTypes.func.isRequired
 };
 
-export default TextModeComponent;
+export default PerspectiveModeComponent;
