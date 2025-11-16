@@ -126,14 +126,14 @@ class ScaleTool {
         // Revert skew
         doShear(-this.lastSkx, -this.lastSky);
 
-        this.skewCenter = this.isPerspective || event.modifiers.alt;
+        this.skewCenter = event.modifiers.alt;
 
         let skx = 0;
         let sky = 0;
         this.lastSkx = 0;
         this.lastSky = 0;
 
-        if (event.modifiers.control && !this.isCorner) {
+        if (this.isPerspective || (event.modifiers.control && !this.isCorner)) {
             // Skew
             if (this.isSkew === false) {
                 // Reset position
@@ -181,7 +181,7 @@ class ScaleTool {
             const delta = point.subtract(this.lastPoint);
             this.lastPoint = point;
 
-            if (this.isPerspective || event.modifiers.alt) {
+            if (event.modifiers.alt) {
                 this.centered = true;
                 this.itemGroup.position = this.origCenter;
                 this.pivot = this.origCenter;
@@ -201,7 +201,7 @@ class ScaleTool {
 
             this.corner = this.corner.add(delta);
             let size = this.corner.subtract(this.pivot);
-            if (this.isPerspective || event.modifiers.alt) {
+            if (event.modifiers.alt) {
                 size = size.multiply(2);
             }
             let sx = 1.0;
