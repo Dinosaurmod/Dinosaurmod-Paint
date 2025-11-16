@@ -41,7 +41,7 @@ class BoundingBoxTool {
      * @param {!function} onUpdateImage A callback to call when the image visibly changes
      * @param {?function} switchToTextTool A callback to call to switch to the text tool
      */
-    constructor (mode, setSelectedItems, clearSelectedItems, setCursor, onUpdateImage, switchToTextTool) {
+    constructor (mode, setSelectedItems, clearSelectedItems, setCursor, onUpdateImage, switchToTextTool, isPerspective) {
         this.dispatchSetCursor = setCursor;
         this.onUpdateImage = onUpdateImage;
         this.mode = null;
@@ -49,10 +49,9 @@ class BoundingBoxTool {
         this.boundsScaleHandles = [];
         this.boundsRotHandles = [];
         this._modeMap = {};
-        this._modeMap[BoundingBoxModes.SCALE] = new ScaleTool(mode, onUpdateImage);
-        this._modeMap[BoundingBoxModes.ROTATE] = new RotateTool(onUpdateImage);
-        this._modeMap[BoundingBoxModes.MOVE] =
-            new MoveTool(mode, setSelectedItems, clearSelectedItems, onUpdateImage, switchToTextTool);
+        this._modeMap[BoundingBoxModes.SCALE] = new ScaleTool(mode, onUpdateImage, isPerspective);
+        if (!isPerspective) this._modeMap[BoundingBoxModes.ROTATE] = new RotateTool(onUpdateImage);
+        if (!isPerspective) this._modeMap[BoundingBoxModes.MOVE] = new MoveTool(mode, setSelectedItems, clearSelectedItems, onUpdateImage, switchToTextTool);
         this._currentCursor = null;
     }
 

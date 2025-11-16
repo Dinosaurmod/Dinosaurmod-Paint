@@ -14,8 +14,9 @@ class ScaleTool {
      * @param {Mode} mode Paint editor mode
      * @param {!function} onUpdateImage A callback to call when the image visibly changes
      */
-    constructor (mode, onUpdateImage) {
+    constructor (mode, onUpdateImage, isPerspective) {
         this.isBitmap = mode in BitmapModes;
+        this.isPerspective = isPerspective;
         this.active = false;
         this.boundsPath = null;
         this.pivot = null;
@@ -180,7 +181,7 @@ class ScaleTool {
             const delta = point.subtract(this.lastPoint);
             this.lastPoint = point;
 
-            if (event.modifiers.alt) {
+            if (event.modifiers.alt || this.isPerspective) {
                 this.centered = true;
                 this.itemGroup.position = this.origCenter;
                 this.pivot = this.origCenter;
@@ -200,7 +201,7 @@ class ScaleTool {
 
             this.corner = this.corner.add(delta);
             let size = this.corner.subtract(this.pivot);
-            if (event.modifiers.alt) {
+            if (event.modifiers.alt || this.isPerspective) {
                 size = size.multiply(2);
             }
             let sx = 1.0;

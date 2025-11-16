@@ -48,7 +48,8 @@ class PerspectiveTool extends paper.Tool {
             clearSelectedItems,
             setCursor,
             onUpdateImage,
-            switchToTextTool
+            switchToTextTool,
+            true
         );
         const nudgeTool = new NudgeTool(Modes.PERSPECTIVE, this.boundingBoxTool, onUpdateImage);
         this.selectionBoxTool = new SelectionBoxTool(Modes.PERSPECTIVE, setSelectedItems, clearSelectedItems);
