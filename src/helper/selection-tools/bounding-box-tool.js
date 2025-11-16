@@ -53,6 +53,7 @@ class BoundingBoxTool {
         this._modeMap[BoundingBoxModes.ROTATE] = isPerspective ? null : new RotateTool(onUpdateImage);
         this._modeMap[BoundingBoxModes.MOVE] = isPerspective ? null : new MoveTool(mode, setSelectedItems, clearSelectedItems, onUpdateImage, switchToTextTool);
         this._currentCursor = null;
+        this.isPerspective = isPerspective;
     }
 
     /**
@@ -93,13 +94,13 @@ class BoundingBoxTool {
             multiselect: multiselect,
             doubleClicked: doubleClicked
         };
-        if (this.mode === BoundingBoxModes.MOVE) {
+        if (!this.isPerspective && this.mode === BoundingBoxModes.MOVE) {
             this._modeMap[this.mode].onMouseDown(hitProperties);
             this.removeBoundsHandles();
         } else if (this.mode === BoundingBoxModes.SCALE) {
             this._modeMap[this.mode].onMouseDown(hitResult, this.boundsPath, getSelectedRootItems());
             this.removeBoundsHandles();
-        } else if (this.mode === BoundingBoxModes.ROTATE) {
+        } else if (!this.isPerspective && this.mode === BoundingBoxModes.ROTATE) {
             this.setCursor(Cursors.GRABBING);
             this._modeMap[this.mode].onMouseDown(hitResult, this.boundsPath, getSelectedRootItems());
             // While transforming, don't show bounds
