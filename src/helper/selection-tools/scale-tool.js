@@ -163,8 +163,31 @@ class ScaleTool {
                 delta.x = 0;
                 break;
             default:
-                delta.x = 0;
-                delta.y = 0;
+                if (this.isPerspective) {
+                    switch (this._getRectCornerNameByIndex(this.index)) {
+                    case 'bottomLeft':
+                        delta.x = 0;
+                        delta.y = 0;
+                        delta.y *= -1;
+                        break;
+                    case 'bottomRight':
+                        delta.x = 0;
+                        delta.y = 0;
+                        break;
+                    case 'topLeft':
+                        delta.x = 0;
+                        break;
+                    case 'topRight':
+                        delta.x = 0;
+                        break;
+                    default:
+                        delta.x = 0;
+                        delta.y = 0;
+                    }
+                } else {
+                    delta.x = 0;
+                    delta.y = 0;
+                }
             }
             skx = delta.x;
             sky = delta.y;
