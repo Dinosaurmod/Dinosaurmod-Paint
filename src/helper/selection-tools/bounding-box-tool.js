@@ -276,7 +276,7 @@ class BoundingBoxTool {
             if (index === 7) {
                 const offset = new paper.Point(0, 20);
 
-                const arrows = this.isPerspective ? new paper.Path('') : new paper.Path(ARROW_PATH);
+                const arrows = new paper.Path(ARROW_PATH);
                 arrows.translate(segment.point.add(offset).add(-10.5, -5));
 
                 const line = new paper.Path.Rectangle(
