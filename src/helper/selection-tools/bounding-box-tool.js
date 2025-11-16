@@ -50,8 +50,8 @@ class BoundingBoxTool {
         this.boundsRotHandles = [];
         this._modeMap = {};
         this._modeMap[BoundingBoxModes.SCALE] = new ScaleTool(mode, onUpdateImage, isPerspective);
-        if (!isPerspective) this._modeMap[BoundingBoxModes.ROTATE] = new RotateTool(onUpdateImage);
-        if (!isPerspective) this._modeMap[BoundingBoxModes.MOVE] = new MoveTool(mode, setSelectedItems, clearSelectedItems, onUpdateImage, switchToTextTool);
+        this._modeMap[BoundingBoxModes.ROTATE] = new RotateTool(onUpdateImage);
+        this._modeMap[BoundingBoxModes.MOVE] = new MoveTool(mode, setSelectedItems, clearSelectedItems, onUpdateImage, switchToTextTool);
         this._currentCursor = null;
     }
 
