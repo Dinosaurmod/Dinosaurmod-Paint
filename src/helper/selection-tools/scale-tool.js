@@ -14,7 +14,7 @@ class ScaleTool {
      * @param {Mode} mode Paint editor mode
      * @param {!function} onUpdateImage A callback to call when the image visibly changes
      */
-    constructor (mode, onUpdateImage, isPerspective) {
+    constructor (mode, onUpdateImage, isPerspective = false) {
         this.isBitmap = mode in BitmapModes;
         this.isPerspective = isPerspective;
         this.active = false;
@@ -126,7 +126,7 @@ class ScaleTool {
         // Revert skew
         doShear(-this.lastSkx, -this.lastSky);
 
-        this.skewCenter = event.modifiers.alt;
+        this.skewCenter = this.isPerspective || event.modifiers.alt;
 
         let skx = 0;
         let sky = 0;
@@ -181,7 +181,7 @@ class ScaleTool {
             const delta = point.subtract(this.lastPoint);
             this.lastPoint = point;
 
-            if (event.modifiers.alt || this.isPerspective) {
+            if (this.isPerspective || event.modifiers.alt) {
                 this.centered = true;
                 this.itemGroup.position = this.origCenter;
                 this.pivot = this.origCenter;
@@ -201,7 +201,7 @@ class ScaleTool {
 
             this.corner = this.corner.add(delta);
             let size = this.corner.subtract(this.pivot);
-            if (event.modifiers.alt || this.isPerspective) {
+            if (this.isPerspective || event.modifiers.alt) {
                 size = size.multiply(2);
             }
             let sx = 1.0;

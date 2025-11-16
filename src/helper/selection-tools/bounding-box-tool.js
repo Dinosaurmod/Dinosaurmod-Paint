@@ -41,7 +41,7 @@ class BoundingBoxTool {
      * @param {!function} onUpdateImage A callback to call when the image visibly changes
      * @param {?function} switchToTextTool A callback to call to switch to the text tool
      */
-    constructor (mode, setSelectedItems, clearSelectedItems, setCursor, onUpdateImage, switchToTextTool, isPerspective) {
+    constructor (mode, setSelectedItems, clearSelectedItems, setCursor, onUpdateImage, switchToTextTool, isPerspective = false) {
         this.dispatchSetCursor = setCursor;
         this.onUpdateImage = onUpdateImage;
         this.mode = null;
