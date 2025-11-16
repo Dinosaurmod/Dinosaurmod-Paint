@@ -102,7 +102,7 @@ class PerspectiveTool extends paper.Tool {
             curves: true,
             fill: true,
             guide: false,
-            tolerance: SelectTool.TOLERANCE / paper.view.zoom,
+            tolerance: PerspectiveTool.TOLERANCE / paper.view.zoom,
             match: hitResult => {
                 // Don't match helper items, unless they are handles.
                 if (!hitResult.item.data || !hitResult.item.data.isHelperItem) return true;
@@ -122,7 +122,7 @@ class PerspectiveTool extends paper.Tool {
         // Check if double clicked
         let doubleClicked = false;
         if (this.lastEvent) {
-            if ((event.event.timeStamp - this.lastEvent.event.timeStamp) < SelectTool.DOUBLE_CLICK_MILLIS) {
+            if ((event.event.timeStamp - this.lastEvent.event.timeStamp) < PerspectiveTool.DOUBLE_CLICK_MILLIS) {
                 doubleClicked = true;
             } else {
                 doubleClicked = false;
