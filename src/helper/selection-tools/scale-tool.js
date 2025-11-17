@@ -93,12 +93,14 @@ class ScaleTool {
             let offcenterPosition;
             if (!this.skewCenter) {
                 switch (this._getRectCornerNameByIndex(this.index)) {
+                case 'topLeft':
                 case 'topCenter':
                 case 'leftCenter':
                     offcenterPosition = this.itemGroup.position.add(
                         new paper.Point(skewBounds.width / 2, skewBounds.height / 2)
                     );
                     break;
+                case 'bottomRight':
                 case 'bottomCenter':
                 case 'rightCenter':
                     offcenterPosition = this.itemGroup.position.subtract(
@@ -176,8 +178,8 @@ class ScaleTool {
                         break;
                     case 'bottomRight':
                         shouldDivideByBounds = false;
-                        delta.x = 0;
                         delta.y = 0;
+                        delta.x = 0;
                         break;
                     case 'topLeft':
                         shouldDivideByBounds = false;
