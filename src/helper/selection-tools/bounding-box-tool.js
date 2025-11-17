@@ -94,13 +94,13 @@ class BoundingBoxTool {
             multiselect: multiselect,
             doubleClicked: doubleClicked
         };
-        if (!this.isPerspective && this.mode === BoundingBoxModes.MOVE) {
+        if (this.mode === BoundingBoxModes.MOVE) {
             this._modeMap[this.mode].onMouseDown(hitProperties);
             this.removeBoundsHandles();
         } else if (this.mode === BoundingBoxModes.SCALE) {
             this._modeMap[this.mode].onMouseDown(hitResult, this.boundsPath, getSelectedRootItems());
             this.removeBoundsHandles();
-        } else if (!this.isPerspective && this.mode === BoundingBoxModes.ROTATE) {
+        } else if (this.mode === BoundingBoxModes.ROTATE) {
             this.setCursor(Cursors.GRABBING);
             this._modeMap[this.mode].onMouseDown(hitResult, this.boundsPath, getSelectedRootItems());
             // While transforming, don't show bounds
@@ -276,14 +276,14 @@ class BoundingBoxTool {
             if (index === 7) {
                 const offset = new paper.Point(0, 20);
 
-                const arrows = new paper.Path(ARROW_PATH);
+                const arrows = this.isPerspective ? new paper.Path('') : new paper.Path(ARROW_PATH);
                 arrows.translate(segment.point.add(offset).add(-10.5, -5));
 
                 const line = new paper.Path.Rectangle(
                     segment.point.add(offset).subtract(1, 0),
                     segment.point);
 
-                const rotHandle = arrows.unite(line);
+                const rotHandle = this.isPerspective ? line : arrows.unite(line);
                 line.remove();
                 arrows.remove();
                 rotHandle.scale(1 / paper.view.zoom, segment.point);
