@@ -172,23 +172,21 @@ class ScaleTool {
                     switch (this._getRectCornerNameByIndex(this.index)) {
                     case 'bottomLeft':
                         shouldDivideByBounds = true;
-                        delta.x += -1;
-                        delta.y += -1;
+                        
                         break;
                     case 'bottomRight':
                         shouldDivideByBounds = true;
-                        delta.x += 1;
-                        delta.y += -1;
+                        delta.x = 0;
+                        delta.y = 0;
                         break;
                     case 'topLeft':
                         shouldDivideByBounds = true;
-                        delta.x += -1;
-                        delta.y += 1;
+                        delta.x *= -1;
+                        delta.y *= -1;
                         break;
                     case 'topRight':
                         shouldDivideByBounds = true;
-                        delta.x += 1;
-                        delta.y += 1;
+                        
                         break;
                     default:
                         delta.x = 0;
