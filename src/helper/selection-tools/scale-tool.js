@@ -171,22 +171,22 @@ class ScaleTool {
                 if (this.isPerspective) {
                     switch (this._getRectCornerNameByIndex(this.index)) {
                     case 'bottomLeft':
-                        shouldDivideByBounds = false;
+                        shouldDivideByBounds = true;
                         delta.x += -1;
                         delta.y += -1;
                         break;
                     case 'bottomRight':
-                        shouldDivideByBounds = false;
+                        shouldDivideByBounds = true;
                         delta.x += 1;
                         delta.y += -1;
                         break;
                     case 'topLeft':
-                        shouldDivideByBounds = false;
+                        shouldDivideByBounds = true;
                         delta.x += -1;
                         delta.y += 1;
                         break;
                     case 'topRight':
-                        shouldDivideByBounds = false;
+                        shouldDivideByBounds = true;
                         delta.x += 1;
                         delta.y += 1;
                         break;
