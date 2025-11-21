@@ -137,7 +137,7 @@ class TriangleTool extends paper.Tool {
         const bounds = new paper.Rectangle(event.downPoint, event.point);
         const squareDimensions = getSquareDimensions(event.downPoint, event.point);
         if (event.modifiers.shift || this.isPerfectValue) {
-            tri.size = squareDimensions.size.abs();
+            bounds.size = squareDimensions.size.abs();
         }
 
         this.tri = new paper.Path({segments: this.calculateSegments(), closed: true});
