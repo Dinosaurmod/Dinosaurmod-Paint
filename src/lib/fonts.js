@@ -13,6 +13,7 @@ const Fonts = {
     ARCHIVO: 'Archivo',
     ARCHIVOBLACK: 'Archivo Black',
     SCRATCH: 'Scratch',
+    MOPEDS: 'Mopeds',
     FREDOKA: 'Fredoka',
     IMPACT: 'Impact',
     CHINESE: '"Microsoft YaHei", "微软雅黑", STXihei, "华文细黑"',

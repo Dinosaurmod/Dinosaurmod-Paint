@@ -23,6 +23,7 @@ class FontDropdown extends React.Component {
             'handleChangeFontMarker',
             'handleChangeFontCurly',
             'handleChangeFontPixel',
+            'handleChangeFontMopeds',
             'handleChangeFontPlayful',
             'handleChangeFontBubbly',
             'handleChangeFontTechnological',
@@ -228,6 +229,11 @@ class FontDropdown extends React.Component {
             this.props.changeFont(Fonts.PIXEL);
         }
     }
+    handleChangeFontMopeds () {
+        if (this.dropDown.isOpen()) {
+            this.props.changeFont(Fonts.MOPEDS);
+        }
+    }
     handleChangeFontPlayful () {
         if (this.dropDown.isOpen()) {
             this.props.changeFont(Fonts.PLAYFUL);
@@ -390,6 +396,7 @@ class FontDropdown extends React.Component {
                 onHoverKorean={this.handleChangeFontKorean}
                 onHoverMarker={this.handleChangeFontMarker}
                 onHoverPixel={this.handleChangeFontPixel}
+                onHoverMopeds={this.handleChangeFontMopeds}
                 onHoverPlayful={this.handleChangeFontPlayful}
                 onHoverBubbly={this.handleChangeFontBubbly}
                 onHoverBitsAndBytes={this.handleChangeFontBitsAndBytes}
