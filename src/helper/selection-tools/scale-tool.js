@@ -87,12 +87,12 @@ class ScaleTool {
         if (!this.active) return;
 
         const skewBounds = this.skewBounds;
-        const doShear = (skx, sky) => {
+        const doShear = (skx, sky, replaceCornerWith = null) => {
             if (skx === 0 && sky === 0) return;
 
             let offcenterPosition;
             if (!this.skewCenter) {
-                switch (this._getRectCornerNameByIndex(this.index)) {
+                switch (replaceCornerWith === null ? this._getRectCornerNameByIndex(this.index) : replaceCornerWith) {
                 case 'topCenter':
                 case 'leftCenter':
                     offcenterPosition = this.itemGroup.position.add(
@@ -104,12 +104,6 @@ class ScaleTool {
                     offcenterPosition = this.itemGroup.position.subtract(
                         new paper.Point(skewBounds.width / 2, skewBounds.height / 2)
                     );
-                    break;
-                case 'topLeft':
-                case 'topRight':
-                case 'bottomLeft':
-                case 'bottomRight':
-                    offcenterPosition = this.itemGroup.position;
                     break;
                 }
             }
@@ -140,7 +134,6 @@ class ScaleTool {
         this.lastSky = 0;
 
         if (this.isPerspective || (event.modifiers.control && !this.isCorner)) {
-            let shouldDivideByBounds = false;
             // Skew
             if (this.isSkew === false) {
                 // Reset position
@@ -177,22 +170,12 @@ class ScaleTool {
                 if (this.isPerspective) {
                     switch (this._getRectCornerNameByIndex(this.index)) {
                     case 'bottomLeft':
-                        shouldDivideByBounds = false;
-                        
                         break;
                     case 'bottomRight':
-                        shouldDivideByBounds = false;
-                        delta.y = 0;
-                        delta.x = 0;
                         break;
                     case 'topLeft':
-                        shouldDivideByBounds = false;
-                        delta.x *= -1;
-                        delta.y *= -1;
                         break;
                     case 'topRight':
-                        shouldDivideByBounds = false;
-                        
                         break;
                     default:
                         delta.x = 0;
@@ -206,7 +189,7 @@ class ScaleTool {
             skx = delta.x;
             sky = delta.y;
 
-            doShear(shouldDivideByBounds ? (skx / skewBounds.height) : skx, shouldDivideByBounds ? (sky / skewBounds.width) : sky);
+            doShear(skx, sky);
         } else {
             // Scale
             const point = event.point;
