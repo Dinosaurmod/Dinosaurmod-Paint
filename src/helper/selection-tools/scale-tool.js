@@ -93,19 +93,23 @@ class ScaleTool {
             let offcenterPosition;
             if (!this.skewCenter) {
                 switch (this._getRectCornerNameByIndex(this.index)) {
-                case 'topLeft':
                 case 'topCenter':
                 case 'leftCenter':
                     offcenterPosition = this.itemGroup.position.add(
                         new paper.Point(skewBounds.width / 2, skewBounds.height / 2)
                     );
                     break;
-                case 'bottomRight':
                 case 'bottomCenter':
                 case 'rightCenter':
                     offcenterPosition = this.itemGroup.position.subtract(
                         new paper.Point(skewBounds.width / 2, skewBounds.height / 2)
                     );
+                    break;
+                case 'topLeft':
+                case 'topRight':
+                case 'bottomLeft':
+                case 'bottomRight':
+                    offcenterPosition = this.itemGroup.position;
                     break;
                 }
             }
