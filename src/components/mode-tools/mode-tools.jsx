@@ -11,7 +11,7 @@ import layout from '../../lib/layout-constants';
 import { changeBrushSize, changeSegSize } from '../../reducers/brush-mode';
 import { changeBrushSize as changeEraserSize } from '../../reducers/eraser-mode';
 import { changeRoundedCornerSize } from '../../reducers/rounded-rect-mode';
-import { changeTrianglePolyCount } from '../../reducers/triangle-mode';
+import { changeTrianglePolyCount, changeTrianglePointCount } from '../../reducers/triangle-mode';
 import { changeCurrentlySelectedShape } from '../../reducers/sussy-mode';
 import { changeBitBrushSize } from '../../reducers/bit-brush-size';
 import { changeBitEraserSize } from '../../reducers/bit-eraser-size';
@@ -67,6 +67,7 @@ import curvedPointIcon from './icons/curved-point.svg';
 import eraserIcon from '../eraser-mode/eraser.svg';
 import roundedRectIcon from '../rounded-rect-mode/rounded-rectangle.svg';
 import triangleIcon from '../triangle-mode/triangle.svg';
+import triangleSpikeRatioIcon from './icons/triangle-spike-ratio.svg';
 import flipHorizontalIcon from './icons/flip-horizontal.svg';
 import flipVerticalIcon from './icons/flip-vertical.svg';
 import centerSelectionIcon from './icons/centerSelection.svg';
@@ -108,6 +109,11 @@ const ModeToolsComponent = props => {
             defaultMessage: 'Polygon side count',
             description: 'Label for the Polygon side count input',
             id: 'paint.modeTools.currentSideCount'
+        },
+        spokeRatio: {
+            defaultMessage: 'Star spoke ratio',
+            description: 'Label for the Star spoke ratio input, controls the size of the spokes on a star',
+            id: 'paint.modeTools.spikeRatio'
         },
         copy: {
             defaultMessage: 'Copy',
@@ -417,6 +423,8 @@ const ModeToolsComponent = props => {
                 const currentIcon = triangleIcon;
                 const currentSideValue = props.trianglePolyValue;
                 const changeFunction = props.onPolyCountSliderChange;
+                const currentPointValue = props.trianglePointValue;
+                const changeFunctionPoint = props.onPointCountSliderChange;
                 const currentPerfectValue = props.isPerfectValue;
                 const changeFunctionPerfectChange = props.onPerfectChange;
                 return (
@@ -437,6 +445,25 @@ const ModeToolsComponent = props => {
                                 type="number"
                                 value={currentSideValue}
                                 onSubmit={changeFunction}
+                            />
+                            <div>
+                                <img
+                                    alt={props.intl.formatMessage(messages.spokeRatio)}
+                                    title={props.intl.formatMessage(messages.spokeRatio)}
+                                    className={styles.modeToolsIcon}
+                                    draggable={false}
+                                    src={triangleSpikeRatioIcon}
+                                />
+                            </div>
+                            <LiveInput
+                                range
+                                small
+                                max={1000}
+                                min="0" // Spike ratio is limited to 0.01, but setting that here makes the number input arrows work really ugly
+                                step="0.1"
+                                type="number"
+                                value={currentPointValue}
+                                onSubmit={changeFunctionPoint}
                             />
                             <Label text={"   " + props.intl.formatMessage(messages.perfect)}>
                             <LiveBooleanInput
@@ -494,11 +521,12 @@ const ModeToolsComponent = props => {
                     <InputGroup
                         className={classNames(
                             styles.modDashedBorder,
-                            // styles.modLabeledIconHeight,
+                            styles.flexCenterer,
                             styles.dropdownMaxItemList
                         )}
                     >
                         {selectableShapes.map(shape => (<LabeledIconButton
+                            className={classNames(styles.dropItemShapeTool)}
                             hideLabel={hideLabel(props.intl.locale)}
                             imgSrc={`data:image/svg+xml,${encodeURIComponent(generateShapeSVG(shape))}`}
                             title={shape.name}
@@ -926,6 +954,7 @@ ModeToolsComponent.propTypes = {
     eraserValue: PropTypes.number,
     roundedCornerValue: PropTypes.number,
     trianglePolyValue: PropTypes.number,
+    trianglePointValue: PropTypes.number,
     currentlySelectedShape: PropTypes.string,
     fillBitmapShapes: PropTypes.bool,
     format: PropTypes.oneOf(Object.keys(Formats)),
@@ -985,6 +1014,7 @@ const mapStateToProps = state => ({
     isPerfectValue: state.scratchPaint.isPerfectValue,
     roundedCornerValue: state.scratchPaint.roundedRectMode.roundedCornerSize,
     trianglePolyValue: state.scratchPaint.triangleMode.trianglePolyCount,
+    trianglePointValue: state.scratchPaint.triangleMode.trianglePointCount,
     currentlySelectedShape: state.scratchPaint.sussyMode.currentlySelectedShape
 });
 const mapDispatchToProps = dispatch => ({
@@ -999,6 +1029,9 @@ const mapDispatchToProps = dispatch => ({
     },
     onPolyCountSliderChange: polyCount => {
         dispatch(changeTrianglePolyCount(polyCount));
+    },
+    onPointCountSliderChange: polyCount => {
+        dispatch(changeTrianglePointCount(polyCount));
     },
     onCurrentlySelectedShapeChange: shape => {
         dispatch(changeCurrentlySelectedShape(shape));
