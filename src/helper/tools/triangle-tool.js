@@ -136,7 +136,7 @@ class TriangleTool extends paper.Tool {
 
         const bounds = new paper.Rectangle(event.downPoint, event.point);
         const squareDimensions = getSquareDimensions(event.downPoint, event.point);
-        if (event.modifiers.shift || isPerfectValue) {
+        if (event.modifiers.shift || this.isPerfectValue) {
             tri.size = squareDimensions.size.abs();
         }
 
@@ -144,7 +144,7 @@ class TriangleTool extends paper.Tool {
         this.tri.bounds = bounds;
         if (event.modifiers.alt) {
             this.tri.position = event.downPoint;
-        } else if (event.modifiers.shift || isPerfectValue) {
+        } else if (event.modifiers.shift || this.isPerfectValue) {
             this.tri.position = squareDimensions.position;
         } else {
             const dimensions = event.point.subtract(event.downPoint);
