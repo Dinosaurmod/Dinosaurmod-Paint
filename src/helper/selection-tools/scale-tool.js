@@ -145,51 +145,59 @@ class ScaleTool {
                 this.lastSx = 1;
                 this.lastSy = 1;
             }
-
-            const delta = event.point.subtract(this.pivot);
-            switch (this._getRectCornerNameByIndex(this.index)) {
-            case 'topCenter':
-                shouldDivideByBounds = false;
-                delta.x *= -1;
-                delta.y = 0;
-                break;
-            case 'bottomCenter':
-                shouldDivideByBounds = false;
-                delta.y = 0;
-                break;
-            case 'leftCenter':
-                shouldDivideByBounds = false;
-                delta.y *= -1;
-                delta.x = 0;
-                break;
-            case 'rightCenter':
-                shouldDivideByBounds = false;
-                delta.x = 0;
-                break;
-            default:
-                if (this.isPerspective) {
-                    switch (this._getRectCornerNameByIndex(this.index)) {
-                    case 'bottomLeft':
-                        break;
-                    case 'bottomRight':
-                        break;
-                    case 'topLeft':
-                        break;
-                    case 'topRight':
-                        break;
-                    default:
-                        delta.x = 0;
-                        delta.y = 0;
-                    }
-                } else {
+            
+            const doShearing = (rectCorner = null) => {
+                const delta = event.point.subtract(this.pivot);
+                switch (rectCorner == null ? this._getRectCornerNameByIndex(this.index) : rectCorner) {
+                case 'topCenter':
+                    delta.x *= -1;
+                    delta.y = 0;
+                    break;
+                case 'bottomCenter':
+                    delta.y = 0;
+                    break;
+                case 'leftCenter':
+                    delta.y *= -1;
+                    delta.x = 0;
+                    break;
+                case 'rightCenter':
+                    delta.x = 0;
+                    break;
+                default:
                     delta.x = 0;
                     delta.y = 0;
                 }
-            }
-            skx = delta.x;
-            sky = delta.y;
+                skx = delta.x;
+                sky = delta.y;
 
-            doShear(skx, sky);
+                doShear(skx, sky);
+            }
+            
+            if (this.isPerspective) {
+                switch (this._getRectCornerNameByIndex(this.index)) {
+                case 'topLeft':
+                    doShearing('topCenter');
+                    doShearing('leftCenter');
+                    break;
+                case 'topRight':
+                    doShearing('topCenter');
+                    doShearing('rightCenter');
+                    break;
+                case 'bottomLeft':
+                    doShearing('bottomCenter');
+                    doShearing('leftCenter');
+                    break;
+                case 'bottomRight':
+                    doShearing('bottomCenter');
+                    doShearing('rightCenter');
+                    break;
+                default:
+                    doShearing();
+                    break;
+                }
+            } else {
+                doShearing();
+            }
         } else {
             // Scale
             const point = event.point;
