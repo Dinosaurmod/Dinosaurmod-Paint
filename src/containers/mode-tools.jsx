@@ -14,8 +14,7 @@ import {
     getSelectedRootItems,
     getAllRootItems,
     selectAllItems,
-    selectAllSegments,
-    setItemSelection
+    selectAllSegments
 } from '../helper/selection';
 import {HANDLE_RATIO, ensureClockwise} from '../helper/math';
 import {groupItems, ungroupItems} from '../helper/group';
