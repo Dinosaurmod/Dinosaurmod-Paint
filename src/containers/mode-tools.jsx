@@ -7,6 +7,7 @@ import bindAll from 'lodash.bindall';
 import CopyPasteHOC from '../hocs/copy-paste-hoc.jsx';
 import ModeToolsComponent from '../components/mode-tools/mode-tools.jsx';
 import {clearSelectedItems, setSelectedItems} from '../reducers/selected-items';
+import { setCursor } from '../reducers/cursor.js';
 import {
     setItemSelection,
     deleteSelection,
@@ -23,6 +24,7 @@ import {flipBitmapHorizontal, flipBitmapVertical, selectAllBitmap} from '../help
 import Formats, {isBitmap} from '../lib/format';
 import Modes from '../lib/modes';
 
+import boundingBoxTool from '../helper/selection-tools/bounding-box-tool.js';
 import TextTool from '../helper/tools/text-tool.js';
 
 class ModeTools extends React.Component {
@@ -386,6 +388,7 @@ class ModeTools extends React.Component {
     }
 
     handleInvertSelected () {
+        const BoundingBoxTool = new boundingBoxTool(Modes.SELECT, setSelectedItems, clearSelectedItems, this.props.setCursor, this.props.onUpdateImage);
         const oldItems = getSelectedRootItems();
         //const allItems = getAllRootItems();
         selectAllItems();
@@ -393,6 +396,7 @@ class ModeTools extends React.Component {
             setItemSelection(item, false);
         })
         this.props.onUpdateImage();
+        BoundingBoxTool.setSelectionBounds();
     }
 
     _handleFlip (horizontalScale, verticalScale, selectedItems) {
@@ -557,6 +561,9 @@ const mapDispatchToProps = dispatch => ({
     },
     setSelectedItems: format => {
         dispatch(setSelectedItems(getSelectedLeafItems(), isBitmap(format)));
+    },
+    setCursor: cursor => {
+        dispatch(setCursor(cursor));
     }
 });
 

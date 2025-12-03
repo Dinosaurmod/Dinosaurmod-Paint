@@ -1,10 +1,10 @@
 import paper from "dinosaurmod-paper";
 
-export function getPaperItemsFromARRAY(thing) {
-    const test = []
-    if (!thing || !thing.forEach) return;
-    thing.forEach(item => {
-        test.push(paper.project.importJSON(item))
+export function getPaperItemsFromARRAY(array) {
+    const result = []
+    if (!array || !array.forEach) return;
+    array.forEach(item => {
+        result.push(paper.project.importJSON(item))
     });
-    return test;
+    return result;
 }
