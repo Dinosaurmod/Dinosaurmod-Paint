@@ -14,7 +14,8 @@ import {
     getSelectedRootItems,
     getAllRootItems,
     selectAllItems,
-    selectAllSegments
+    selectAllSegments,
+    setItemSelection
 } from '../helper/selection';
 import {HANDLE_RATIO, ensureClockwise} from '../helper/math';
 import {groupItems, ungroupItems} from '../helper/group';
@@ -387,9 +388,11 @@ class ModeTools extends React.Component {
 
     handleInvertSelected () {
         const oldItems = getSelectedRootItems();
-        const allItems = getAllRootItems();
-
-        selectAllItems()
+        //const allItems = getAllRootItems();
+        selectAllItems();
+        oldItems.forEach((item) => {
+            setItemSelection(item, false);
+        })
         this.props.onUpdateImage();
     }
 
