@@ -388,7 +388,7 @@ class ModeTools extends React.Component {
     }
 
     handleInvertSelected (isPerspective) {
-        const BoundingBoxTool = new boundingBoxTool(isPerspective ? Modes.PERSPECTIVE : Modes.SELECT, setSelectedItems, clearSelectedItems, this.props.setCursor, this.props.onUpdateImage, null, isPerspective ? true : null);
+        const BoundingBoxTool = new boundingBoxTool(Modes.SELECT, setSelectedItems, clearSelectedItems, this.props.setCursor, this.props.onUpdateImage);
         const oldItems = getSelectedRootItems();
         //const allItems = getAllRootItems();
         selectAllItems();
