@@ -387,8 +387,8 @@ class ModeTools extends React.Component {
         this.handleMergeShape("exclude");
     }
 
-    handleInvertSelected () {
-        const BoundingBoxTool = new boundingBoxTool(Modes.SELECT, setSelectedItems, clearSelectedItems, this.props.setCursor, this.props.onUpdateImage);
+    handleInvertSelected (isPerspective) {
+        const BoundingBoxTool = new boundingBoxTool(isPerspective ? Modes.PERSPECTIVE : Modes.SELECT, setSelectedItems, clearSelectedItems, this.props.setCursor, this.props.onUpdateImage, null, isPerspective);
         const oldItems = getSelectedRootItems();
         //const allItems = getAllRootItems();
         selectAllItems();

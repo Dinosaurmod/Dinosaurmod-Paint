@@ -958,7 +958,7 @@ const ModeToolsComponent = props => {
                             hideLabel={hideLabel(props.intl.locale)}
                             imgSrc={invertSelectedIcon}
                             title={'Invert Selection'}
-                            onClick={props.onInvertSelected}
+                            onClick={() => {props.onInvertSelected(true)}}
                         />
                     </InputGroup>
                 )
