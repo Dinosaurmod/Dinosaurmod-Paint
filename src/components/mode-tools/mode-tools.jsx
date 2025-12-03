@@ -48,6 +48,8 @@ import shapeMaskIcon from './icons/mask.svg';
 import shapeSubtractIcon from './icons/subtract.svg';
 import shapeFilterIcon from './icons/filter.svg';
 
+import invertSelectedIcon from './icons/invert-selected-items.svg';
+
 import alignLeftIcon from './icons/alignLeft.svg';
 import alignRightIcon from './icons/alignRight.svg';
 import alignCenterIcon from './icons/alignCenter.svg';
@@ -658,6 +660,16 @@ const ModeToolsComponent = props => {
         case Modes.BIT_SELECT:
         /* falls through */
         case Modes.SELECT:
+            const selectingMethods = (
+                <InputGroup className={classNames(styles.modDashedBorder, styles.modLabeledIconHeight)}>
+                    <LabeledIconButton
+                        hideLabel={hideLabel(props.intl.locale)}
+                        imgSrc={invertSelectedIcon}
+                        title={'Invert Selected'}
+                        onClick={props.onInvertSelected}
+                    />
+                </InputGroup>
+            );
             const reshapingMethods = (
                 <InputGroup className={classNames(styles.modDashedBorder, styles.modLabeledIconHeight)}>
                     <LabeledIconButton
@@ -752,6 +764,7 @@ const ModeToolsComponent = props => {
                         {(props.mode === Modes.SELECT) ? (
                             <MediaQuery minWidth={layout.fullSizeEditorMinWidthExtraTools}>
                                 {reshapingMethods}
+                                {selectingMethods}
                             </MediaQuery>
                         ) : null}
                         {(props.mode === Modes.SELECT) ? (
@@ -766,6 +779,7 @@ const ModeToolsComponent = props => {
                                                 rtl={props.rtl}
                                             >
                                                 {reshapingMethods}
+                                                {selectingMethods}
                                             </InputGroup>
                                         }
                                         tipSize={.01}
@@ -789,6 +803,7 @@ const ModeToolsComponent = props => {
                                         {flipOptions}
                                         {movementOptions}
                                         {reshapingMethods}
+                                        {selectingMethods}
                                     </InputGroup>
                                 }
                                 tipSize={.01}
@@ -981,6 +996,8 @@ ModeToolsComponent.propTypes = {
     onPasteFromClipboard: PropTypes.func.isRequired,
     onPointPoints: PropTypes.func.isRequired,
     onUpdateImage: PropTypes.func.isRequired,
+
+    onInvertSelected: PropTypes.func.isRequired,
 
     onTextAlignLeft: PropTypes.func.isRequired,
     onTextAlignRight: PropTypes.func.isRequired,

@@ -56,7 +56,8 @@ class ModeTools extends React.Component {
             'handleSquareEnds',
             'handleMiterLineJoin',
             'handleRoundLineJoin',
-            'handleBevelLineJoin'
+            'handleBevelLineJoin',
+            'handleInvertSelected'
         ]);
     }
     _getSelectedUncurvedPoints () {
@@ -384,6 +385,14 @@ class ModeTools extends React.Component {
         this.handleMergeShape("exclude");
     }
 
+    handleInvertSelected () {
+        const oldItems = getSelectedRootItems();
+        const allItems = getAllRootItems();
+
+        selectAllItems()
+        this.props.onUpdateImage();
+    }
+
     _handleFlip (horizontalScale, verticalScale, selectedItems) {
         if (selectedItems.length === 0) {
             // If nothing is selected, select everything
@@ -492,6 +501,8 @@ class ModeTools extends React.Component {
                 onMiterLineJoin={this.handleMiterLineJoin}
                 onRoundLineJoin={this.handleRoundLineJoin}
                 onBevelLineJoin={this.handleBevelLineJoin}
+
+                onInvertSelected={this.handleInvertSelected}
 
                 onTextAlignLeft={this.handleTextAlignLeft}
                 onTextAlignRight={this.handleTextAlignRight}
