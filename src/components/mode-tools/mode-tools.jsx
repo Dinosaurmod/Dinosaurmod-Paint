@@ -950,7 +950,7 @@ const ModeToolsComponent = props => {
                     </div>
                 )
             }
-        case MODES.PERSPECTIVE:
+        case Modes.PERSPECTIVE:
             {
                 return (
                     <InputGroup className={classNames(styles.modDashedBorder, styles.modLabeledIconHeight)}>
