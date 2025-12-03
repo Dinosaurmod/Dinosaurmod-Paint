@@ -665,7 +665,7 @@ const ModeToolsComponent = props => {
                     <LabeledIconButton
                         hideLabel={hideLabel(props.intl.locale)}
                         imgSrc={invertSelectedIcon}
-                        title={'Invert Selected'}
+                        title={'Invert Selection'}
                         onClick={props.onInvertSelected}
                     />
                 </InputGroup>
@@ -948,6 +948,19 @@ const ModeToolsComponent = props => {
                         />
                         </Label>
                     </div>
+                )
+            }
+        case MODES.PERSPECTIVE:
+            {
+                return (
+                    <InputGroup className={classNames(styles.modDashedBorder, styles.modLabeledIconHeight)}>
+                        <LabeledIconButton
+                            hideLabel={hideLabel(props.intl.locale)}
+                            imgSrc={invertSelectedIcon}
+                            title={'Invert Selection'}
+                            onClick={props.onInvertSelected}
+                        />
+                    </InputGroup>
                 )
             }
         default:
