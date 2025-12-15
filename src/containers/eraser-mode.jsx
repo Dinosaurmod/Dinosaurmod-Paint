@@ -45,7 +45,7 @@ class EraserMode extends React.Component {
         }
     }
     activateTool () {
-        this.blob.activateTool({isEraser: true, ...this.props.eraserModeState});
+        this.blob.activateTool({isEraser: true, ...this.props.eraserModeState, isInvertedValue: this.props.isInvertedValue});
     }
     deactivateTool () {
         this.blob.deactivateTool();
@@ -67,12 +67,14 @@ EraserMode.propTypes = {
     }),
     handleMouseDown: PropTypes.func.isRequired,
     isEraserModeActive: PropTypes.bool.isRequired,
-    onUpdateImage: PropTypes.func.isRequired
+    onUpdateImage: PropTypes.func.isRequired,
+    isInvertedValue: PropTypes.bool.isRequired
 };
 
 const mapStateToProps = state => ({
     eraserModeState: state.scratchPaint.eraserMode,
-    isEraserModeActive: state.scratchPaint.mode === Modes.ERASER
+    isEraserModeActive: state.scratchPaint.mode === Modes.ERASER,
+    isInvertedValue: state.scratchPaint.isInvertedValue
 });
 const mapDispatchToProps = dispatch => ({
     clearSelectedItems: () => {

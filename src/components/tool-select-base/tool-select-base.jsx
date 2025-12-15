@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import {injectIntl, intlShape} from 'react-intl';
 
 import {setIsPerfectValue} from "../../reducers/isperfect.js";
+import { setIsInvertedValue } from '../../reducers/isinverted.js';
 
 import Button from '../button/button.jsx';
 
@@ -29,6 +30,7 @@ const ToolSelectComponent = props => (
         onClick={() => {
             props.onMouseDown();
             props.setIsPerfectValueTo(false);
+            props.setIsInvertedValueTo(false);
         }}
     >
         <img
@@ -53,12 +55,16 @@ ToolSelectComponent.propTypes = {
     intl: intlShape.isRequired,
     isSelected: PropTypes.bool.isRequired,
     onMouseDown: PropTypes.func.isRequired,
-    setIsPerfectValueTo: PropTypes.func.isRequired
+    setIsPerfectValueTo: PropTypes.func.isRequired,
+    setIsInvertedValueTo: PropTypes.func.isRequired
 };
 
 const mapDispatchToProps = dispatch => ({
     setIsPerfectValueTo: e => {
         dispatch(setIsPerfectValue(e));
+    },
+    setIsInvertedValueTo: e => {
+        dispatch(setIsInvertedValue(e));
     }
 });
 

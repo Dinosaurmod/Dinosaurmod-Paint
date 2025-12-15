@@ -17,6 +17,7 @@ import { changeBitBrushSize } from '../../reducers/bit-brush-size';
 import { changeBitEraserSize } from '../../reducers/bit-eraser-size';
 import { setShapesFilled } from '../../reducers/fill-bitmap-shapes';
 import { setIsPerfectValue } from '../../reducers/isperfect';
+import { setIsInvertedValue } from '../../reducers/isinverted';
 import { setCornersToRound } from '../../reducers/corners-to-round';
 
 import FontDropdown from '../../containers/font-dropdown.jsx';
@@ -315,6 +316,9 @@ const ModeToolsComponent = props => {
                 const currentIcon = isVector(props.format) ? eraserIcon : bitEraserIcon;
                 const currentEraserValue = isBitmap(props.format) ? props.bitEraserSize : props.eraserValue;
                 const changeFunction = isBitmap(props.format) ? props.onBitEraserSliderChange : props.onEraserSliderChange;
+
+                const currentInvertedValue = props.isInvertedValue;
+                const changeFunctionInvertedChange = props.onInvertedChange;
                 return (
                     <div className={classNames(props.className, styles.modeTools)}>
                         <div>
@@ -334,6 +338,15 @@ const ModeToolsComponent = props => {
                             value={currentEraserValue}
                             onSubmit={changeFunction}
                         />
+                        {new URLSearchParams(location.search).has('livetests') && (<Label text={"   " + "Inverted"}>
+                        <LiveBooleanInput
+                            range
+                            small
+                            checked={!!currentInvertedValue}
+                            onChange={changeFunctionInvertedChange}
+                            style={{transform: "translate(-40%, 0%)"}}
+                        />
+                        </Label>)}
                     </div>
                 );
             }
@@ -978,6 +991,7 @@ ModeToolsComponent.propTypes = {
     segValue: PropTypes.number,
     className: PropTypes.string,
     isPerfectValue: PropTypes.bool,
+    isInvertedValue: PropTypes.bool,
     clipboardItems: PropTypes.arrayOf(PropTypes.array),
     eraserValue: PropTypes.number,
     roundedCornerValue: PropTypes.number,
@@ -999,6 +1013,7 @@ ModeToolsComponent.propTypes = {
     onDelete: PropTypes.func.isRequired,
     onEraserSliderChange: PropTypes.func,
     onPerfectChange: PropTypes.func,
+    onInvertedChange: PropTypes.func,
     onCornersToRoundChange: PropTypes.func,
     onFillShapes: PropTypes.func.isRequired,
     onFlipHorizontal: PropTypes.func.isRequired,
@@ -1042,6 +1057,7 @@ const mapStateToProps = state => ({
     clipboardItems: state.scratchPaint.clipboard.items,
     eraserValue: state.scratchPaint.eraserMode.brushSize,
     isPerfectValue: state.scratchPaint.isPerfectValue,
+    isInvertedValue: state.scratchPaint.isInvertedValue,
     roundedCornerValue: state.scratchPaint.roundedRectMode.roundedCornerSize,
     trianglePolyValue: state.scratchPaint.triangleMode.trianglePolyCount,
     trianglePointValue: state.scratchPaint.triangleMode.trianglePointCount,
@@ -1077,6 +1093,9 @@ const mapDispatchToProps = dispatch => ({
     },
     onPerfectChange: isPerfectValue => {
         dispatch(setIsPerfectValue(isPerfectValue));
+    },
+    onInvertedChange: isInvertedValue => {
+        dispatch(setIsInvertedValue(isInvertedValue));
     },
     onCornersToRoundChange: cornersToRound => {
         dispatch(setCornersToRound(cornersToRound));

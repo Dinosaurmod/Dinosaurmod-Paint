@@ -17,6 +17,7 @@ import fontReducer from './font';
 import formatReducer from './format';
 import hoverReducer from './hover';
 import isPerfectValueReducer from './isperfect';
+import isInvertedValueReducer from './isinverted';
 import cornersToRoundReducer from './corners-to-round';
 import layoutReducer from './layout';
 import modalsReducer from './modals';
@@ -46,6 +47,7 @@ export default combineReducers({
     format: formatReducer,
     hoveredItemId: hoverReducer,
     isPerfectValue: isPerfectValueReducer,
+    isInvertedValue: isInvertedValueReducer,
     layout: layoutReducer,
     modals: modalsReducer,
     selectedItems: selectedItemReducer,

@@ -140,7 +140,7 @@ class Blobbiness {
             }
 
             if (blob.options.isEraser) {
-                blob.mergeEraser(lastPath);
+                blob.mergeEraser(lastPath, blob.options.isInvertedValue);
             } else {
                 blob.mergeBrush(lastPath);
             }
@@ -246,7 +246,7 @@ class Blobbiness {
         }
     }
 
-    mergeEraser(lastPath) {
+    mergeEraser(lastPath, isInverted) {
         const blob = this;
 
         // Get all path items to merge with
