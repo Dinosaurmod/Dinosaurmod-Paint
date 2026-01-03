@@ -58,8 +58,6 @@ class ColorPicker extends React.Component {
             'handleAddGradient',
             'handleRemoveGradient',
             'handleHueChange',
-            'handleColorStopChange',
-            'handleColor2StopChange',
             'handleSaturationChange',
             'handleBrightnessChange',
             'handleAlphaChange',
@@ -78,8 +76,6 @@ class ColorPicker extends React.Component {
             forceUpdateKey: 0
         };
         this.gradientCount = 1
-        this.props.colorStop = 0
-        this.props.color2Stop = 100
     }
     componentWillReceiveProps (newProps) {
         const color = newProps.colorIndex === 0 ? this.props.color : this.props.color2;
@@ -197,26 +193,12 @@ class ColorPicker extends React.Component {
             forceUpdateKey: prevState.forceUpdateKey + 1
         }))
     }
-    handleColorStopChange (colorStop) {
-        this.props.colorStop = colorStop
-        this.setState(prevState => ({
-            forceUpdateKey: prevState.forceUpdateKey + 1
-        }))
-    }
-    handleColor2StopChange (color2Stop) {
-        this.props.color2Stop = color2Stop
-        this.setState(prevState => ({
-            forceUpdateKey: prevState.forceUpdateKey + 1
-        }))
-    }
     render () {
         return (
             <ColorPickerComponent
                 brightness={this.state.brightness}
                 color={this.props.color}
                 color2={this.props.color2}
-                colorStop={this.props.colorStop}
-                color2Stop={this.props.color2Stop}
                 colorIndex={this.props.colorIndex}
                 gradientType={this.props.gradientType}
                 hue={this.state.hue}
@@ -240,8 +222,6 @@ class ColorPicker extends React.Component {
                 onAddGradient={this.handleAddGradient}
                 onRemoveGradient={this.handleRemoveGradient}
                 onHueChange={this.handleHueChange}
-                onColorStopChange={this.handleColorStopChange}
-                onColor2StopChange={this.handleColor2StopChange}
                 onSaturationChange={this.handleSaturationChange}
                 onSelectColor={this.props.onSelectColor}
                 onSelectColor2={this.props.onSelectColor2}
@@ -255,8 +235,6 @@ class ColorPicker extends React.Component {
 ColorPicker.propTypes = {
     color: PropTypes.string,
     color2: PropTypes.string,
-    colorStop: PropTypes.number,
-    color2Stop: PropTypes.number,
     colorIndex: PropTypes.number.isRequired,
     gradientType: PropTypes.oneOf(Object.keys(GradientTypes)).isRequired,
     isEyeDropping: PropTypes.bool.isRequired,

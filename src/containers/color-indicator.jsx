@@ -150,8 +150,6 @@ const makeColorIndicator = (label, isStroke) => {
         disabled: PropTypes.bool.isRequired,
         color: PropTypes.string,
         color2: PropTypes.string,
-        colorStop: PropTypes.number,
-        color2Stop: PropTypes.number,
         colorModalVisible: PropTypes.bool.isRequired,
         fillBitmapShapes: PropTypes.bool.isRequired,
         format: PropTypes.oneOf(Object.keys(Formats)),

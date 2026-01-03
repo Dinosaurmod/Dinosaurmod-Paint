@@ -10,13 +10,11 @@ import styles from './color-button.css';
 import GradientTypes from '../../lib/gradient-types';
 import log from '../../log/log';
 
-const colorToBackground = (color, color2, gradientType, colorStop, color2Stop) => {
+const colorToBackground = (color, color2, gradientType) => {
     if (color === MIXED || (gradientType !== GradientTypes.SOLID && color2 === MIXED)) return 'white';
     if (color === null) color = 'white';
     if (color2 === null) color2 = 'white';
-    if (!colorStop) colorStop = '0';
-    if (!color2Stop) color2Stop = '100';
-    const colorStructure = `${color} ${colorStop}%, ${color2} ${color2Stop}%`
+    const colorStructure = `${color}, ${color2}`
     switch (gradientType) {
     case GradientTypes.SOLID: return color;
     case GradientTypes.HORIZONTAL: return `linear-gradient(to right, ${colorStructure})`;
@@ -36,7 +34,7 @@ const ColorButtonComponent = props => (
                 [styles.outlineSwatch]: props.outline && !(props.color === MIXED)
             })}
             style={{
-                background: colorToBackground(props.color, props.color2, props.gradientType, props.colorStop, props.color2Stop)
+                background: colorToBackground(props.color, props.color2, props.gradientType)
             }}
         >
             {props.color === null && (props.gradientType === GradientTypes.SOLID || props.color2 === null) ? (
@@ -60,8 +58,6 @@ const ColorButtonComponent = props => (
 ColorButtonComponent.propTypes = {
     color: PropTypes.string,
     color2: PropTypes.string,
-    colorStop: PropTypes.number,
-    color2Stop: PropTypes.number,
     gradientType: PropTypes.oneOf(Object.keys(GradientTypes)).isRequired,
     onClick: PropTypes.func.isRequired,
     outline: PropTypes.bool.isRequired
