@@ -293,9 +293,16 @@ class Blobbiness {
                 // Remove the ones that are within the eraser stroke boundary
                 for (let k = subpaths.length - 1; k >= 0; k--) {
                     const segMidpoint = subpaths[k].getLocationAt(subpaths[k].length / 2).point;
-                    if (lastPath.contains(segMidpoint)) {
-                        subpaths[k].remove();
-                        subpaths.splice(k, 1);
+                    if (!!isInverted) {
+                        if (!lastPath.contains(segMidpoint)) {
+                            subpaths[k].remove();
+                            subpaths.splice(k, 1);
+                        }
+                    } else {
+                        if (lastPath.contains(segMidpoint)) {
+                            subpaths[k].remove();
+                            subpaths.splice(k, 1);
+                        }
                     }
                 }
                 lastPath.remove();
@@ -324,9 +331,16 @@ class Blobbiness {
             // This way subpaths only remain if they didn't get turned into a shape by subtract.
             for (let k = subpaths.length - 1; k >= 0; k--) {
                 const segMidpoint = subpaths[k].getLocationAt(subpaths[k].length / 2).point;
-                if (lastPath.contains(segMidpoint) || newPath.contains(segMidpoint)) {
-                    subpaths[k].remove();
-                    subpaths.splice(k, 1);
+                if (!!isInverted) {
+                    if (!lastPath.contains(segMidpoint) || !newPath.contains(segMidpoint)) {
+                        subpaths[k].remove();
+                        subpaths.splice(k, 1);
+                    }
+                } else {
+                    if (lastPath.contains(segMidpoint) || newPath.contains(segMidpoint)) {
+                        subpaths[k].remove();
+                        subpaths.splice(k, 1);
+                    }
                 }
             }
 
